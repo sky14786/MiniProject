@@ -12,10 +12,10 @@ public class Partimer implements Serializable {
 	private String pw;
 	private String name;
 	private int age;
-	private char gender;
+	private String gender;
 	private String phone;
 
-	public Partimer(int no, String id, String pw, String name, int age, char gender, String phone) {
+	public Partimer(int no, String id, String pw, String name, int age, String gender, String phone) {
 		super();
 		this.no = no;
 		this.id = id;
@@ -69,11 +69,11 @@ public class Partimer implements Serializable {
 		this.age = age;
 	}
 
-	public char getGender() {
+	public String getGender() {
 		return gender;
 	}
 
-	public void setGender(char gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 
