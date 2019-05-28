@@ -8,29 +8,20 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import com.job.model.Notice;
 import com.job.model.Owner;
+import com.job.model.Partimer;
 
-public class OwnerSignUpController {
+public class NoticeRegisterController {
+	private String fileName = "notice.txt";
+	private ArrayList<Notice> notices = new ArrayList<Notice>();
 
-	private String fileName = "owner.txt";
-	private ArrayList<Owner> owners = new ArrayList<Owner>();
-
-	public void addOwner(String id, String pw, String name, String bNumber, String addr) {
+	public void addNotice(String bName, double pay, String timeTotime, String category, String bKeyword1,
+			String bKeyword2, String bKeyword3, String etc, String periodType, String timeType) {
 		loadData();
-		owners.add(new Owner(owners.size(), id, pw, name, bNumber, addr));
+		notices.add(new Notice(notices.size(), bName, pay, timeTotime, category, bKeyword1, bKeyword2, bKeyword3, etc,
+				periodType, timeType));
 		save();
-	}
-
-	public boolean duplicateCheck(String id) {
-		boolean checkType = true;
-
-		for (int i = 0; i < owners.size(); i++) {
-			if (owners.get(i).getId().equals(id)) {
-				checkType = false;
-				break;
-			}
-		}
-		return checkType;
 	}
 
 	public void save() {
@@ -39,7 +30,7 @@ public class OwnerSignUpController {
 		try {
 			FileOutputStream fos = new FileOutputStream(file);
 			oos = new ObjectOutputStream(fos);
-			oos.writeObject(owners);
+			oos.writeObject(notices);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -49,24 +40,22 @@ public class OwnerSignUpController {
 				e.printStackTrace();
 			}
 		}
-
 	}
 
 	public void loadData() {
-		ObjectInputStream ownerOIS = null;
+		ObjectInputStream ois = null;
 		try {
+			File file = new File(fileName);
+			FileInputStream fis = new FileInputStream(file);
+			ois = new ObjectInputStream(fis);
 
-			File ownerFile = new File(fileName);
-			FileInputStream ownerFIS = new FileInputStream(ownerFile);
-			ownerOIS = new ObjectInputStream(ownerFIS);
-
-			owners = (ArrayList<Owner>) ownerOIS.readObject();
+			notices = (ArrayList<Notice>) ois.readObject();
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {
-				ownerOIS.close();
+				ois.close();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

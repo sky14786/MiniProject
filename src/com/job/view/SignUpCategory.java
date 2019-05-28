@@ -7,6 +7,8 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 
 public class SignUpCategory {
 	private OwnerSignUpView ownerSignUpView = new OwnerSignUpView();
@@ -30,16 +32,28 @@ public class SignUpCategory {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setResizable(false);
 
-		btnPartimer = new JButton("\uAD6C\uC9C1");
-		btnPartimer.setFont(new Font("³ª´®½ºÄù¾î", Font.PLAIN, 26));
-		btnPartimer.setBounds(12, 76, 189, 94);
+		btnPartimer = new JButton("");
+		btnPartimer.setIcon(new ImageIcon(this.getClass().getResource("/resource/PartimerSignUpButton.jpg")));
+		btnPartimer.setFont(new Font("¹è´ÞÀÇ¹ÎÁ· ÁÖ¾Æ", Font.PLAIN, 60));
+		btnPartimer.setBounds(0, 0, 221, 271);
+		btnPartimer.setContentAreaFilled(false);
+		btnPartimer.setBorderPainted(false);
 		frame.getContentPane().add(btnPartimer);
 
-		btnOwner = new JButton("\uAD6C\uC778");
-		btnOwner.setFont(new Font("³ª´®½ºÄù¾î", Font.PLAIN, 26));
-		btnOwner.setBounds(233, 76, 189, 94);
+		btnOwner = new JButton("");
+		btnOwner.setIcon(new ImageIcon(this.getClass().getResource("/resource/OwnerSignUpButton.jpg")));
+		btnOwner.setFont(new Font("¹è´ÞÀÇ¹ÎÁ· ÁÖ¾Æ", Font.PLAIN, 60));
+		btnOwner.setBounds(233, 0, 211, 271);
+		btnOwner.setContentAreaFilled(false);
+		btnOwner.setBorderPainted(false);
 		frame.getContentPane().add(btnOwner);
+
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(this.getClass().getResource("/resource/categoryBack.jpg")));
+		label.setBounds(0, 0, 444, 271);
+		frame.getContentPane().add(label);
 
 		setOwnerButton();
 		setPartimerButton();
@@ -69,5 +83,4 @@ public class SignUpCategory {
 			}
 		});
 	}
-
 }

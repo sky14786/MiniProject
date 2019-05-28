@@ -67,9 +67,10 @@ public class LoginView {
 		frame.setIconImage(Toolkit.getDefaultToolkit()
 				.getImage("C:\\Git\\Mini Project\\MiniProject\\src\\resource\\MainLogo.png"));
 		frame.setTitle("\uC54C\uBC14\uC758\uBBFC\uC871");
-		frame.setBounds(100, 100, 600, 600);
+		frame.setBounds(100, 100, 586, 589);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setResizable(false);
 
 		tfID = new JTextField();
 		tfID.setBounds(188, 463, 189, 35);

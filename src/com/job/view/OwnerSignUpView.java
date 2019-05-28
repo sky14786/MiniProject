@@ -2,6 +2,8 @@ package com.job.view;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +14,8 @@ import com.job.controller.OwnerSignUpController;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 
 public class OwnerSignUpView {
 
@@ -26,6 +30,7 @@ public class OwnerSignUpView {
 	private JLabel lbErrorMsg;
 	private JButton btnDuplicateCheck;
 	private boolean isDuplicate;
+	private JLabel label_6;
 
 	public OwnerSignUpView() {
 		initialize();
@@ -40,91 +45,86 @@ public class OwnerSignUpView {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 600, 600);
+		frame.setBounds(100, 100, 1000, 600);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-
-		JLabel label = new JLabel("\uD68C\uC6D0\uAC00\uC785");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setFont(new Font("¹è´ÞÀÇ¹ÎÁ· ÁÖ¾Æ", Font.BOLD, 34));
-		label.setBounds(158, 38, 275, 59);
-		frame.getContentPane().add(label);
-
-		JLabel label_1 = new JLabel("ID :");
-		label_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_1.setFont(new Font("³ª´®½ºÄù¾î", Font.PLAIN, 17));
-		label_1.setBounds(106, 120, 87, 35);
-		frame.getContentPane().add(label_1);
+		frame.setResizable(false);
 
 		tfID = new JTextField();
+		tfID.setFont(new Font("³ª´®½ºÄù¾î", Font.PLAIN, 20));
 		tfID.setColumns(10);
-		tfID.setBounds(219, 120, 189, 35);
+		tfID.setBounds(165, 151, 189, 35);
+		tfID.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		tfID.setOpaque(false);
 		frame.getContentPane().add(tfID);
 
-		JLabel label_2 = new JLabel("PW :");
-		label_2.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_2.setFont(new Font("³ª´®½ºÄù¾î", Font.PLAIN, 17));
-		label_2.setBounds(106, 173, 87, 35);
-		frame.getContentPane().add(label_2);
-
 		tfPW = new JTextField();
+		tfPW.setFont(new Font("³ª´®½ºÄù¾î", Font.PLAIN, 20));
 		tfPW.setColumns(10);
-		tfPW.setBounds(219, 173, 189, 35);
+		tfPW.setBounds(165, 221, 189, 35);
+		tfPW.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		tfPW.setOpaque(false);
 		frame.getContentPane().add(tfPW);
 
-		JLabel label_3 = new JLabel("\uC774\uB984 :");
-		label_3.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_3.setFont(new Font("³ª´®½ºÄù¾î", Font.PLAIN, 17));
-		label_3.setBounds(106, 225, 87, 35);
-		frame.getContentPane().add(label_3);
-
 		tfName = new JTextField();
+		tfName.setFont(new Font("³ª´®½ºÄù¾î", Font.PLAIN, 20));
 		tfName.setColumns(10);
-		tfName.setBounds(219, 225, 189, 35);
+		tfName.setBounds(165, 292, 189, 35);
+		tfName.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		tfName.setOpaque(false);
 		frame.getContentPane().add(tfName);
 
-		JLabel label_4 = new JLabel("\uC0AC\uC5C5\uC790\uB4F1\uB85D\uBC88\uD638 :");
-		label_4.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_4.setFont(new Font("³ª´®½ºÄù¾î", Font.PLAIN, 17));
-		label_4.setBounds(57, 279, 136, 35);
-		frame.getContentPane().add(label_4);
-
 		tfbNumber = new JTextField();
+		tfbNumber.setFont(new Font("³ª´®½ºÄù¾î", Font.PLAIN, 20));
 		tfbNumber.setColumns(10);
-		tfbNumber.setBounds(219, 279, 189, 35);
+		tfbNumber.setBounds(165, 361, 189, 35);
+		tfbNumber.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		tfbNumber.setOpaque(false);
 		frame.getContentPane().add(tfbNumber);
 
-		JLabel label_5 = new JLabel("\uC8FC\uC18C : ");
-		label_5.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_5.setFont(new Font("³ª´®½ºÄù¾î", Font.PLAIN, 17));
-		label_5.setBounds(106, 335, 87, 35);
-		frame.getContentPane().add(label_5);
-
 		tfAddr = new JTextField();
+		tfAddr.setFont(new Font("³ª´®½ºÄù¾î", Font.PLAIN, 20));
 		tfAddr.setColumns(10);
-		tfAddr.setBounds(219, 335, 189, 35);
+		tfAddr.setBounds(165, 430, 203, 35);
+		tfAddr.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		tfAddr.setOpaque(false);
 		frame.getContentPane().add(tfAddr);
 
-		btnSignUp = new JButton("\uD68C\uC6D0\uAC00\uC785");
+		btnSignUp = new JButton("");
+		btnSignUp.setIcon(new ImageIcon(this.getClass().getResource("/resource/SignUpButton.png")));
 		btnSignUp.setFont(new Font("³ª´®½ºÄù¾î", Font.PLAIN, 26));
-		btnSignUp.setBounds(74, 433, 189, 94);
+		btnSignUp.setBounds(134, 507, 146, 53);
+		btnSignUp.setContentAreaFilled(false);
+		btnSignUp.setBorderPainted(false);
 		frame.getContentPane().add(btnSignUp);
 
-		btnBack = new JButton("\uB4A4\uB85C\uAC00\uAE30");
+		btnBack = new JButton("");
+		btnBack.setIcon(new ImageIcon(this.getClass().getResource("/resource/BackButton.jpg")));
 		btnBack.setFont(new Font("³ª´®½ºÄù¾î", Font.PLAIN, 26));
-		btnBack.setBounds(311, 433, 189, 94);
+		btnBack.setBounds(328, 507, 146, 53);
+		btnBack.setContentAreaFilled(false);
+		btnBack.setBorderPainted(false);
 		frame.getContentPane().add(btnBack);
 
 		lbErrorMsg = new JLabel("");
-		lbErrorMsg.setFont(new Font("³ª´®½ºÄù¾î", Font.PLAIN, 15));
-		lbErrorMsg.setHorizontalAlignment(SwingConstants.CENTER);
-		lbErrorMsg.setBounds(74, 395, 423, 28);
+		lbErrorMsg.setForeground(Color.RED);
+		lbErrorMsg.setHorizontalAlignment(SwingConstants.LEFT);
+		lbErrorMsg.setFont(new Font("³ª´®½ºÄù¾î", Font.PLAIN, 22));
+		lbErrorMsg.setBounds(483, 29, 423, 44);
 		frame.getContentPane().add(lbErrorMsg);
 
-		btnDuplicateCheck = new JButton("\uC911\uBCF5\uCCB4\uD06C");
+		btnDuplicateCheck = new JButton("");
+		btnDuplicateCheck.setIcon(new ImageIcon(this.getClass().getResource("/resource/DuplicateCheckButton.png")));
 		btnDuplicateCheck.setFont(new Font("³ª´®½ºÄù¾î", Font.PLAIN, 14));
-		btnDuplicateCheck.setBounds(429, 120, 87, 35);
+		btnDuplicateCheck.setBounds(401, 143, 112, 53);
+		btnDuplicateCheck.setContentAreaFilled(false);
+		btnDuplicateCheck.setBorderPainted(false);
 		frame.getContentPane().add(btnDuplicateCheck);
+		
+		label_6 = new JLabel("");
+		label_6.setIcon(new ImageIcon(this.getClass().getResource("/resource/OwnerSignUpImage.jpg")));
+		label_6.setBounds(0, 0, 994, 571);
+		frame.getContentPane().add(label_6);
 
 		setSignUpButton();
 		setDuplicateCheckButton();
