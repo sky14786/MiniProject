@@ -20,6 +20,7 @@ public class LoginController {
 	private Partimer nowPartimer = new Partimer();
 
 	public int login(String id, String pw, boolean loginType) {
+		loadData();
 		int errorType = 0;
 		if (loginType) {
 			for (int i = 0; i < owners.size(); i++) {
@@ -54,35 +55,35 @@ public class LoginController {
 		}
 		return errorType;
 	}
-
-	public void saveData() {
-		ObjectOutputStream partimerOOS = null, ownerOOS = null;
-		try {
-			File partimerFile = new File(partimerFileName);
-			FileOutputStream partimerFOS = new FileOutputStream(partimerFile);
-			partimerOOS = new ObjectOutputStream(partimerFOS);
-
-			File ownerFile = new File(ownerFileName);
-			FileOutputStream ownerFOS = new FileOutputStream(ownerFile);
-			ownerOOS = new ObjectOutputStream(ownerFOS);
-
-			partimerOOS.writeObject(partimers);
-			ownerOOS.writeObject(owners);
-
-			partimerOOS.flush();
-			ownerOOS.flush();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				partimerOOS.close();
-				ownerOOS.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
+//
+//	public void saveData() {
+//		ObjectOutputStream partimerOOS = null, ownerOOS = null;
+//		try {
+//			File partimerFile = new File(partimerFileName);
+//			FileOutputStream partimerFOS = new FileOutputStream(partimerFile);
+//			partimerOOS = new ObjectOutputStream(partimerFOS);
+//
+//			File ownerFile = new File(ownerFileName);
+//			FileOutputStream ownerFOS = new FileOutputStream(ownerFile);
+//			ownerOOS = new ObjectOutputStream(ownerFOS);
+//
+//			partimerOOS.writeObject(partimers);
+//			ownerOOS.writeObject(owners);
+//
+//			partimerOOS.flush();
+//			ownerOOS.flush();
+//
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			try {
+//				partimerOOS.close();
+//				ownerOOS.close();
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
+//	}
 
 	public void loadData() {
 		ObjectInputStream partimerOIS = null, ownerOIS = null;

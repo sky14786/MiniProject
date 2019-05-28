@@ -10,7 +10,7 @@ import com.job.model.Owner;
 
 public class OwnerSignUpController {
 
-	private String fileName = "onwer.txt";
+	private String fileName = "owner.txt";
 	private ArrayList<Owner> owners = new ArrayList<Owner>();
 
 	public void addOwner(String id, String pw, String name, String bNumber, String addr) {
