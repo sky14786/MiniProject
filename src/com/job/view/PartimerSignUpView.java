@@ -1,6 +1,8 @@
 package com.job.view;
 
+import java.awt.Color;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -12,19 +14,19 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import com.job.controller.PartimerSignUpController;
-import java.awt.Color;
-import java.awt.Toolkit;
+import com.job.run.Run;
 
-public class PartimerSignUpView {
+public class PartimerSignUpView extends JPanel {
 
-	private JFrame frame;
 	private JTextField tfID;
-	private JTextField tfPW;
+	private JPasswordField tfPW;
 	private JTextField tfName;
 	private JTextField tfAge;
 	private JTextField tfPhone;
@@ -35,83 +37,86 @@ public class PartimerSignUpView {
 	private ButtonGroup rbg = new ButtonGroup();
 	private JRadioButton[] radio = new JRadioButton[2];
 	private JLabel label;
+	public Run win;
 
 	/**
 	 * Create the application.
 	 */
-	public PartimerSignUpView() {
+	public PartimerSignUpView(Run win) {
+		this.win = win;
 		initialize();
-	}
-
-	public void showThisView() {
-		frame.setVisible(true);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Git\\Mini Project\\MiniProject\\src\\resource\\MainLogo.png"));
-		frame.setTitle("\uD68C\uC6D0\uAC00\uC785 - \uC544\uB974\uBC14\uC774\uD2B8");
-		frame.setBounds(100, 100, 1000, 600);
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		frame.setResizable(false);
+
+		setLayout(null);
+
+		Color fontColor = new Color(0x4f4f4f);
 
 		tfID = new JTextField();
-		tfID.setFont(new Font("³ª´®½ºÄù¾î", Font.PLAIN, 20));
+		tfID.setFont(new Font("¹è´ÞÀÇ¹ÎÁ· ÁÖ¾Æ", Font.PLAIN, 18));
 		tfID.setColumns(10);
+		tfID.setForeground(fontColor);
 		tfID.setBounds(165, 151, 189, 35);
 		tfID.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		tfID.setOpaque(false);
-		frame.getContentPane().add(tfID);
+		add(tfID);
 
-		tfPW = new JTextField();
-		tfPW.setFont(new Font("³ª´®½ºÄù¾î", Font.PLAIN, 20));
+		tfPW = new JPasswordField();
+		tfPW.setEchoChar('*');
+		tfPW.setFont(new Font("¹è´ÞÀÇ¹ÎÁ· ÁÖ¾Æ", Font.PLAIN, 18));
 		tfPW.setColumns(10);
+		tfPW.setForeground(fontColor);
 		tfPW.setBounds(165, 221, 189, 35);
 		tfPW.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		tfPW.setOpaque(false);
-		frame.getContentPane().add(tfPW);
+		add(tfPW);
 
 		tfName = new JTextField();
-		tfName.setFont(new Font("³ª´®½ºÄù¾î", Font.PLAIN, 20));
+		tfName.setFont(new Font("¹è´ÞÀÇ¹ÎÁ· ÁÖ¾Æ", Font.PLAIN, 18));
 		tfName.setColumns(10);
+		tfName.setForeground(fontColor);
 		tfName.setBounds(165, 292, 189, 35);
 		tfName.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		tfName.setOpaque(false);
-		frame.getContentPane().add(tfName);
+		add(tfName);
 
 		tfAge = new JTextField();
-		tfAge.setFont(new Font("³ª´®½ºÄù¾î", Font.PLAIN, 20));
+		tfAge.setFont(new Font("¹è´ÞÀÇ¹ÎÁ· ÁÖ¾Æ", Font.PLAIN, 18));
 		tfAge.setColumns(10);
+		tfAge.setForeground(fontColor);
 		tfAge.setBounds(165, 361, 189, 35);
 		tfAge.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		tfAge.setOpaque(false);
-		frame.getContentPane().add(tfAge);
+		add(tfAge);
 
 		tfPhone = new JTextField();
-		tfPhone.setFont(new Font("³ª´®½ºÄù¾î", Font.PLAIN, 20));
+		tfPhone.setFont(new Font("¹è´ÞÀÇ¹ÎÁ· ÁÖ¾Æ", Font.PLAIN, 18));
 		tfPhone.setColumns(10);
+		tfPhone.setForeground(fontColor);
 		tfPhone.setBounds(165, 430, 203, 35);
 		tfPhone.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		tfPhone.setOpaque(false);
-		frame.getContentPane().add(tfPhone);
+		add(tfPhone);
 
 		radio[0] = new JRadioButton("\uC5EC");
 		radio[0].setBounds(480, 365, 50, 33);
+		radio[0].setForeground(fontColor);
 		radio[0].setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		radio[0].setOpaque(false);
-		radio[0].setFont(new Font("³ª´®½ºÄù¾î", Font.PLAIN, 20));
-		frame.getContentPane().add(radio[0]);
+		radio[0].setFont(new Font("¹è´ÞÀÇ¹ÎÁ· ÁÖ¾Æ", Font.PLAIN, 18));
+		add(radio[0]);
 
 		radio[1] = new JRadioButton("\uB0A8");
 		radio[1].setBounds(420, 365, 50, 33);
+		radio[1].setForeground(fontColor);
 		radio[1].setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		radio[1].setOpaque(false);
-		radio[1].setFont(new Font("³ª´®½ºÄù¾î", Font.PLAIN, 20));
-		frame.getContentPane().add(radio[1]);
+		radio[1].setFont(new Font("¹è´ÞÀÇ¹ÎÁ· ÁÖ¾Æ", Font.PLAIN, 18));
+		add(radio[1]);
 
 		rbg.add(radio[0]);
 		rbg.add(radio[1]);
@@ -122,7 +127,7 @@ public class PartimerSignUpView {
 		btnSignUp.setBounds(134, 507, 146, 53);
 		btnSignUp.setContentAreaFilled(false);
 		btnSignUp.setBorderPainted(false);
-		frame.getContentPane().add(btnSignUp);
+		add(btnSignUp);
 
 		btnBack = new JButton("");
 		btnBack.setIcon(new ImageIcon(this.getClass().getResource("/resource/BackButton.png")));
@@ -130,28 +135,27 @@ public class PartimerSignUpView {
 		btnBack.setBounds(328, 507, 146, 53);
 		btnBack.setContentAreaFilled(false);
 		btnBack.setBorderPainted(false);
-		frame.getContentPane().add(btnBack);
+		add(btnBack);
 
 		btnDuplicateCheck = new JButton("");
-		btnDuplicateCheck
-				.setIcon(new ImageIcon(this.getClass().getResource("/resource/DuplicateCheckButton.png")));
+		btnDuplicateCheck.setIcon(new ImageIcon(this.getClass().getResource("/resource/DuplicateCheckButton.png")));
 		btnDuplicateCheck.setFont(new Font("³ª´®½ºÄù¾î", Font.PLAIN, 14));
 		btnDuplicateCheck.setBounds(401, 143, 112, 53);
 		btnDuplicateCheck.setContentAreaFilled(false);
 		btnDuplicateCheck.setBorderPainted(false);
-		frame.getContentPane().add(btnDuplicateCheck);
+		add(btnDuplicateCheck);
 
 		lbErrorMsg = new JLabel("");
 		lbErrorMsg.setForeground(Color.RED);
 		lbErrorMsg.setHorizontalAlignment(SwingConstants.LEFT);
-		lbErrorMsg.setFont(new Font("³ª´®½ºÄù¾î", Font.PLAIN, 22));
+		lbErrorMsg.setFont(new Font("¹è´ÞÀÇ¹ÎÁ· ÁÖ¾Æ", Font.PLAIN, 20));
 		lbErrorMsg.setBounds(483, 29, 423, 44);
-		frame.getContentPane().add(lbErrorMsg);
+		add(lbErrorMsg);
 
 		label = new JLabel("");
 		label.setIcon(new ImageIcon(this.getClass().getResource("/resource/PartimerSignUpImage2.jpg")));
 		label.setBounds(0, 0, 994, 571);
-		frame.getContentPane().add(label);
+		add(label);
 
 		setBackButton();
 		setDuplicateCheckButton();
@@ -184,6 +188,7 @@ public class PartimerSignUpView {
 		tfName.setText("");
 		tfPhone.setText("");
 		tfAge.setText("");
+		lbErrorMsg.setText("");
 
 	}
 
@@ -192,10 +197,18 @@ public class PartimerSignUpView {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				resetTextField();
-				frame.setVisible(false);
+				moveLoginView();
 			}
 		});
+	}
+
+	public void moveLoginView() {
+		resetTextField();
+		win.getContentPane().removeAll();
+		win.getContentPane().add(win.loginView);
+		win.setSize(590, 590);
+		revalidate();
+		repaint();
 	}
 
 	public void setDuplicateCheckButton() {
@@ -235,6 +248,7 @@ public class PartimerSignUpView {
 												radio[0].isSelected() == true ? "³²ÀÚ" : "¿©ÀÚ", tfPhone.getText());
 
 										resetTextField();
+										moveLoginView();
 									} else {
 										lbErrorMsg.setText("ID Áßº¹°Ë»ç¸¦ ÇÏ¼¼¿ä.");
 									}

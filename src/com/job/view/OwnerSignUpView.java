@@ -1,27 +1,27 @@
 package com.job.view;
 
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import com.job.controller.OwnerSignUpController;
+import com.job.run.Run;
 
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
+public class OwnerSignUpView extends JPanel {
 
-public class OwnerSignUpView {
-
-	private JFrame frame;
 	private JTextField tfID;
-	private JTextField tfPW;
+	private JPasswordField tfPW;
 	private JTextField tfName;
 	private JTextField tfbNumber;
 	private JTextField tfAddr;
@@ -31,64 +31,66 @@ public class OwnerSignUpView {
 	private JButton btnDuplicateCheck;
 	private boolean isDuplicate;
 	private JLabel label_6;
+	public Run win = new Run();
 
-	public OwnerSignUpView() {
+	public OwnerSignUpView(Run win) {
+		this.win = win;
 		initialize();
-	}
-
-	public void showThisView() {
-		frame.setVisible(true);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 1000, 600);
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		frame.setResizable(false);
+		setLayout(null);
+
+		Color fontColor = new Color(0x4f4f4f);
 
 		tfID = new JTextField();
-		tfID.setFont(new Font("³ª´®½ºÄù¾î", Font.PLAIN, 20));
+		tfID.setFont(new Font("¹è´ÞÀÇ¹ÎÁ· ÁÖ¾Æ", Font.PLAIN, 18));
 		tfID.setColumns(10);
+		tfID.setForeground(fontColor);
 		tfID.setBounds(165, 151, 189, 35);
 		tfID.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		tfID.setOpaque(false);
-		frame.getContentPane().add(tfID);
+		add(tfID);
 
-		tfPW = new JTextField();
-		tfPW.setFont(new Font("³ª´®½ºÄù¾î", Font.PLAIN, 20));
+		tfPW = new JPasswordField();
+		tfPW.setEchoChar('*');
+		tfPW.setFont(new Font("¹è´ÞÀÇ¹ÎÁ· ÁÖ¾Æ", Font.PLAIN, 18));
 		tfPW.setColumns(10);
+		tfPW.setForeground(fontColor);
 		tfPW.setBounds(165, 221, 189, 35);
 		tfPW.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		tfPW.setOpaque(false);
-		frame.getContentPane().add(tfPW);
+		add(tfPW);
 
 		tfName = new JTextField();
-		tfName.setFont(new Font("³ª´®½ºÄù¾î", Font.PLAIN, 20));
+		tfName.setFont(new Font("¹è´ÞÀÇ¹ÎÁ· ÁÖ¾Æ", Font.PLAIN, 18));
 		tfName.setColumns(10);
+		tfName.setForeground(fontColor);
 		tfName.setBounds(165, 292, 189, 35);
 		tfName.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		tfName.setOpaque(false);
-		frame.getContentPane().add(tfName);
+		add(tfName);
 
 		tfbNumber = new JTextField();
-		tfbNumber.setFont(new Font("³ª´®½ºÄù¾î", Font.PLAIN, 20));
+		tfbNumber.setFont(new Font("¹è´ÞÀÇ¹ÎÁ· ÁÖ¾Æ", Font.PLAIN, 18));
 		tfbNumber.setColumns(10);
+		tfbNumber.setForeground(fontColor);
 		tfbNumber.setBounds(165, 361, 189, 35);
 		tfbNumber.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		tfbNumber.setOpaque(false);
-		frame.getContentPane().add(tfbNumber);
+		add(tfbNumber);
 
 		tfAddr = new JTextField();
-		tfAddr.setFont(new Font("³ª´®½ºÄù¾î", Font.PLAIN, 20));
+		tfAddr.setFont(new Font("¹è´ÞÀÇ¹ÎÁ· ÁÖ¾Æ", Font.PLAIN, 18));
+		tfAddr.setForeground(fontColor);
 		tfAddr.setColumns(10);
 		tfAddr.setBounds(165, 430, 203, 35);
 		tfAddr.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		tfAddr.setOpaque(false);
-		frame.getContentPane().add(tfAddr);
+		add(tfAddr);
 
 		btnSignUp = new JButton("");
 		btnSignUp.setIcon(new ImageIcon(this.getClass().getResource("/resource/SignUpButton.png")));
@@ -96,22 +98,22 @@ public class OwnerSignUpView {
 		btnSignUp.setBounds(134, 507, 146, 53);
 		btnSignUp.setContentAreaFilled(false);
 		btnSignUp.setBorderPainted(false);
-		frame.getContentPane().add(btnSignUp);
+		add(btnSignUp);
 
 		btnBack = new JButton("");
-		btnBack.setIcon(new ImageIcon(this.getClass().getResource("/resource/BackButton.jpg")));
+		btnBack.setIcon(new ImageIcon(this.getClass().getResource("/resource/BackButton.png")));
 		btnBack.setFont(new Font("³ª´®½ºÄù¾î", Font.PLAIN, 26));
 		btnBack.setBounds(328, 507, 146, 53);
 		btnBack.setContentAreaFilled(false);
 		btnBack.setBorderPainted(false);
-		frame.getContentPane().add(btnBack);
+		add(btnBack);
 
 		lbErrorMsg = new JLabel("");
 		lbErrorMsg.setForeground(Color.RED);
 		lbErrorMsg.setHorizontalAlignment(SwingConstants.LEFT);
-		lbErrorMsg.setFont(new Font("³ª´®½ºÄù¾î", Font.PLAIN, 22));
+		lbErrorMsg.setFont(new Font("¹è´ÞÀÇ¹ÎÁ· ÁÖ¾Æ", Font.PLAIN, 20));
 		lbErrorMsg.setBounds(483, 29, 423, 44);
-		frame.getContentPane().add(lbErrorMsg);
+		add(lbErrorMsg);
 
 		btnDuplicateCheck = new JButton("");
 		btnDuplicateCheck.setIcon(new ImageIcon(this.getClass().getResource("/resource/DuplicateCheckButton.png")));
@@ -119,12 +121,14 @@ public class OwnerSignUpView {
 		btnDuplicateCheck.setBounds(401, 143, 112, 53);
 		btnDuplicateCheck.setContentAreaFilled(false);
 		btnDuplicateCheck.setBorderPainted(false);
-		frame.getContentPane().add(btnDuplicateCheck);
-		
+		add(btnDuplicateCheck);
+
 		label_6 = new JLabel("");
 		label_6.setIcon(new ImageIcon(this.getClass().getResource("/resource/OwnerSignUpImage.jpg")));
 		label_6.setBounds(0, 0, 994, 571);
-		frame.getContentPane().add(label_6);
+		add(label_6);
+
+		isDuplicate = false;
 
 		setSignUpButton();
 		setDuplicateCheckButton();
@@ -137,6 +141,16 @@ public class OwnerSignUpView {
 		tfName.setText("");
 		tfbNumber.setText("");
 		tfAddr.setText("");
+		lbErrorMsg.setText("");
+	}
+
+	public void moveLoginView() {
+		resetTextField();
+		win.getContentPane().removeAll();
+		win.getContentPane().add(win.loginView);
+		win.setSize(590, 590);
+		revalidate();
+		repaint();
 	}
 
 	public void setBackButton() {
@@ -144,8 +158,7 @@ public class OwnerSignUpView {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				resetTextField();
-				frame.setVisible(false);
+				moveLoginView();
 			}
 		});
 	}
@@ -156,11 +169,9 @@ public class OwnerSignUpView {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (!tfID.getText().equals("")) {
-					if (ownerSignUpController.duplicateCheck(tfID.getText())) {
-						isDuplicate = true;
+					if ((isDuplicate = ownerSignUpController.duplicateCheck(tfID.getText()))) {
 						lbErrorMsg.setText("»ç¿ë °¡´ÉÇÑ ID ÀÔ´Ï´Ù.");
 					} else {
-						isDuplicate = false;
 						lbErrorMsg.setText("»ç¿ëÁßÀÎ ID ÀÔ´Ï´Ù.");
 					}
 				} else {
@@ -186,6 +197,7 @@ public class OwnerSignUpView {
 												tfbNumber.getText(), tfAddr.getText());
 
 										resetTextField();
+										moveLoginView();
 									} else {
 										lbErrorMsg.setText("ID Áßº¹°Ë»ç¸¦ ÇÏ¼¼¿ä.");
 									}

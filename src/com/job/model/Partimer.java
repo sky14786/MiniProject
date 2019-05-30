@@ -14,8 +14,9 @@ public class Partimer implements Serializable {
 	private int age;
 	private String gender;
 	private String phone;
+	private boolean isApply;
 
-	public Partimer(int no, String id, String pw, String name, int age, String gender, String phone) {
+	public Partimer(int no, String id, String pw, String name, int age, String gender, String phone, boolean isApply) {
 		super();
 		this.no = no;
 		this.id = id;
@@ -24,6 +25,15 @@ public class Partimer implements Serializable {
 		this.age = age;
 		this.gender = gender;
 		this.phone = phone;
+		this.isApply = isApply;
+	}
+
+	public boolean isApply() {
+		return isApply;
+	}
+
+	public void setApply(boolean isApply) {
+		this.isApply = isApply;
 	}
 
 	public Partimer() {

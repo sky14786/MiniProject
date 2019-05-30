@@ -1,13 +1,11 @@
 package com.job.view;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -16,34 +14,40 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import com.job.controller.NoticeRegisterController;
+import com.job.controller.NoticeUpdateController;
+import com.job.model.Notice;
 import com.job.run.Run;
+import javax.swing.ImageIcon;
+import java.awt.Color;
 
-public class NoticeRegisterView extends JPanel {
-
-	private JTextField tfBName;
-	private JTextField tfPay;
-	private JTextField tfTimeToTime;
-	private JTextField tfCategory;
-	private JTextField tfAddr;
+public class NoticeUpdateView extends JPanel {
 	private JTextField tfBKeyword1;
 	private JTextField tfBKeyword2;
 	private JTextField tfBKeyword3;
-	private JButton btnAddNotice, btnBack;
-	private JTextArea taETC;
+	private JTextField tfAddr;
+	private JTextField tfCategory;
+	private JTextField tfTimeToTime;
+	private JTextField tfPay;
+	private JTextField tfBName;
+	private JButton btnBack, btnUpdate;
 	private JComboBox periodType, timeType;
-	private NoticeRegisterController noticeRegisterController = new NoticeRegisterController();
+	private JTextArea taETC;
 	private JLabel lbErrorMsg;
-	private JButton btnTest;
 	public Run win = new Run();
+	private NoticeUpdateController noticeUpdateController = new NoticeUpdateController();
 
-	public NoticeRegisterView(Run win) {
+	/**
+	 * Create the application.
+	 */
+	public NoticeUpdateView(Run win) {
 		this.win = win;
 		initialize();
 	}
 
+	/**
+	 * Initialize the contents of the frame.
+	 */
 	private void initialize() {
-
 		setLayout(null);
 
 		Color fontColor = new Color(0x4f4f4f);
@@ -145,13 +149,13 @@ public class NoticeRegisterView extends JPanel {
 		tfBName.setOpaque(false);
 		add(tfBName);
 
-		btnAddNotice = new JButton("");
-		btnAddNotice.setIcon(new ImageIcon(this.getClass().getResource("/resource/ButtonNoticeRegister.png")));
-		btnAddNotice.setFont(new Font("나눔스퀘어", Font.PLAIN, 26));
-		btnAddNotice.setBounds(252, 510, 146, 53);
-		btnAddNotice.setContentAreaFilled(false);
-		btnAddNotice.setBorderPainted(false);
-		add(btnAddNotice);
+		btnUpdate = new JButton("");
+		btnUpdate.setIcon(new ImageIcon(this.getClass().getResource("/resource/ButtonNoticeUpdate.png")));
+		btnUpdate.setFont(new Font("나눔스퀘어", Font.PLAIN, 26));
+		btnUpdate.setBounds(252, 510, 146, 53);
+		btnUpdate.setContentAreaFilled(false);
+		btnUpdate.setBorderPainted(false);
+		add(btnUpdate);
 
 		btnBack = new JButton("");
 		btnBack.setIcon(new ImageIcon(this.getClass().getResource("/resource/BackButton.png")));
@@ -168,43 +172,52 @@ public class NoticeRegisterView extends JPanel {
 		lbErrorMsg.setBounds(483, 29, 423, 44);
 		add(lbErrorMsg);
 
-		btnTest = new JButton("\uD14C\uC2A4\uD2B8");
-		btnTest.setFont(new Font("나눔스퀘어", Font.PLAIN, 26));
-		btnTest.setContentAreaFilled(false);
-		btnTest.setBorderPainted(false);
-		btnTest.setBounds(32, 502, 135, 59);
-		add(btnTest);
-
-		JLabel label_10 = new JLabel(" ");
-		label_10.setIcon(new ImageIcon(this.getClass().getResource("/resource/NoticeRegister.jpg")));
+		JLabel label_10 = new JLabel("");
+		label_10.setIcon(new ImageIcon(this.getClass().getResource("/resource/NoticeUpdate.jpg")));
 		label_10.setBounds(0, 0, 1000, 600);
 		add(label_10);
 
-		setAddNoticeButton();
-		setBackButton();
-		setTestButton();
+		setUpdateBtn();
+		setBackBtn();
+		resetTextField();
+		settingData();
+	}
+
+	public void settingData() {
+		Notice temp = null;
+		if ((temp = noticeUpdateController.sendUserInformation()) != null) {
+			tfAddr.setText(temp.getAddr());
+			tfBKeyword1.setText(temp.getbKeyword1());
+			tfBKeyword2.setText(temp.getbKeyword2());
+			tfBKeyword3.setText(temp.getbKeyword3());
+			tfBName.setText(temp.getbName());
+			tfCategory.setText(temp.getCategory());
+			tfPay.setText(Double.toString(temp.getPay()));
+			tfTimeToTime.setText(temp.getTimeTotime());
+			timeType.setSelectedItem(temp.getTimeType());
+			periodType.setSelectedItem(temp.getPeriodType());
+			taETC.setText(temp.getEtc());
+		} else {
+			lbErrorMsg.setText("불러올 유저가 없습니다.");
+		}
 
 	}
 
-	public void setAddNoticeButton() {
-		btnAddNotice.addActionListener(new ActionListener() {
+	public void setUpdateBtn() {
+		btnUpdate.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (((!tfAddr.getText().equals("")) && !tfBName.getText().equals("") && !tfCategory.getText().equals("")
-						&& !tfPay.getText().equals("") && !tfTimeToTime.getText().equals("")
-						&& !timeType.getSelectedItem().toString().equals("시간 선택")
-						&& !periodType.getSelectedItem().toString().equals("기간 선택"))) {
-					if (noticeRegisterController.isApplyCheck()) {
-						noticeRegisterController.addNotice(tfBName.getText(), Double.parseDouble(tfPay.getText()),
-								tfTimeToTime.getText(), tfCategory.getText(), tfAddr.getText(),
-								periodType.getSelectedItem().toString(), timeType.getSelectedItem().toString(),
-								tfBKeyword1.getText(), tfBKeyword2.getText(), tfBKeyword3.getText(), taETC.getText());
-						resetTextField();
-						moveBack();
-					} else {
-						lbErrorMsg.setText("이미 등록 하셨습니다.");
-					}
+				if (!(tfAddr.getText().equals("") && tfBName.getText().equals("") && tfCategory.getText().equals("")
+						&& tfPay.getText().equals("") && tfTimeToTime.getText().equals("")
+						&& timeType.getSelectedItem().toString().equals("시간 선택")
+						&& periodType.getSelectedItem().toString().equals("기간 선택"))) {
+					noticeUpdateController.updateNotice(tfBName.getText(), Double.parseDouble(tfPay.getText()),
+							tfTimeToTime.getText(), tfCategory.getText(), tfAddr.getText(),
+							periodType.getSelectedItem().toString(), timeType.getSelectedItem().toString(),
+							tfBKeyword1.getText(), tfBKeyword2.getText(), tfBKeyword3.getText(), taETC.getText());
+					resetTextField();
+					backMove();
 
 				} else {
 					lbErrorMsg.setText("빈칸 없이 입력해 주세요.");
@@ -213,34 +226,20 @@ public class NoticeRegisterView extends JPanel {
 		});
 	}
 
-	public void setTestButton() {
-		btnTest.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				win.getContentPane().removeAll();
-				win.getContentPane().add(win.noticeUpdateView);
-				win.setSize(1000, 600);
-				revalidate();
-				repaint();
-				win.setVisible(false);
-				win.setVisible(true);
-			}
-		});
-	}
-
-	public void setBackButton() {
+	public void setBackBtn() {
 		btnBack.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				resetTextField();
-				moveBack();
+				backMove();
+				settingData();
 			}
 		});
 	}
 
-	public void moveBack() {
+	public void backMove() {
+
 		win.getContentPane().removeAll();
 		win.getContentPane().add(win.loginView);
 		win.setSize(590, 590);

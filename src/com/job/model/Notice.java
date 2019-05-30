@@ -16,12 +16,29 @@ public class Notice implements Serializable {
 	private String category;
 	private String periodType, timeType;
 	private String bKeyword1, bKeyword2, bKeyword3;
+	private String addr;
+
+	public String getTimeType() {
+		return timeType;
+	}
+
+	public void setTimeType(String timeType) {
+		this.timeType = timeType;
+	}
+
+	public String getAddr() {
+		return addr;
+	}
+
+	public void setAddr(String addr) {
+		this.addr = addr;
+	}
 
 	public Notice() {
 	}
 
-	public Notice(int bNo, String bName, double pay, String timeTotime, String category, String bKeyword1,
-			String bKeyword2, String bKeyword3, String etc, String periodType, String timeType) {
+	public Notice(int bNo, String bName, double pay, String timeTotime, String category, String addr, String periodType,
+			String timeType, String bKeyword1, String bKeyword2, String bKeyword3, String etc) {
 		super();
 		this.bNo = bNo;
 		this.bName = bName;
@@ -34,6 +51,7 @@ public class Notice implements Serializable {
 		this.bKeyword3 = bKeyword3;
 		this.periodType = periodType;
 		this.timeType = timeType;
+		this.addr = addr;
 	}
 
 	public String getPeriodType() {

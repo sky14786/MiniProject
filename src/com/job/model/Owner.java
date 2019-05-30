@@ -9,11 +9,24 @@ public class Owner implements Serializable {
 	private static final long serialVersionUID = -7768027846107587263L;
 	private int no;
 	private String id, pw, name, bNumber, addr;
+	private boolean isApply;
+
+	public boolean isApply() {
+		return isApply;
+	}
+
+	public void setApply(boolean isApply) {
+		this.isApply = isApply;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 	public Owner() {
 	}
 
-	public Owner(int no, String id, String pw, String name, String bNumber, String addr) {
+	public Owner(int no, String id, String pw, String name, String bNumber, String addr, boolean isApply) {
 		super();
 		this.no = no;
 		this.id = id;
@@ -21,6 +34,7 @@ public class Owner implements Serializable {
 		this.name = name;
 		this.bNumber = bNumber;
 		this.addr = addr;
+		this.isApply = isApply;
 	}
 
 	public int getNo() {
@@ -74,7 +88,7 @@ public class Owner implements Serializable {
 	@Override
 	public String toString() {
 		return "Owner [no=" + no + ", id=" + id + ", pw=" + pw + ", name=" + name + ", bNumber=" + bNumber + ", addr="
-				+ addr + "]";
+				+ addr + ", isApply=" + isApply + "]";
 	}
 
 }

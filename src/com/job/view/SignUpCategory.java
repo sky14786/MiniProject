@@ -1,26 +1,27 @@
 package com.job.view;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JButton;
 import java.awt.Font;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
 
-public class SignUpCategory {
-	private OwnerSignUpView ownerSignUpView = new OwnerSignUpView();
-	private PartimerSignUpView partimerSignUpView = new PartimerSignUpView();
-	private JFrame frame;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import com.job.run.Run;
+
+public class SignUpCategory extends JPanel {
 	private JButton btnPartimer, btnOwner;
+	private LoginView loginview;
+	public Run win;
 
 	/**
 	 * Create the application.
 	 */
-	public SignUpCategory() {
+	public SignUpCategory(Run win) {
 		initialize();
+		this.win = win;
 
 	}
 
@@ -28,40 +29,33 @@ public class SignUpCategory {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		frame.setResizable(false);
+
+		setLayout(null);
 
 		btnPartimer = new JButton("");
+		btnPartimer.setBounds(223, 0, 221, 271);
+		add(btnPartimer);
 		btnPartimer.setIcon(new ImageIcon(this.getClass().getResource("/resource/PartimerSignUpButton.jpg")));
 		btnPartimer.setFont(new Font("배달의민족 주아", Font.PLAIN, 60));
-		btnPartimer.setBounds(0, 0, 221, 271);
 		btnPartimer.setContentAreaFilled(false);
 		btnPartimer.setBorderPainted(false);
-		frame.getContentPane().add(btnPartimer);
 
 		btnOwner = new JButton("");
+		btnOwner.setBounds(0, 0, 211, 271);
+		add(btnOwner);
 		btnOwner.setIcon(new ImageIcon(this.getClass().getResource("/resource/OwnerSignUpButton.jpg")));
 		btnOwner.setFont(new Font("배달의민족 주아", Font.PLAIN, 60));
-		btnOwner.setBounds(233, 0, 211, 271);
 		btnOwner.setContentAreaFilled(false);
 		btnOwner.setBorderPainted(false);
-		frame.getContentPane().add(btnOwner);
 
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(this.getClass().getResource("/resource/categoryBack.jpg")));
 		label.setBounds(0, 0, 444, 271);
-		frame.getContentPane().add(label);
+		add(label);
+		label.setIcon(new ImageIcon(this.getClass().getResource("/resource/categoryBack.jpg")));
 
 		setOwnerButton();
 		setPartimerButton();
 
-	}
-
-	public void showThisView() {
-		frame.setVisible(true);
 	}
 
 	private void setOwnerButton() {
@@ -69,7 +63,11 @@ public class SignUpCategory {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ownerSignUpView.showThisView();
+				win.getContentPane().removeAll();
+				win.getContentPane().add(win.ownerSignUpView);
+				win.setSize(1000, 600);
+				revalidate();
+				repaint();
 			}
 		});
 	}
@@ -79,7 +77,11 @@ public class SignUpCategory {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				partimerSignUpView.showThisView();
+				win.getContentPane().removeAll();
+				win.getContentPane().add(win.partimerSignView);
+				win.setSize(1000, 600);
+				revalidate();
+				repaint();
 			}
 		});
 	}
