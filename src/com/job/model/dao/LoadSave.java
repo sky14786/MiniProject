@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import com.job.model.Notice;
 import com.job.model.Owner;
 import com.job.model.Partimer;
+import com.job.model.Resume;
 
 public class LoadSave {
 
@@ -149,4 +150,45 @@ public class LoadSave {
 		}
 	}
 
+	public ArrayList<Resume> loadResume() {
+		ObjectInputStream ois = null;
+		ArrayList<Resume> resumes = new ArrayList<Resume>();
+		File file = new File("resume.txt");
+		if (file.isFile()) {
+			try {
+				FileInputStream fis = new FileInputStream(file);
+				ois = new ObjectInputStream(fis);
+				resumes = (ArrayList<Resume>) ois.readObject();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					ois.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
+			}
+		}
+		return resumes;
+	}
+
+	public void saveResume(ArrayList<Resume> resumes) {
+		ObjectInputStream ois = null;
+		File file = new File("resume.txt");
+		ObjectOutputStream oos = null;
+		try {
+			FileOutputStream fos = new FileOutputStream(file);
+			oos = new ObjectOutputStream(fos);
+			oos.writeObject(resumes);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				oos.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }
