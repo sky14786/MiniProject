@@ -1,24 +1,17 @@
 package com.job.controller;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import com.job.model.Notice;
 import com.job.model.Owner;
-import com.job.model.Partimer;
 import com.job.model.dao.LoadSave;
 
 public class NoticeRegisterController {
-	private String fileName = "notice.txt";
 	private ArrayList<Notice> notices = new ArrayList<Notice>();
 	private ArrayList<Owner> owners = new ArrayList<Owner>();
 	private int userNo = 0;
 	private LoadSave dao = LoadSave.getDao();
+
 	public NoticeRegisterController() {
 	}
 
