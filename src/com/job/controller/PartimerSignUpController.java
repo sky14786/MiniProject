@@ -28,4 +28,16 @@ public class PartimerSignUpController {
 		return checkType;
 	}
 
+	public boolean englishCheck(String id) {
+		boolean checkType = true;
+		for (int i = 0; i < id.length(); i++) {
+			if (!((id.charAt(i) >= 'a' && id.charAt(i) <= 'z') || (id.charAt(i) >= 'A' && id.charAt(i) <= 'Z')
+					|| (id.charAt(i) >= '0' && id.charAt(i) <= '9'))) {
+				checkType = false;
+				return checkType;
+			}
+		}
+		return checkType;
+	}
+
 }

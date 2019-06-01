@@ -99,6 +99,8 @@ public class LoginView extends JPanel {
 
 		setSignUpButton();
 		setLoginButton();
+		
+		radio[0].setSelected(true);
 
 	}
 

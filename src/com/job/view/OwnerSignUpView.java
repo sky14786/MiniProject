@@ -169,15 +169,18 @@ public class OwnerSignUpView extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (!tfID.getText().equals("")) {
-					if ((isDuplicate = ownerSignUpController.duplicateCheck(tfID.getText()))) {
-						lbErrorMsg.setText("사용 가능한 ID 입니다.");
+					if (ownerSignUpController.englishCheck(tfID.getText())) {
+						if ((isDuplicate = ownerSignUpController.duplicateCheck(tfID.getText()))) {
+							lbErrorMsg.setText("사용 가능한 ID 입니다.");
+						} else {
+							lbErrorMsg.setText("사용중인 ID 입니다.");
+						}
 					} else {
-						lbErrorMsg.setText("사용중인 ID 입니다.");
+						lbErrorMsg.setText("ID는 영문자와 숫자만 가능합니다.");
 					}
 				} else {
 					lbErrorMsg.setText("ID를 입력해 주세요.");
 				}
-
 			}
 		});
 	}

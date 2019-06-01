@@ -7,7 +7,7 @@ public class Owner implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -7768027846107587263L;
-	private int no;
+ 	private int no;
 	private String id, pw, name, bNumber, addr;
 	private boolean isApply;
 
