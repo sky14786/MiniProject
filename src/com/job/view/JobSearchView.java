@@ -4,6 +4,8 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -21,6 +23,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
 import com.job.controller.JobSearchController;
+import com.job.model.Notice;
 import com.job.model.dao.LoadSave;
 import com.job.run.Run;
 
@@ -28,17 +31,20 @@ import com.job.run.Run;
 
 public class JobSearchView extends JPanel {
 
-//    MainMenu mm = new MainMenu();
+    DummyData mm = new DummyData();
 	JobSearchController jsc = new JobSearchController();
 	JobSearchView2 sub = new JobSearchView2();
 //	Notice n = new Notice();
 	public DefaultTableModel DtmStorage;
 	public int row;
-
-//	public static List<Notice> pt2 = new ArrayList<Notice>();// 조회결과를 테이블에 보여주기 위한 리스트
+    PartMainView pm = new PartMainView();
+	public List<Notice> notice5 = new ArrayList<Notice>();
+	public List<Notice> notice4 = new ArrayList<Notice>();// 조회결과를 테이블에 보여주기 위한 리스트
 //	public static List<Notice> pt3 = new ArrayList<Notice>();// 테이블에 선택한 결과를 담는 리스트
 //	public Notice temp = new Notice();
 //	Notice temp2 = new Notice();
+	
+	
 
 	public static String periodType; // comBobox에서 가져온 요일
 	public static String typeOccup; // comBobox에서 가져온 직종
@@ -47,22 +53,6 @@ public class JobSearchView extends JPanel {
 
 	private JComboBox<Object> regionType, periodCombobox, timeTotimeCombo;
 
-//    public int bNo2;
-//    public String bName; // pt.get(i)의 업장명 변수
-//	public double pay; // pt.get(i)의 시급 변수
-//	public String timeTotime2; // pt.get(i)의 몇시까지 변수
-//    public String typeOccup2; // pt.get(i)의 근무형태 변수
-//	public String periodType2; // pt.get(i)의 기간 변수
-//	public String timeType2; // pt.get(i)의 몇 시간 변수
-//	public String region2; // pt.get(i)의 주소 변수
-//	public String key1;
-//	public String key2;
-//	public String key3;
-//	public String etc1;
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	public JTable searchTable;
 	private JButton searchButton;
@@ -81,12 +71,17 @@ public class JobSearchView extends JPanel {
 		setBounds(100, 100, 1000, 600);
 		setLayout(null);
 
+		setSize(1000,600);
 		JTextPane Title = new JTextPane();
 		Title.setFont(new Font("나눔고딕 ExtraBold", Font.BOLD, 24));
 		Title.setBackground(SystemColor.control);
 		Title.setText("\uAD6C \uC778 \uACF5 \uACE0 \uAC80 \uC0C9");
 		Title.setBounds(12, 10, 199, 35);
 		add(Title);
+		
+	
+		
+		
 
 		// 직종 ComboBox
 		typeOccurType = new JComboBox<Object>();
@@ -106,29 +101,7 @@ public class JobSearchView extends JPanel {
 		typeOccurType.setBounds(317, 92, 192, 35);
 		add(typeOccurType);
 
-		// 검색버튼
-		searchButton = new JButton("\uAC80\uC0C9");
-		searchButton.setFont(new Font("나눔스퀘어", Font.PLAIN, 18));
-		searchButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
 
-				DtmStorage.setNumRows(0);
-				jsc.search(region, typeOccup, timeTotime, periodType);
-				for (int i = 0; i < jsc.pt2.size(); i++) {
-					DtmStorage.addRow(new Object[] { jsc.pt2.get(i).getbNo(), jsc.pt2.get(i).getbName(),
-							jsc.pt2.get(i).getPay(), jsc.pt2.get(i).getTimeTotime(), jsc.pt2.get(i).getCategory(),
-							jsc.pt2.get(i).getPeriodType(), jsc.pt2.get(i).getTimeType(), jsc.pt2.get(i).getAddr(),
-							jsc.pt2.get(i).getbKeyword1(), jsc.pt2.get(i).getbKeyword2(), jsc.pt2.get(i).getbKeyword3(),
-							jsc.pt2.get(i).getEtc() });
-
-				}
-
-			}
-		}
-
-		);
-		searchButton.setBounds(741, 128, 194, 35);
-		add(searchButton);
 
 		// 테이블
 		scrollPane = new JScrollPane();
@@ -147,16 +120,28 @@ public class JobSearchView extends JPanel {
 				"키워드 2", "키워드 3", "추가 설명" });
 		// 키워드랑 상세설명은 상세설명 클래스에서 보여주기
 
-		// 테이블에 행 삽입
-		// DtmStorage.addRow(new Object[] { jsc.bNo2, jsc.bName, jsc.pay,
-		// jsc.timeTotime2, jsc.typeOccup2, jsc.periodType2,jsc.timeType2, jsc.region2,
-		// jsc.key1, jsc.key2, jsc.key3, jsc.etc1 });
+		
+		
+       //화면이 나올때 전체 출력
+       jsc.printAll();
+       for(int i = 0; i < jsc.notice2.size(); i++)
+       {
+    	   DtmStorage.addRow(new Object[] { jsc.notice2.get(i).getbNo(), jsc.notice2.get(i).getbName(),
+    			   jsc.notice2.get(i).getPay(), jsc.notice2.get(i).getTimeTotime(), jsc.notice2.get(i).getCategory(),
+    			   jsc.notice2.get(i).getPeriodType(), jsc.notice2.get(i).getTimeType(), jsc.notice2.get(i).getAddr(),
+    			   jsc.notice2.get(i).getbKeyword1(), jsc.notice2.get(i).getbKeyword2(), jsc.notice2.get(i).getbKeyword3(),
+    			   jsc.notice2.get(i).getEtc() });
+       }
+
+		
+		
 		searchTable.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 		searchTable.getTableHeader().setReorderingAllowed(false); // 테이블 셀 마우스로 이동 못하게
 		searchTable.setAutoCreateRowSorter(true);
 		// searchTable.setCellSelectionEnabled(rootPaneCheckingEnabled);
 		searchTable.setRowHeight(50);
 		searchTable.getSelectedRow();
+		
 
 		// 키워드 1 항목 숨기기
 		searchTable.getColumn("키워드 1").setWidth(0);
@@ -182,6 +167,10 @@ public class JobSearchView extends JPanel {
 		searchTable.getColumn("업장번호").setWidth(0);
 		searchTable.getColumn("업장번호").setMinWidth(0);
 		searchTable.getColumn("업장번호").setMaxWidth(0);
+		
+			
+
+		
 
 		scrollPane.setViewportView(searchTable);
 
@@ -251,6 +240,30 @@ public class JobSearchView extends JPanel {
 		periodCombobox.setSelectedIndex(0);
 		periodCombobox.setBounds(317, 152, 130, 35);
 		add(periodCombobox);
+		
+		// 검색버튼
+		searchButton = new JButton("\uAC80\uC0C9");
+		searchButton.setFont(new Font("나눔스퀘어", Font.PLAIN, 18));
+		searchButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				DtmStorage.setNumRows(0);
+				jsc.search(region, typeOccup, timeTotime, periodType);
+				for (int i = 0; i < jsc.notice2.size(); i++) {
+					DtmStorage.addRow(new Object[] { jsc.notice2.get(i).getbNo(), jsc.notice2.get(i).getbName(),
+							jsc.notice2.get(i).getPay(), jsc.notice2.get(i).getTimeTotime(), jsc.notice2.get(i).getCategory(),
+							jsc.notice2.get(i).getPeriodType(), jsc.notice2.get(i).getTimeType(), jsc.notice2.get(i).getAddr(),
+							jsc.notice2.get(i).getbKeyword1(), jsc.notice2.get(i).getbKeyword2(), jsc.notice2.get(i).getbKeyword3(),
+							jsc.notice2.get(i).getEtc() });
+
+				}
+
+			}
+		}
+
+		);
+		searchButton.setBounds(741, 128, 194, 35);
+		add(searchButton);
 
 		// 상세보기 버튼
 		JButton viewMore = new JButton("\uC0C1\uC138 \uC815\uBCF4");
@@ -272,7 +285,7 @@ public class JobSearchView extends JPanel {
 		apply.setFont(new Font("나눔스퀘어", Font.PLAIN, 14));
 		apply.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				row = searchTable.getSelectedRow();	
+
 				jsc.search2(row);
 
 			}
@@ -302,12 +315,18 @@ public class JobSearchView extends JPanel {
 		timeTotimeCombo.setBounds(101, 152, 130, 35);
 		add(timeTotimeCombo);
 
-		// 리스트 초기화 버튼
-		JButton resetButton = new JButton("\uB9AC\uC2A4\uD2B8 \uCD08\uAE30\uD654");
+		// 뒤로가기 버튼
+		JButton resetButton = new JButton("\uB4A4\uB85C\uAC00\uAE30");
 		resetButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				DtmStorage.setNumRows(0);
+				win.getContentPane().removeAll();
+				win.getContentPane().add(win.partMainView);
+				win.getContentPane().revalidate();
+				win.getContentPane().repaint();
+				
+			
+				
 
 			}
 		});
@@ -320,17 +339,17 @@ public class JobSearchView extends JPanel {
 		allView.setFont(new Font("나눔스퀘어", Font.PLAIN, 18));
 		allView.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				jsc.pt2 = dao.loadNoitce();
+				jsc.notice2 = dao.loadNoitce();
 				DtmStorage.setNumRows(0);
-				jsc.printAll();
-				for (int i = 0; i < jsc.pt2.size(); i++) {
-					DtmStorage.addRow(new Object[] { jsc.pt2.get(i).getbNo(), jsc.pt2.get(i).getbName(),
-							jsc.pt2.get(i).getPay(), jsc.pt2.get(i).getTimeTotime(), jsc.pt2.get(i).getCategory(),
-							jsc.pt2.get(i).getPeriodType(), jsc.pt2.get(i).getTimeType(), jsc.pt2.get(i).getAddr(),
-							jsc.pt2.get(i).getbKeyword1(), jsc.pt2.get(i).getbKeyword2(), jsc.pt2.get(i).getbKeyword3(),
-							jsc.pt2.get(i).getEtc() });
+				for (int i = 0; i < jsc.notice2.size(); i++) {
+					DtmStorage.addRow(new Object[] { jsc.notice2.get(i).getbNo(), jsc.notice2.get(i).getbName(),
+							jsc.notice2.get(i).getPay(), jsc.notice2.get(i).getTimeTotime(), jsc.notice2.get(i).getCategory(),
+							jsc.notice2.get(i).getPeriodType(), jsc.notice2.get(i).getTimeType(), jsc.notice2.get(i).getAddr(),
+							jsc.notice2.get(i).getbKeyword1(), jsc.notice2.get(i).getbKeyword2(), jsc.notice2.get(i).getbKeyword3(),
+							jsc.notice2.get(i).getEtc() });
 
 				}
+
 			}
 		});
 		allView.setBounds(741, 83, 194, 35);
@@ -338,3 +357,4 @@ public class JobSearchView extends JPanel {
 
 	}
 }
+

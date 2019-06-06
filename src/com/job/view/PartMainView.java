@@ -39,6 +39,10 @@ public class PartMainView extends JPanel {
 
 	public int check = 1;
 
+	public PartMainView() {
+
+	}
+
 	public PartMainView(Run win) {
 		this.win = win;
 		initialize();
