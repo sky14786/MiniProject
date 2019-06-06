@@ -134,4 +134,13 @@ public class Notice implements Serializable {
 		this.bKeyword3 = bKeyword3;
 	}
 
+	@Override
+	public String toString() {
+		return "Notice [bNo=" + bNo + ", bName=" + bName + ", pay=" + pay + ", timeTotime=" + timeTotime + ", etc="
+				+ etc + ", category=" + category + ", periodType=" + periodType + ", timeType=" + timeType
+				+ ", bKeyword1=" + bKeyword1 + ", bKeyword2=" + bKeyword2 + ", bKeyword3=" + bKeyword3 + ", addr="
+				+ addr + "]";
+	}
+	
+
 }

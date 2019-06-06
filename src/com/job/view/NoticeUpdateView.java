@@ -172,6 +172,22 @@ public class NoticeUpdateView extends JPanel {
 		lbErrorMsg.setBounds(483, 29, 423, 44);
 		add(lbErrorMsg);
 
+		JButton btnDelete = new JButton("");
+		btnDelete.setFont(new Font("나눔스퀘어", Font.PLAIN, 26));
+		btnDelete.setBounds(23, 510, 146, 53);
+		btnDelete.setContentAreaFilled(false);
+		btnDelete.setBorderPainted(false);
+		btnDelete.setIcon(new ImageIcon(this.getClass().getResource("/resource/NoticeDeleteBtn.png")));
+		btnDelete.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setDeleteBtn();
+				resetTextField();
+			}
+		});
+		add(btnDelete);
+
 		JLabel label_10 = new JLabel("");
 		label_10.setIcon(new ImageIcon(this.getClass().getResource("/resource/NoticeUpdate.jpg")));
 		label_10.setBounds(0, 0, 1000, 600);
@@ -198,12 +214,13 @@ public class NoticeUpdateView extends JPanel {
 			periodType.setSelectedItem(temp.getPeriodType());
 			taETC.setText(temp.getEtc());
 		} else {
-			lbErrorMsg.setText("불러올 유저가 없습니다.");
+			lbErrorMsg.setText("등록X");
+			resetTextField();
 		}
 
 	}
 
-	public void setUpdateBtn() {
+	private void setUpdateBtn() {
 		btnUpdate.addActionListener(new ActionListener() {
 
 			@Override
@@ -226,7 +243,7 @@ public class NoticeUpdateView extends JPanel {
 		});
 	}
 
-	public void setBackBtn() {
+	private void setBackBtn() {
 		btnBack.addActionListener(new ActionListener() {
 
 			@Override
@@ -238,16 +255,18 @@ public class NoticeUpdateView extends JPanel {
 		});
 	}
 
-	public void backMove() {
+	private void backMove() {
 
 		win.getContentPane().removeAll();
-		win.getContentPane().add(win.loginView);
-		win.setSize(590, 590);
+		win.getContentPane().add(win.getOwnerMainView());
+		win.setSize(1000, 620);
 		revalidate();
 		repaint();
+		win.setVisible(false);
+		win.setVisible(true);
 	}
 
-	public void resetTextField() {
+	private void resetTextField() {
 		tfAddr.setText("");
 		tfBKeyword1.setText("");
 		tfBKeyword2.setText("");
@@ -260,5 +279,12 @@ public class NoticeUpdateView extends JPanel {
 		periodType.setSelectedItem("기간 선택");
 		taETC.setText("");
 		lbErrorMsg.setText("");
+	}
+
+	private void setDeleteBtn() {
+		noticeUpdateController.deleteNotice();
+		noticeUpdateController.deleteConnection();
+		noticeUpdateController.applyUpdate();
+		win.getOwnerMainView().isNoticeTest();
 	}
 }

@@ -128,9 +128,10 @@ public class PartimerSignUpView extends JPanel {
 		add(btnSignUp);
 
 		btnBack = new JButton("");
-		btnBack.setIcon(new ImageIcon(this.getClass().getResource("/resource/BackButton.png")));
+		
 		btnBack.setFont(new Font("나눔스퀘어", Font.PLAIN, 26));
 		btnBack.setBounds(328, 507, 146, 53);
+		btnBack.setIcon(new ImageIcon(this.getClass().getResource("/resource/BackButton.png")));
 		btnBack.setContentAreaFilled(false);
 		btnBack.setBorderPainted(false);
 		add(btnBack);
@@ -163,24 +164,7 @@ public class PartimerSignUpView extends JPanel {
 
 	}
 
-	public void testPrompt() {
-		tfID.addFocusListener(new FocusListener() {
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				if (tfID.getText().isEmpty()) {
-					tfID.setText("ex)예시입니다.");
-				}
-			}
-
-			@Override
-			public void focusGained(FocusEvent e) {
-				if (tfID.getText().equals("ex)예시입니다.")) {
-					tfID.setText("");
-				}
-			}
-		});
-	}
+	
 
 	public void resetTextField() {
 		tfID.setText("");
@@ -192,7 +176,7 @@ public class PartimerSignUpView extends JPanel {
 
 	}
 
-	public void setBackButton() {
+	private void setBackButton() {
 		btnBack.addActionListener(new ActionListener() {
 
 			@Override
@@ -202,16 +186,16 @@ public class PartimerSignUpView extends JPanel {
 		});
 	}
 
-	public void moveLoginView() {
+	private void moveLoginView() {
 		resetTextField();
 		win.getContentPane().removeAll();
-		win.getContentPane().add(win.loginView);
+		win.getContentPane().add(win.getLoginView());
 		win.setSize(590, 590);
 		revalidate();
 		repaint();
 	}
 
-	public void setDuplicateCheckButton() {
+	private void setDuplicateCheckButton() {
 		btnDuplicateCheck.addActionListener(new ActionListener() {
 
 			@Override
@@ -236,7 +220,7 @@ public class PartimerSignUpView extends JPanel {
 		});
 	}
 
-	public void setSignUpButton() {
+	private void setSignUpButton() {
 		btnSignUp.addActionListener(new ActionListener() {
 
 			@Override
@@ -249,7 +233,7 @@ public class PartimerSignUpView extends JPanel {
 									if (isDuplicate) {
 										partimerSignUpController.addPartimer(tfID.getText(), tfPW.getText(),
 												tfName.getText(), Integer.parseInt(tfAge.getText()),
-												radio[0].isSelected() == true ? "남자" : "여자", tfPhone.getText());
+												radio[0].isSelected() == true ? "여자" : "남자", tfPhone.getText());
 
 										resetTextField();
 										moveLoginView();

@@ -64,7 +64,7 @@ public class SignUpCategory extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				win.getContentPane().removeAll();
-				win.getContentPane().add(win.ownerSignUpView);
+				win.getContentPane().add(win.getOwnerSignUpView());
 				win.setSize(1000, 600);
 				revalidate();
 				repaint();
@@ -78,7 +78,7 @@ public class SignUpCategory extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				win.getContentPane().removeAll();
-				win.getContentPane().add(win.partimerSignView);
+				win.getContentPane().add(win.getPartimerSignView());
 				win.setSize(1000, 600);
 				revalidate();
 				repaint();

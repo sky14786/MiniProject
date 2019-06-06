@@ -8,6 +8,8 @@ public class Resume implements Serializable {
 	* 
 	*/
 	private static final long serialVersionUID = -5678515146937211275L;
+	private int userNo; // 고유번호
+
 	private String name;
 	private int age;
 	private String gender;
@@ -21,13 +23,11 @@ public class Resume implements Serializable {
 	private String time; // 시간
 	private String region; // 지역
 
-	private int userNo;
-
 	public Resume() {
 	}
 
-	public Resume(String name, int age, String gender, String phone, String academic, String career, String typeOccup,
-			String periodType, String dow, String time, String region, int userNo) {
+	public Resume(int userNo, String name, int age, String gender, String phone, String academic, String career,
+			String typeOccup, String periodType, String dow, String time, String region) {
 		super();
 		this.name = name;
 		this.age = age;
@@ -144,6 +144,21 @@ public class Resume implements Serializable {
 		return "Resume [name=" + name + ", age=" + age + ", gender=" + gender + ", phone=" + phone + ", academic="
 				+ academic + ", career=" + career + ", typeOccup=" + typeOccup + ", periodType=" + periodType + ", dow="
 				+ dow + ", time=" + time + ", region=" + region + "]";
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		Resume temp = (Resume) obj;
+		boolean isEquals = false;
+		if (this.academic.equals(temp.getAcademic()) && this.career.equals(temp.getCareer())
+				&& this.dow.equals(temp.getDow()) && this.gender.equals(temp.getGender())
+				&& this.name.equals(temp.getName()) && this.periodType.equals(temp.periodType)
+				&& this.phone.equals(temp.getPhone()) && this.region.equals(temp.getRegion())
+				&& this.time.equals(temp.time) && this.typeOccup.equals(temp.typeOccup) && this.age == temp.getAge()
+				&& this.userNo == temp.getUserNo()) {
+			isEquals = true;
+		}
+		return isEquals;
 	}
 
 }

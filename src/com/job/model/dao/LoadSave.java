@@ -8,6 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import com.job.model.Connection;
 import com.job.model.Notice;
 import com.job.model.Owner;
 import com.job.model.Partimer;
@@ -16,8 +17,17 @@ import com.job.model.Resume;
 public class LoadSave {
 
 	private static LoadSave dao = new LoadSave();
+	private int nowUser = 0;
 
 	private LoadSave() {
+	}
+
+	public int getNowUser() {
+		return nowUser;
+	}
+
+	public void setNowUser(int nowUser) {
+		this.nowUser = nowUser;
 	}
 
 	public static LoadSave getDao() {
@@ -190,5 +200,47 @@ public class LoadSave {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public void saveConnection(ArrayList<Connection> connections) {
+		ObjectInputStream ois = null;
+		File file = new File("connection.txt");
+		ObjectOutputStream oos = null;
+		try {
+			FileOutputStream fos = new FileOutputStream(file);
+			oos = new ObjectOutputStream(fos);
+			oos.writeObject(connections);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				oos.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public ArrayList<Connection> loadConnection() {
+		ObjectInputStream ois = null;
+		ArrayList<Connection> connections = new ArrayList<Connection>();
+		File file = new File("connection.txt");
+		if (file.isFile()) {
+			try {
+				FileInputStream fis = new FileInputStream(file);
+				ois = new ObjectInputStream(fis);
+				connections = (ArrayList<Connection>) ois.readObject();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					ois.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
+			}
+		}
+		return connections;
 	}
 }

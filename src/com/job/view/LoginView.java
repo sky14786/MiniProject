@@ -1,17 +1,12 @@
 package com.job.view;
 
-import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.TextField;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -19,6 +14,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import com.job.controller.LoginController;
+import com.job.controller.NoticeRegisterController;
 import com.job.run.Run;
 
 public class LoginView extends JPanel {
@@ -99,24 +95,24 @@ public class LoginView extends JPanel {
 
 		setSignUpButton();
 		setLoginButton();
-		
+
 		radio[0].setSelected(true);
 
 	}
 
-	public void resetTextField() {
+	private void resetTextField() {
 		tfID.setText("");
 		tfPW.setText("");
 		lbTest.setText("");
 	}
 
-	public void setSignUpButton() {
+	private void setSignUpButton() {
 		btnSignup.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				resetTextField();
 				win.getContentPane().removeAll();
-				win.getContentPane().add(win.signUpCategory);
+				win.getContentPane().add(win.getSignUpCategory());
 				win.setSize(450, 300);
 				revalidate();
 				repaint();
@@ -124,7 +120,7 @@ public class LoginView extends JPanel {
 		});
 	}
 
-	public void setLoginButton() {
+	private void setLoginButton() {
 		btnLogin.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -132,13 +128,24 @@ public class LoginView extends JPanel {
 				case 1:
 					resetTextField();
 					win.getContentPane().removeAll();
-					win.getContentPane().add(win.noticeRegisterView);
+					win.getContentPane().add(win.getOwnerMainView());
+					win.setSize(1000, 620);
+					revalidate();
+					repaint();
+					win.getOwnerMainView().isNoticeTest();
+					win.getOwnerMainView().resetDTM();
+					win.getOwnerMainView().showResume();
+//					win.ownerMainView.hyunSikCode();
+					break;
+				case 4:
+					resetTextField();
+					win.getContentPane().removeAll();
+					win.getContentPane().add(win.getPartMainView());
 					win.setSize(1000, 600);
 					revalidate();
 					repaint();
-					break;
-				case 4:
-					lbTest.setText("구직 로그인 성공");
+					win.getPartMainView().buttonTest();
+					win.getPartMainView().showId();
 					break;
 				case 2:
 					lbTest.setText("존재하지 않는 아이디입니다.");

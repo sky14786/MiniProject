@@ -30,7 +30,7 @@ public class OwnerSignUpView extends JPanel {
 	private JButton btnDuplicateCheck;
 	private boolean isDuplicate;
 	private JLabel label_6;
-	public Run win = new Run();
+	private Run win = new Run();
 
 	public OwnerSignUpView(Run win) {
 		this.win = win;
@@ -42,7 +42,7 @@ public class OwnerSignUpView extends JPanel {
 	 */
 	private void initialize() {
 		setLayout(null);
-
+		setSize(992, 572);
 		Color fontColor = new Color(0x4f4f4f);
 
 		tfID = new JTextField();
@@ -134,7 +134,7 @@ public class OwnerSignUpView extends JPanel {
 		setBackButton();
 	}
 
-	public void resetTextField() {
+	private void resetTextField() {
 		tfID.setText("");
 		tfPW.setText("");
 		tfName.setText("");
@@ -143,16 +143,16 @@ public class OwnerSignUpView extends JPanel {
 		lbErrorMsg.setText("");
 	}
 
-	public void moveLoginView() {
+	private void moveLoginView() {
 		resetTextField();
 		win.getContentPane().removeAll();
-		win.getContentPane().add(win.loginView);
+		win.getContentPane().add(win.getLoginView());
 		win.setSize(590, 590);
 		revalidate();
 		repaint();
 	}
 
-	public void setBackButton() {
+	private void setBackButton() {
 		btnBack.addActionListener(new ActionListener() {
 
 			@Override
@@ -162,7 +162,7 @@ public class OwnerSignUpView extends JPanel {
 		});
 	}
 
-	public void setDuplicateCheckButton() {
+	private void setDuplicateCheckButton() {
 		btnDuplicateCheck.addActionListener(new ActionListener() {
 
 			@Override
@@ -184,7 +184,7 @@ public class OwnerSignUpView extends JPanel {
 		});
 	}
 
-	public void setSignUpButton() {
+	private void setSignUpButton() {
 		btnSignUp.addActionListener(new ActionListener() {
 
 			@Override

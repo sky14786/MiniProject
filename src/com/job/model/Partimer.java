@@ -95,4 +95,10 @@ public class Partimer implements Serializable {
 		this.phone = phone;
 	}
 
+	@Override
+	public String toString() {
+		return "Partimer [no=" + no + ", id=" + id + ", pw=" + pw + ", name=" + name + ", age=" + age + ", gender="
+				+ gender + ", phone=" + phone + ", isApply=" + isApply + "]";
+	}
+
 }

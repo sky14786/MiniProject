@@ -36,7 +36,6 @@ public class NoticeRegisterView extends JPanel {
 	private JComboBox periodType, timeType;
 	private NoticeRegisterController noticeRegisterController = new NoticeRegisterController();
 	private JLabel lbErrorMsg;
-	private JButton btnTest;
 	public Run win = new Run();
 
 	public NoticeRegisterView(Run win) {
@@ -170,13 +169,6 @@ public class NoticeRegisterView extends JPanel {
 		lbErrorMsg.setBounds(483, 29, 423, 44);
 		add(lbErrorMsg);
 
-		btnTest = new JButton("\uD14C\uC2A4\uD2B8");
-		btnTest.setFont(new Font("³ª´®½ºÄù¾î", Font.PLAIN, 26));
-		btnTest.setContentAreaFilled(false);
-		btnTest.setBorderPainted(false);
-		btnTest.setBounds(32, 502, 135, 59);
-		add(btnTest);
-
 		JLabel label_10 = new JLabel(" ");
 		label_10.setIcon(new ImageIcon(this.getClass().getResource("/resource/NoticeRegister.jpg")));
 		label_10.setBounds(0, 0, 1000, 600);
@@ -188,7 +180,7 @@ public class NoticeRegisterView extends JPanel {
 
 	}
 
-	public void setAddNoticeButton() {
+	private void setAddNoticeButton() {
 		btnAddNotice.addActionListener(new ActionListener() {
 
 			@Override
@@ -203,6 +195,7 @@ public class NoticeRegisterView extends JPanel {
 								periodType.getSelectedItem().toString(), timeType.getSelectedItem().toString(),
 								tfBKeyword1.getText(), tfBKeyword2.getText(), tfBKeyword3.getText(), taETC.getText());
 						resetTextField();
+						win.getOwnerMainView().isNoticeTest();
 						moveBack();
 					} else {
 						lbErrorMsg.setText("ÀÌ¹Ì µî·Ï ÇÏ¼Ì½À´Ï´Ù.");
@@ -215,42 +208,33 @@ public class NoticeRegisterView extends JPanel {
 		});
 	}
 
-	public void setTestButton() {
-		btnTest.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				win.getContentPane().removeAll();
-				win.getContentPane().add(win.noticeUpdateView);
-				win.setSize(1000, 600);
-				revalidate();
-				repaint();
-				win.setVisible(false);
-				win.setVisible(true);
-			}
-		});
+	private void setTestButton() {
 	}
 
-	public void setBackButton() {
+	private void setBackButton() {
 		btnBack.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				resetTextField();
+				win.getOwnerMainView().isNoticeTest();
 				moveBack();
+
 			}
 		});
 	}
 
-	public void moveBack() {
+	private void moveBack() {
 		win.getContentPane().removeAll();
-		win.getContentPane().add(win.loginView);
-		win.setSize(590, 590);
+		win.getContentPane().add(win.getOwnerMainView());
+		win.setSize(1000, 620);
 		revalidate();
 		repaint();
+		win.setVisible(false);
+		win.setVisible(true);
 	}
 
-	public void resetTextField() {
+	private void resetTextField() {
 		tfAddr.setText("");
 		tfBKeyword1.setText("");
 		tfBKeyword2.setText("");
