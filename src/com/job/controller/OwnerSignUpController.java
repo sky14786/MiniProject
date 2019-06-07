@@ -10,12 +10,14 @@ public class OwnerSignUpController {
 	private ArrayList<Owner> owners = new ArrayList<Owner>();
 	private LoadSave dao = LoadSave.getDao();
 
+	
+	//View로부터 입력데이터를 받아와 Onwer객체 생성후 저장
 	public void addOwner(String id, String pw, String name, String bNumber, String addr) {
 		owners = dao.loadOnwer();
 		owners.add(new Owner(owners.size(), id, pw, name, bNumber, addr, false));
 		dao.saveOwner(owners);
 	}
-
+	//ID 중복체크 메소드
 	public boolean duplicateCheck(String id) {
 		boolean checkType = true;
 		owners = dao.loadOnwer();
@@ -27,7 +29,7 @@ public class OwnerSignUpController {
 		}
 		return checkType;
 	}
-	
+	//ID가 영어로만 이루어져 있는지 체크 메소드
 	public boolean englishCheck(String id) {
 		boolean checkType = true;
 		for (int i = 0; i < id.length(); i++) {

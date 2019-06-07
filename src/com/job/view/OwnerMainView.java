@@ -31,7 +31,7 @@ public class OwnerMainView extends JPanel {
 	private ArrayList<Notice> notices = new ArrayList<Notice>();
 	private ArrayList<Connection> connections = new ArrayList<Connection>();
 	private Connection connection = null;
-	private JButton btnShowNoticeReg, btnShowMyNotice;
+	private JButton btnShowNoticeReg, btnShowMyNotice, btnsShowSearchView;
 
 	private NoticeRegisterController nrc = new NoticeRegisterController();
 	private LoadSave dao = LoadSave.getDao();
@@ -48,13 +48,6 @@ public class OwnerMainView extends JPanel {
 		btnShowNoticeReg.setContentAreaFilled(false);
 		btnShowNoticeReg.setBorderPainted(false);
 		add(btnShowNoticeReg);
-		btnShowNoticeReg.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setShowNoticeRegButton();
-			}
-		});
 
 		btnShowMyNotice = new JButton("");
 		btnShowMyNotice.setBackground(Color.WHITE);
@@ -62,28 +55,18 @@ public class OwnerMainView extends JPanel {
 		btnShowMyNotice.setIcon(new ImageIcon(this.getClass().getResource("/resource/MyNotice.png")));
 		btnShowMyNotice.setContentAreaFilled(false);
 		btnShowMyNotice.setBorderPainted(false);
-		btnShowMyNotice.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setShowMyNoticeButton();
-			}
-		});
 		add(btnShowMyNotice);
 
-		JButton btnNewButton_2 = new JButton("");
-		btnNewButton_2.setBackground(Color.WHITE);
-		btnNewButton_2.setForeground(Color.BLACK);
-		btnNewButton_2.setIcon(new ImageIcon(this.getClass().getResource("/resource/SearchBtn.png")));
-		btnNewButton_2.setContentAreaFilled(false);
-		btnNewButton_2.setBorderPainted(false);
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				setSearchBtn();
-			}
-		});
-		btnNewButton_2.setBounds(726, 119, 161, 66);
-		add(btnNewButton_2);
+		btnsShowSearchView = new JButton("");
+		btnsShowSearchView.setBackground(Color.WHITE);
+		btnsShowSearchView.setForeground(Color.BLACK);
+		btnsShowSearchView.setIcon(new ImageIcon(this.getClass().getResource("/resource/SearchBtn.png")));
+		btnsShowSearchView.setContentAreaFilled(false);
+		btnsShowSearchView.setBorderPainted(false);
+
+		btnsShowSearchView.setBounds(726, 119, 161, 66);
+		add(btnsShowSearchView);
 		// ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 		String[] colum = { "", "", "", "" };
@@ -107,13 +90,6 @@ public class OwnerMainView extends JPanel {
 		btnLogout.setIcon(new ImageIcon(this.getClass().getResource("/resource/LogoutBtn.png")));
 		btnLogout.setContentAreaFilled(false);
 		btnLogout.setBorderPainted(false);
-		btnLogout.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setLogoutButton();
-			}
-		});
 		add(btnLogout);
 
 		JLabel label = new JLabel("");
@@ -131,14 +107,16 @@ public class OwnerMainView extends JPanel {
 		for (int i = 0; i < tcmSchedule.getColumnCount(); i++) {
 			tcmSchedule.getColumn(i).setCellRenderer(dtcr);
 		}
+
 		Dtm.setNumRows(0);
 		showResume();
-
 		// ----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+		settingButton();
 
 	}
 
-	private void setShowNoticeRegButton() {
+	private void showNoticeReg() {
 		win.getContentPane().removeAll();
 		win.getContentPane().add(win.getNoticeRegisterView());
 		win.setVisible(false);
@@ -147,7 +125,7 @@ public class OwnerMainView extends JPanel {
 		repaint();
 	}
 
-	private void setShowMyNoticeButton() {
+	private void showMyNotice() {
 		win.getContentPane().removeAll();
 		win.getContentPane().add(win.getNoticeUpdateView());
 		revalidate();
@@ -158,23 +136,22 @@ public class OwnerMainView extends JPanel {
 
 	}
 
-	private void setSearchBtn() {
+	private void showSearchView() {
 		win.getContentPane().removeAll();
 		win.getContentPane().add(win.getSearchView());
 		revalidate();
 		repaint();
-		win.setSize(1000,620);
+		win.setSize(1000, 620);
 		win.getSearchView().reset();
 		win.setVisible(false);
 		win.setVisible(true);
-
 	}
 
 	public void resetDTM() {
 		Dtm.setNumRows(0);
 	}
 
-	private void setLogoutButton() {
+	private void logout() {
 		win.getContentPane().removeAll();
 		win.getContentPane().add(win.getLoginView());
 		win.setSize(590, 590);
@@ -214,60 +191,30 @@ public class OwnerMainView extends JPanel {
 		}
 	}
 
-//	public void hyunSikCode() {
-//		// setTest();
-//		ArrayList<Connection> connections = dao.loadConnection();
-//		for (int i = 0; i < connections.size(); i++) {
-//			if (connections.get(i).getNoticeNo() == dao.getNowUser()) {
-//				connection = connections.get(i);
-//				break;
-//			}
-//		}
-//
-//		resumes = dao.loadResume();
-//		notices = dao.loadNoitce();
-//
-//		// ##start
-//		if (connection.getResumes() != null) {
-//			HashMap<Object, Object> map = new HashMap<>();
-//			map = SimpleSearch(connection, notices);
-////					System.out.println("map : " + map);
-//
-//			ArrayList<Resume> searchList = new ArrayList<>();
-//
-//			searchList = (ArrayList<Resume>) map.get("resumes");
-//			for (int i = 0; i < searchList.size(); i++) {
-//				Dtm.addRow(new String[] { searchList.get(i).getName(), Integer.toString(searchList.get(i).getAge()),
-//						searchList.get(i).getGender(), searchList.get(i).getPhone() });
-//			}
-//
-//			Notice notice = new Notice();
-//			notice = (Notice) map.get("notices");
-//		}
-//	}
-//
-//	private HashMap<Object, Object> SimpleSearch(Connection connection, ArrayList<Notice> notices) {
-//		/* if(connection.getNoticeNo()==) */
-//		HashMap<Object, Object> map = new HashMap<>();
-//		ArrayList<Resume> returnlist = new ArrayList<Resume>();
-//		if (notices.size() > 0 || connection.getResumes().size() > 0) {
-//			for (int i = 0; i < notices.size(); i++) {
-//				if (connection.getNoticeNo() == notices.get(i).getbNo()) {
-//					map.put("notices", notices.get(i));
-//				}
-//			}
-//
-//			// System.out.println("resumes.size() : " + resumes.size());
-//			// System.out.println("connection.getResuems().size() : " +
-//			// connection.getResuems().size());
-//			for (int j = 0; j < connection.getResumes().size(); j++) {
-//				returnlist.add(connection.getResumes().get(j));
-//			}
-//			map.put("resumes", returnlist);
-//		}
-//		return map;
-//
-//	}
+	private void settingButton() {
+		btnShowMyNotice.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				showMyNotice();
+			}
+		});
+		btnShowNoticeReg.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				showNoticeReg();
+			}
+		});
+
+		btnsShowSearchView.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				showSearchView();
+			}
+		});
+	}
 
 	public void isNoticeTest() {
 		if (nrc.isApplyCheck()) {

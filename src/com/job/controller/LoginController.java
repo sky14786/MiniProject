@@ -10,11 +10,19 @@ public class LoginController {
 	private ArrayList<Partimer> partimers = new ArrayList<Partimer>();
 	private ArrayList<Owner> owners = new ArrayList<Owner>();
 	private LoadSave dao = LoadSave.getDao();
-	//로그인메소드
+
+	// 로그인메소드
 	public int login(String id, String pw, boolean loginType) {
-		//DAO로부터 owner와 partimer .txt 로드
+
+		// Data Access Object로부터 owner, partimer 객체 로드
 		owners = dao.loadOnwer();
 		partimers = dao.loadPartimer();
+
+		// errorType 변수를 둬 각 로그인의 타입 분기
+		// 1 : Owner Login
+		// 2 : ID Error
+		// 3 : PW Error
+		// 4 : Partimer Login
 		int errorType = 0;
 		if (loginType) {
 			for (int i = 0; i < owners.size(); i++) {

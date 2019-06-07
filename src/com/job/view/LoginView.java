@@ -93,11 +93,28 @@ public class LoginView extends JPanel {
 		add(lbTest);
 		add(label_1);
 
-		setSignUpButton();
-		setLoginButton();
-
 		radio[0].setSelected(true);
 
+		settingButton();
+
+	}
+
+	private void settingButton() {
+		btnSignup.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				signUpCategory();
+			}
+		});
+
+		btnLogin.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				login();
+			}
+		});
 	}
 
 	private void resetTextField() {
@@ -106,56 +123,46 @@ public class LoginView extends JPanel {
 		lbTest.setText("");
 	}
 
-	private void setSignUpButton() {
-		btnSignup.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				resetTextField();
-				win.getContentPane().removeAll();
-				win.getContentPane().add(win.getSignUpCategory());
-				win.setSize(450, 300);
-				revalidate();
-				repaint();
-			}
-		});
+	private void signUpCategory() {
+		resetTextField();
+		win.getContentPane().removeAll();
+		win.getContentPane().add(win.getSignUpCategory());
+		win.setSize(450, 300);
+		revalidate();
+		repaint();
 	}
 
-	private void setLoginButton() {
-		btnLogin.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				switch (loginController.login(tfID.getText(), tfPW.getText(), radio[0].isSelected())) {
-				case 1:
-					resetTextField();
-					win.getContentPane().removeAll();
-					win.getContentPane().add(win.getOwnerMainView());
-					win.setSize(1000, 620);
-					revalidate();
-					repaint();
-					win.getOwnerMainView().isNoticeTest();
-					win.getOwnerMainView().resetDTM();
-					win.getOwnerMainView().showResume();
-//					win.ownerMainView.hyunSikCode();
-					break;
-				case 4:
-					resetTextField();
-					win.getContentPane().removeAll();
-					win.getContentPane().add(win.getPartMainView());
-					win.setSize(1000, 600);
-					revalidate();
-					repaint();
-					win.getPartMainView().buttonTest();
-					win.getPartMainView().showId();
-					break;
-				case 2:
-					lbTest.setText("존재하지 않는 아이디입니다.");
-					break;
-				case 3:
-					lbTest.setText("비밀번호가 틀렸습니다.");
-					break;
-				}
-			}
-		});
+	private void login() {
+		switch (loginController.login(tfID.getText(), tfPW.getText(), radio[0].isSelected())) {
+		case 1:
+			resetTextField();
+			win.getContentPane().removeAll();
+			win.getContentPane().add(win.getOwnerMainView());
+			win.setSize(1000, 620);
+			revalidate();
+			repaint();
+			win.getOwnerMainView().isNoticeTest();
+			win.getOwnerMainView().resetDTM();
+			win.getOwnerMainView().showResume();
+//			win.ownerMainView.hyunSikCode();
+			break;
+		case 4:
+			resetTextField();
+			win.getContentPane().removeAll();
+			win.getContentPane().add(win.getPartMainView());
+			win.setSize(1000, 600);
+			revalidate();
+			repaint();
+			win.getPartMainView().buttonTest();
+			win.getPartMainView().showId();
+			break;
+		case 2:
+			lbTest.setText("존재하지 않는 아이디입니다.");
+			break;
+		case 3:
+			lbTest.setText("비밀번호가 틀렸습니다.");
+			break;
+		}
 	}
 
 }

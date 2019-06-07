@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -15,12 +16,13 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import com.job.controller.CheckingController;
-import com.job.controller.ResumeEnrollController;
+import com.job.controller.ResumeRegisterController;
 import com.job.model.Partimer;
 import com.job.run.Run;
 import javax.swing.ImageIcon;
+import java.awt.Color;
 
-public class ResumeEnrollView extends JPanel {
+public class ResumeRegisterView extends JPanel {
 
 	private JTextField tfName;
 	private JTextField tfAge;
@@ -39,15 +41,18 @@ public class ResumeEnrollView extends JPanel {
 	private JLabel typeOccupLabel;
 	private JLabel dowLabel;
 	private JLabel timeLabel;
-	private JLabel enrollBackground;
+	private JLabel registBackground;
+	private JLabel label_11;
+	private JLabel label_12;
+	private JLabel label_13;
+	private JLabel label_14;
 
 	public Run win = new Run();
 	
-	private ResumeEnrollController resumeEnrollController = new ResumeEnrollController();
+	private ResumeRegisterController resumeResisterController = new ResumeRegisterController();
 	private CheckingController checkingController = new CheckingController();
 
-
-	public ResumeEnrollView(Run win) {
+	public ResumeRegisterView(Run win) {
 		this.win = win;
 		initialize();
 	}
@@ -55,8 +60,33 @@ public class ResumeEnrollView extends JPanel {
 	private void initialize() {
 		setSize(1000, 600);
 		setLayout(null);
+		
+		label_11 = new JLabel("");
+		label_11.setIcon(new ImageIcon(ResumeRegisterView.class.getResource("/resource/line_label.png")));
+		label_11.setHorizontalAlignment(SwingConstants.CENTER);
+		label_11.setBounds(100, 152, 150, 2);
+		add(label_11);
+		
+		label_12 = new JLabel("");
+		label_12.setIcon(new ImageIcon(ResumeRegisterView.class.getResource("/resource/line_label.png")));
+		label_12.setHorizontalAlignment(SwingConstants.CENTER);
+		label_12.setBounds(320, 152, 150, 2);
+		add(label_12);
+		
+		label_13 = new JLabel("");
+		label_13.setIcon(new ImageIcon(ResumeRegisterView.class.getResource("/resource/line_label.png")));
+		label_13.setHorizontalAlignment(SwingConstants.CENTER);
+		label_13.setBounds(540, 152, 150, 2);
+		add(label_13);
+		
+		label_14 = new JLabel("");
+		label_14.setIcon(new ImageIcon(ResumeRegisterView.class.getResource("/resource/line_label.png")));
+		label_14.setHorizontalAlignment(SwingConstants.CENTER);
+		label_14.setBounds(780, 152, 150, 2);
+		add(label_14);
 
 		JLabel lblNewLabel = new JLabel("\uC774\uB825\uC11C \uB4F1\uB85D");
+		lblNewLabel.setForeground(Color.ORANGE);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("배달의민족 주아", Font.PLAIN, 40));
 		lblNewLabel.setBounds(390, 30, 200, 40);
@@ -132,15 +162,19 @@ public class ResumeEnrollView extends JPanel {
 		tfName = new JTextField();
 		tfName.setEditable(false);
 		tfName.setHorizontalAlignment(SwingConstants.CENTER);
-		tfName.setBounds(100, 124, 150, 30);
-		add(tfName);
 		tfName.setColumns(10);
+		tfName.setBounds(100, 124, 150, 30);
+		tfName.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		tfName.setOpaque(false);
+		add(tfName);
 
 		tfAge = new JTextField();
 		tfAge.setEditable(false);
 		tfAge.setHorizontalAlignment(SwingConstants.CENTER);
 		tfAge.setColumns(10);
 		tfAge.setBounds(320, 124, 150, 30);
+		tfAge.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		tfAge.setOpaque(false);
 		add(tfAge);
 
 		tfGender = new JTextField();
@@ -148,16 +182,20 @@ public class ResumeEnrollView extends JPanel {
 		tfGender.setHorizontalAlignment(SwingConstants.CENTER);
 		tfGender.setColumns(10);
 		tfGender.setBounds(540, 124, 150, 30);
+		tfGender.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		tfGender.setOpaque(false);
 		add(tfGender);
 
 		tfPhone = new JTextField();
 		tfPhone.setHorizontalAlignment(SwingConstants.CENTER);
 		tfPhone.setColumns(10);
 		tfPhone.setBounds(780, 124, 150, 30);
+		tfPhone.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		tfPhone.setOpaque(false);
 		add(tfPhone);
 
 		tfCareer = new JTextField();
-		tfCareer.setHorizontalAlignment(SwingConstants.CENTER);
+		tfCareer.setHorizontalAlignment(SwingConstants.LEFT);
 		tfCareer.setColumns(10);
 		tfCareer.setBounds(440, 222, 150, 30);
 		add(tfCareer);
@@ -165,7 +203,6 @@ public class ResumeEnrollView extends JPanel {
 		comboAcademic = new JComboBox();
 		comboAcademic.setModel(new DefaultComboBoxModel(new String[] { "[\uCD5C\uC885\uD559\uB825]", "\uC911\uC878",
 				"\uACE0\uC878", "\uC804\uBB38\uB300\uC878", "4\uB144\uC81C\uC878" }));
-		comboAcademic.setToolTipText("");
 		comboAcademic.setBounds(440, 180, 150, 30);
 		add(comboAcademic);
 
@@ -204,14 +241,20 @@ public class ResumeEnrollView extends JPanel {
 		comboRegion.setBounds(440, 432, 150, 30);
 		add(comboRegion);
 
-		complete = new JButton("\uC644\uB8CC");
+		complete = new JButton("");
+		complete.setIcon(new ImageIcon(ResumeRegisterView.class.getResource("/resource/complete_button_n.png")));
 		complete.setFont(new Font("나눔스퀘어 Bold", Font.PLAIN, 25));
 		complete.setBounds(390, 490, 90, 50);
+		complete.setBorderPainted(false);
+		complete.setContentAreaFilled(false);
 		add(complete);
 
-		cancel = new JButton("\uCDE8\uC18C");
+		cancel = new JButton("");
+		cancel.setIcon(new ImageIcon(ResumeRegisterView.class.getResource("/resource/cancel_button_n.png")));
 		cancel.setFont(new Font("나눔스퀘어 Bold", Font.PLAIN, 25));
 		cancel.setBounds(500, 490, 90, 50);
+		cancel.setBorderPainted(false);
+		cancel.setContentAreaFilled(false);
 		add(cancel);
 
 		phoneLabel = new JLabel("");
@@ -219,21 +262,21 @@ public class ResumeEnrollView extends JPanel {
 		add(phoneLabel);
 
 		typeOccupLabel = new JLabel("");
-		typeOccupLabel.setBounds(609, 283, 150, 18);
+		typeOccupLabel.setBounds(603, 270, 150, 18);
 		add(typeOccupLabel);
 
 		dowLabel = new JLabel("");
-		dowLabel.setBounds(609, 367, 150, 18);
+		dowLabel.setBounds(603, 354, 150, 18);
 		add(dowLabel);
 
 		timeLabel = new JLabel("");
-		timeLabel.setBounds(609, 409, 150, 18);
+		timeLabel.setBounds(603, 396, 150, 18);
 		add(timeLabel);
 		
-		enrollBackground = new JLabel("");
-		enrollBackground.setIcon(new ImageIcon(ResumeEnrollView.class.getResource("/resource/resumeE&M_Background.png")));
-		enrollBackground.setBounds(0, 0, 1000, 600);
-		add(enrollBackground);
+		registBackground = new JLabel("");
+		registBackground.setIcon(new ImageIcon(ResumeRegisterView.class.getResource("/resource/resumeE&M_Background.png")));
+		registBackground.setBounds(0, 0, 1000, 600);
+		add(registBackground);
 
 		// testPrompt();
 		resumeComplete();
@@ -296,7 +339,7 @@ public class ResumeEnrollView extends JPanel {
 
 				// 폰번호,직종(근무형태),요일,시간 필수 기입사항! 이걸 적어야만 저장&넘어감
 				if (!phoneNum.equals("") && typeOccup != "[근무형태]" && dow != "[근무요일]" && time != "[근무시간]") {
-					resumeEnrollController.addResume(name, age, gender, phoneNum, academic, career, typeOccup,
+					resumeResisterController.addResume(name, age, gender, phoneNum, academic, career, typeOccup,
 							periodType, dow, time, region);
 
 					win.getContentPane().removeAll();

@@ -174,44 +174,19 @@ public class NoticeRegisterView extends JPanel {
 		label_10.setBounds(0, 0, 1000, 600);
 		add(label_10);
 
-		setAddNoticeButton();
-		setBackButton();
-		setTestButton();
+		settingButton();
 
 	}
 
-	private void setAddNoticeButton() {
+	private void settingButton() {
 		btnAddNotice.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (((!tfAddr.getText().equals("")) && !tfBName.getText().equals("") && !tfCategory.getText().equals("")
-						&& !tfPay.getText().equals("") && !tfTimeToTime.getText().equals("")
-						&& !timeType.getSelectedItem().toString().equals("시간 선택")
-						&& !periodType.getSelectedItem().toString().equals("기간 선택"))) {
-					if (noticeRegisterController.isApplyCheck()) {
-						noticeRegisterController.addNotice(tfBName.getText(), Double.parseDouble(tfPay.getText()),
-								tfTimeToTime.getText(), tfCategory.getText(), tfAddr.getText(),
-								periodType.getSelectedItem().toString(), timeType.getSelectedItem().toString(),
-								tfBKeyword1.getText(), tfBKeyword2.getText(), tfBKeyword3.getText(), taETC.getText());
-						resetTextField();
-						win.getOwnerMainView().isNoticeTest();
-						moveBack();
-					} else {
-						lbErrorMsg.setText("이미 등록 하셨습니다.");
-					}
-
-				} else {
-					lbErrorMsg.setText("빈칸 없이 입력해 주세요.");
-				}
+				addNotice();
 			}
 		});
-	}
 
-	private void setTestButton() {
-	}
-
-	private void setBackButton() {
 		btnBack.addActionListener(new ActionListener() {
 
 			@Override
@@ -222,6 +197,28 @@ public class NoticeRegisterView extends JPanel {
 
 			}
 		});
+	}
+
+	private void addNotice() {
+		if (((!tfAddr.getText().equals("")) && !tfBName.getText().equals("") && !tfCategory.getText().equals("")
+				&& !tfPay.getText().equals("") && !tfTimeToTime.getText().equals("")
+				&& !timeType.getSelectedItem().toString().equals("시간 선택")
+				&& !periodType.getSelectedItem().toString().equals("기간 선택"))) {
+			if (noticeRegisterController.isApplyCheck()) {
+				noticeRegisterController.addNotice(tfBName.getText(), Double.parseDouble(tfPay.getText()),
+						tfTimeToTime.getText(), tfCategory.getText(), tfAddr.getText(),
+						periodType.getSelectedItem().toString(), timeType.getSelectedItem().toString(),
+						tfBKeyword1.getText(), tfBKeyword2.getText(), tfBKeyword3.getText(), taETC.getText());
+				resetTextField();
+				win.getOwnerMainView().isNoticeTest();
+				moveBack();
+			} else {
+				lbErrorMsg.setText("이미 등록 하셨습니다.");
+			}
+
+		} else {
+			lbErrorMsg.setText("빈칸 없이 입력해 주세요.");
+		}
 	}
 
 	private void moveBack() {

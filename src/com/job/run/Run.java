@@ -13,7 +13,7 @@ import com.job.view.OwnerSignUpView;
 import com.job.view.PartMainView;
 import com.job.view.PartimerSignUpView;
 import com.job.view.ResumeDeleteView;
-import com.job.view.ResumeEnrollView;
+import com.job.view.ResumeRegisterView;
 import com.job.view.ResumeModifyView;
 import com.job.view.Search2View;
 import com.job.view.SearchView;
@@ -29,7 +29,7 @@ public class Run extends JFrame {
 	private NoticeUpdateView noticeUpdateView = null;
 	private OwnerMainView ownerMainView = null;
 	private PartMainView partMainView = null;
-	private ResumeEnrollView resumeEnrollView = null;
+	private ResumeRegisterView resumeEnrollView = null;
 	private ResumeModifyView resumeModifyView = null;
 	private JobSearchView jobSearchView = null;
 	private JobSearch2View jobSearch2View = null;
@@ -49,7 +49,7 @@ public class Run extends JFrame {
 		win.noticeUpdateView = new NoticeUpdateView(win);
 		win.ownerMainView = new OwnerMainView(win);
 		win.partMainView = new PartMainView(win);
-		win.resumeEnrollView = new ResumeEnrollView(win);
+		win.resumeEnrollView = new ResumeRegisterView(win);
 		win.resumeModifyView = new ResumeModifyView(win);
 		win.jobSearchView = new JobSearchView(win);
 		win.jobSearch2View = new JobSearch2View(win);
@@ -99,7 +99,7 @@ public class Run extends JFrame {
 		return noticeUpdateView;
 	}
 
-	public ResumeEnrollView getResumeEnrollView() {
+	public ResumeRegisterView getResumeEnrollView() {
 		return resumeEnrollView;
 	}
 

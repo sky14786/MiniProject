@@ -29,7 +29,7 @@ public class NoticeUpdateView extends JPanel {
 	private JTextField tfTimeToTime;
 	private JTextField tfPay;
 	private JTextField tfBName;
-	private JButton btnBack, btnUpdate;
+	private JButton btnBack, btnUpdate, btnDelete;
 	private JComboBox periodType, timeType;
 	private JTextArea taETC;
 	private JLabel lbErrorMsg;
@@ -172,20 +172,12 @@ public class NoticeUpdateView extends JPanel {
 		lbErrorMsg.setBounds(483, 29, 423, 44);
 		add(lbErrorMsg);
 
-		JButton btnDelete = new JButton("");
+		btnDelete = new JButton("");
 		btnDelete.setFont(new Font("나눔스퀘어", Font.PLAIN, 26));
 		btnDelete.setBounds(23, 510, 146, 53);
 		btnDelete.setContentAreaFilled(false);
 		btnDelete.setBorderPainted(false);
 		btnDelete.setIcon(new ImageIcon(this.getClass().getResource("/resource/NoticeDeleteBtn.png")));
-		btnDelete.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setDeleteBtn();
-				resetTextField();
-			}
-		});
 		add(btnDelete);
 
 		JLabel label_10 = new JLabel("");
@@ -193,8 +185,6 @@ public class NoticeUpdateView extends JPanel {
 		label_10.setBounds(0, 0, 1000, 600);
 		add(label_10);
 
-		setUpdateBtn();
-		setBackBtn();
 		resetTextField();
 		settingData();
 	}
@@ -220,30 +210,14 @@ public class NoticeUpdateView extends JPanel {
 
 	}
 
-	private void setUpdateBtn() {
+	private void settingButton() {
 		btnUpdate.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (!(tfAddr.getText().equals("") && tfBName.getText().equals("") && tfCategory.getText().equals("")
-						&& tfPay.getText().equals("") && tfTimeToTime.getText().equals("")
-						&& timeType.getSelectedItem().toString().equals("시간 선택")
-						&& periodType.getSelectedItem().toString().equals("기간 선택"))) {
-					noticeUpdateController.updateNotice(tfBName.getText(), Double.parseDouble(tfPay.getText()),
-							tfTimeToTime.getText(), tfCategory.getText(), tfAddr.getText(),
-							periodType.getSelectedItem().toString(), timeType.getSelectedItem().toString(),
-							tfBKeyword1.getText(), tfBKeyword2.getText(), tfBKeyword3.getText(), taETC.getText());
-					resetTextField();
-					backMove();
-
-				} else {
-					lbErrorMsg.setText("빈칸 없이 입력해 주세요.");
-				}
+				update();
 			}
 		});
-	}
-
-	private void setBackBtn() {
 		btnBack.addActionListener(new ActionListener() {
 
 			@Override
@@ -253,6 +227,34 @@ public class NoticeUpdateView extends JPanel {
 				settingData();
 			}
 		});
+
+		btnDelete.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				delete();
+				resetTextField();
+			}
+		});
+
+	}
+
+	private void update() {
+		if (!(tfAddr.getText().equals("") && tfBName.getText().equals("") && tfCategory.getText().equals("")
+				&& tfPay.getText().equals("") && tfTimeToTime.getText().equals("")
+				&& timeType.getSelectedItem().toString().equals("시간 선택")
+				&& periodType.getSelectedItem().toString().equals("기간 선택"))) {
+			noticeUpdateController.updateNotice(tfBName.getText(), Double.parseDouble(tfPay.getText()),
+					tfTimeToTime.getText(), tfCategory.getText(), tfAddr.getText(),
+					periodType.getSelectedItem().toString(), timeType.getSelectedItem().toString(),
+					tfBKeyword1.getText(), tfBKeyword2.getText(), tfBKeyword3.getText(), taETC.getText());
+
+			resetTextField();
+			backMove();
+
+		} else {
+			lbErrorMsg.setText("빈칸 없이 입력해 주세요.");
+		}
 	}
 
 	private void backMove() {
@@ -281,10 +283,11 @@ public class NoticeUpdateView extends JPanel {
 		lbErrorMsg.setText("");
 	}
 
-	private void setDeleteBtn() {
+	private void delete() {
 		noticeUpdateController.deleteNotice();
 		noticeUpdateController.deleteConnection();
 		noticeUpdateController.applyUpdate();
 		win.getOwnerMainView().isNoticeTest();
 	}
+
 }

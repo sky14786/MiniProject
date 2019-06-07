@@ -16,18 +16,12 @@ public class SignUpCategory extends JPanel {
 	private LoginView loginview;
 	public Run win;
 
-	/**
-	 * Create the application.
-	 */
 	public SignUpCategory(Run win) {
 		initialize();
 		this.win = win;
 
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 
 		setLayout(null);
@@ -53,36 +47,42 @@ public class SignUpCategory extends JPanel {
 		add(label);
 		label.setIcon(new ImageIcon(this.getClass().getResource("/resource/categoryBack.jpg")));
 
-		setOwnerButton();
-		setPartimerButton();
+		settingButton();
 
 	}
 
-	private void setOwnerButton() {
+	private void settingButton() {
 		btnOwner.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				win.getContentPane().removeAll();
-				win.getContentPane().add(win.getOwnerSignUpView());
-				win.setSize(1000, 600);
-				revalidate();
-				repaint();
+				showOwnerSignUpView();
 			}
 		});
-	}
 
-	private void setPartimerButton() {
 		btnPartimer.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				win.getContentPane().removeAll();
-				win.getContentPane().add(win.getPartimerSignView());
-				win.setSize(1000, 600);
-				revalidate();
-				repaint();
+				showPartimerSignUpView();
 			}
 		});
 	}
+
+	private void showOwnerSignUpView() {
+		win.getContentPane().removeAll();
+		win.getContentPane().add(win.getOwnerSignUpView());
+		win.setSize(1000, 600);
+		revalidate();
+		repaint();
+	}
+
+	private void showPartimerSignUpView() {
+		win.getContentPane().removeAll();
+		win.getContentPane().add(win.getPartimerSignView());
+		win.setSize(1000, 600);
+		revalidate();
+		repaint();
+	}
+
 }

@@ -11,7 +11,9 @@ public class NoticeUpdateController {
 	private int userNo = 0;
 	private ArrayList<Notice> notices = new ArrayList<Notice>();
 	private LoadSave dao = LoadSave.getDao();
-
+	
+	
+	//구인공고 수정 메소드
 	public void updateNotice(String bName, double pay, String timeTotime, String category, String addr,
 			String periodType, String timeType, String bKeyword1, String bKeyword2, String bKeyword3, String etc) {
 		userNo = dao.getNowUser();
@@ -24,7 +26,7 @@ public class NoticeUpdateController {
 			}
 		}
 	}
-
+	//NoticeUpdateView로 등록한 구인공고 객체를 보내주는 메소드
 	public Notice sendUserInformation() {
 		userNo = dao.getNowUser();
 		notices = dao.loadNoitce();
@@ -37,7 +39,7 @@ public class NoticeUpdateController {
 		}
 		return temp;
 	}
-
+	//구인공고 삭제시 연동된 Connection 객체도 같이 삭제
 	public void deleteConnection() {
 		ArrayList<Connection> connections = dao.loadConnection();
 		for (int i = 0; i < connections.size(); i++) {
@@ -49,7 +51,8 @@ public class NoticeUpdateController {
 		}
 
 	}
-
+	
+	//구인공고 삭제
 	public void deleteNotice() {
 		// userNo 의 변수값과 동일한 객체를 ArrayList notices에서 삭제 ( notices.remove() 이용 )
 		userNo = dao.getNowUser();
@@ -60,7 +63,8 @@ public class NoticeUpdateController {
 			}
 		}
 	}
-
+	
+	//구인공고 삭제시 Owner객체의 isApply값도 false로 바꿔주는 메소드
 	public void applyUpdate() {
 		userNo = dao.getNowUser();
 		ArrayList<Owner> owners =dao.loadOnwer();

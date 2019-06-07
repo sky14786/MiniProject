@@ -6,15 +6,15 @@ import com.job.model.Partimer;
 import com.job.model.Resume;
 import com.job.model.dao.LoadSave;
 
-public class ResumeEnrollController {
+public class ResumeRegisterController {
 	private ArrayList<Resume> resumes = new ArrayList<Resume>();
 	private ArrayList<Partimer> parttimers = new ArrayList<Partimer>();
 	private int userNo = 0;
 	private LoadSave dao = LoadSave.getDao();
 
-	public ResumeEnrollController() {}
+	public ResumeRegisterController() {}
 
-	public ResumeEnrollController(int userNo, ArrayList<Partimer> parttimers) {
+	public ResumeRegisterController(int userNo, ArrayList<Partimer> parttimers) {
 		this.userNo = userNo;
 		this.parttimers = parttimers;
 	}

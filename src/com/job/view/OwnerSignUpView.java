@@ -37,9 +37,6 @@ public class OwnerSignUpView extends JPanel {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		setLayout(null);
 		setSize(992, 572);
@@ -129,9 +126,33 @@ public class OwnerSignUpView extends JPanel {
 
 		isDuplicate = false;
 
-		setSignUpButton();
-		setDuplicateCheckButton();
-		setBackButton();
+		settingButton();
+	}
+
+	private void settingButton() {
+		btnDuplicateCheck.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				duplicateCheck();
+			}
+		});
+
+		btnBack.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				moveLoginView();
+			}
+		});
+
+		btnSignUp.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				signUp();
+			}
+		});
 	}
 
 	private void resetTextField() {
@@ -152,75 +173,55 @@ public class OwnerSignUpView extends JPanel {
 		repaint();
 	}
 
-	private void setBackButton() {
-		btnBack.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				moveLoginView();
-			}
-		});
-	}
-
-	private void setDuplicateCheckButton() {
-		btnDuplicateCheck.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (!tfID.getText().equals("")) {
-					if (ownerSignUpController.englishCheck(tfID.getText())) {
-						if ((isDuplicate = ownerSignUpController.duplicateCheck(tfID.getText()))) {
-							lbErrorMsg.setText("사용 가능한 ID 입니다.");
-						} else {
-							lbErrorMsg.setText("사용중인 ID 입니다.");
-						}
-					} else {
-						lbErrorMsg.setText("ID는 영문자와 숫자만 가능합니다.");
-					}
+	// 중복확인 기능설정 메소드
+	private void duplicateCheck() {
+		if (!tfID.getText().equals("")) {
+			if (ownerSignUpController.englishCheck(tfID.getText())) {
+				if ((isDuplicate = ownerSignUpController.duplicateCheck(tfID.getText()))) {
+					lbErrorMsg.setText("사용 가능한 ID 입니다.");
 				} else {
-					lbErrorMsg.setText("ID를 입력해 주세요.");
+					lbErrorMsg.setText("사용중인 ID 입니다.");
 				}
+			} else {
+				lbErrorMsg.setText("ID는 영문자와 숫자만 가능합니다.");
 			}
-		});
+		} else {
+			lbErrorMsg.setText("ID를 입력해 주세요.");
+		}
 	}
 
-	private void setSignUpButton() {
-		btnSignUp.addActionListener(new ActionListener() {
+	private void signUp() {
+		if (!tfID.getText().equals("")) {
+			if (!tfPW.getText().equals("") && (tfPW.getText().length() >= 8 && tfPW.getText().length() <= 12)) {
+				if (!tfName.getText().equals("")) {
+					if (!tfbNumber.getText().equals("")) {
+						if (!tfAddr.getText().equals("")) {
+							if (isDuplicate) {
+								ownerSignUpController.addOwner(tfID.getText(), tfPW.getText(), tfName.getText(),
+										tfbNumber.getText(), tfAddr.getText());
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (!tfID.getText().equals("")) {
-					if (!tfPW.getText().equals("") && (tfPW.getText().length() >= 8 && tfPW.getText().length() <= 12)) {
-						if (!tfName.getText().equals("")) {
-							if (!tfbNumber.getText().equals("")) {
-								if (!tfAddr.getText().equals("")) {
-									if (isDuplicate) {
-										ownerSignUpController.addOwner(tfID.getText(), tfPW.getText(), tfName.getText(),
-												tfbNumber.getText(), tfAddr.getText());
-
-										resetTextField();
-										moveLoginView();
-									} else {
-										lbErrorMsg.setText("ID 중복검사를 하세요.");
-									}
-								} else {
-									lbErrorMsg.setText("주소를 입력해 주세요.");
-								}
+								resetTextField();
+								moveLoginView();
 							} else {
-								lbErrorMsg.setText("사업자등록번호를 입력해 주세요.");
+								lbErrorMsg.setText("ID 중복검사를 하세요.");
 							}
 						} else {
-							lbErrorMsg.setText("이름을 입력해 주세요.");
+							lbErrorMsg.setText("주소를 입력해 주세요.");
 						}
-					} else if (!(tfPW.getText().length() >= 8 && tfPW.getText().length() <= 12)) {
-						lbErrorMsg.setText("비밀번호는 8~12자 입니다.");
 					} else {
-						lbErrorMsg.setText("PW를 입력해 주세요.");
+						lbErrorMsg.setText("사업자등록번호를 입력해 주세요.");
 					}
 				} else {
-					lbErrorMsg.setText("ID를 입력해 주세요.");
+					lbErrorMsg.setText("이름을 입력해 주세요.");
 				}
+			} else if (!(tfPW.getText().length() >= 8 && tfPW.getText().length() <= 12)) {
+				lbErrorMsg.setText("비밀번호는 8~12자 입니다.");
+			} else {
+				lbErrorMsg.setText("PW를 입력해 주세요.");
 			}
-		});
+		} else {
+			lbErrorMsg.setText("ID를 입력해 주세요.");
+		}
 	}
+
 }

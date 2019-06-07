@@ -128,7 +128,7 @@ public class PartimerSignUpView extends JPanel {
 		add(btnSignUp);
 
 		btnBack = new JButton("");
-		
+
 		btnBack.setFont(new Font("나눔스퀘어", Font.PLAIN, 26));
 		btnBack.setBounds(328, 507, 146, 53);
 		btnBack.setIcon(new ImageIcon(this.getClass().getResource("/resource/BackButton.png")));
@@ -156,15 +156,37 @@ public class PartimerSignUpView extends JPanel {
 		label.setBounds(0, 0, 994, 571);
 		add(label);
 
-		setBackButton();
-		setDuplicateCheckButton();
-		setSignUpButton();
-
 		radio[0].setSelected(true);
+
+		settingButton();
 
 	}
 
-	
+	private void settingButton() {
+		btnBack.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				showLoginView();
+			}
+		});
+
+		btnDuplicateCheck.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				duplicateCheck();
+			}
+		});
+
+		btnSignUp.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				signUp();
+			}
+		});
+	}
 
 	public void resetTextField() {
 		tfID.setText("");
@@ -176,17 +198,7 @@ public class PartimerSignUpView extends JPanel {
 
 	}
 
-	private void setBackButton() {
-		btnBack.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				moveLoginView();
-			}
-		});
-	}
-
-	private void moveLoginView() {
+	private void showLoginView() {
 		resetTextField();
 		win.getContentPane().removeAll();
 		win.getContentPane().add(win.getLoginView());
@@ -195,69 +207,58 @@ public class PartimerSignUpView extends JPanel {
 		repaint();
 	}
 
-	private void setDuplicateCheckButton() {
-		btnDuplicateCheck.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (!tfID.getText().equals("")) {
-					if (partimerSignUpController.englishCheck(tfID.getText())) {
-						if (partimerSignUpController.duplicateCheck(tfID.getText())) {
-							isDuplicate = true;
-							lbErrorMsg.setText("사용 가능한 ID 입니다.");
-						} else {
-							isDuplicate = false;
-							lbErrorMsg.setText("사용중인 ID 입니다.");
-						}
-					} else {
-						lbErrorMsg.setText("ID는 영문자와 숫자만 사용가능합니다.");
-					}
+	private void duplicateCheck() {
+		if (!tfID.getText().equals("")) {
+			if (partimerSignUpController.englishCheck(tfID.getText())) {
+				if (partimerSignUpController.duplicateCheck(tfID.getText())) {
+					isDuplicate = true;
+					lbErrorMsg.setText("사용 가능한 ID 입니다.");
 				} else {
-					lbErrorMsg.setText("ID를 입력해 주세요.");
+					isDuplicate = false;
+					lbErrorMsg.setText("사용중인 ID 입니다.");
 				}
-
+			} else {
+				lbErrorMsg.setText("ID는 영문자와 숫자만 사용가능합니다.");
 			}
-		});
+		} else {
+			lbErrorMsg.setText("ID를 입력해 주세요.");
+		}
+
 	}
 
-	private void setSignUpButton() {
-		btnSignUp.addActionListener(new ActionListener() {
+	private void signUp() {
+		if (!tfID.getText().equals("")) {
+			if (!tfPW.getText().equals("") && (tfPW.getText().length() >= 8 && tfPW.getText().length() <= 12)) {
+				if (!tfName.getText().equals("")) {
+					if (!tfAge.getText().equals("")) {
+						if (!tfPhone.getText().equals("")) {
+							if (isDuplicate) {
+								partimerSignUpController.addPartimer(tfID.getText(), tfPW.getText(), tfName.getText(),
+										Integer.parseInt(tfAge.getText()), radio[0].isSelected() == true ? "여자" : "남자",
+										tfPhone.getText());
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (!tfID.getText().equals("")) {
-					if (!tfPW.getText().equals("") && (tfPW.getText().length() >= 8 && tfPW.getText().length() <= 12)) {
-						if (!tfName.getText().equals("")) {
-							if (!tfAge.getText().equals("")) {
-								if (!tfPhone.getText().equals("")) {
-									if (isDuplicate) {
-										partimerSignUpController.addPartimer(tfID.getText(), tfPW.getText(),
-												tfName.getText(), Integer.parseInt(tfAge.getText()),
-												radio[0].isSelected() == true ? "여자" : "남자", tfPhone.getText());
-
-										resetTextField();
-										moveLoginView();
-									} else {
-										lbErrorMsg.setText("ID 중복검사를 하세요.");
-									}
-								} else {
-									lbErrorMsg.setText("연락처를 입력해 주세요.");
-								}
+								resetTextField();
+								showLoginView();
 							} else {
-								lbErrorMsg.setText("나이를 입력해 주세요.");
+								lbErrorMsg.setText("ID 중복검사를 하세요.");
 							}
 						} else {
-							lbErrorMsg.setText("이름을 입력해 주세요.");
+							lbErrorMsg.setText("연락처를 입력해 주세요.");
 						}
-					} else if (!(tfPW.getText().length() >= 8 && tfPW.getText().length() <= 12)) {
-						lbErrorMsg.setText("비밀번호는 8~12자 입니다.");
 					} else {
-						lbErrorMsg.setText("PW를 입력해 주세요.");
+						lbErrorMsg.setText("나이를 입력해 주세요.");
 					}
 				} else {
-					lbErrorMsg.setText("ID를 입력해 주세요.");
+					lbErrorMsg.setText("이름을 입력해 주세요.");
 				}
+			} else if (!(tfPW.getText().length() >= 8 && tfPW.getText().length() <= 12)) {
+				lbErrorMsg.setText("비밀번호는 8~12자 입니다.");
+			} else {
+				lbErrorMsg.setText("PW를 입력해 주세요.");
 			}
-		});
+		} else {
+			lbErrorMsg.setText("ID를 입력해 주세요.");
+		}
 	}
+
 }
