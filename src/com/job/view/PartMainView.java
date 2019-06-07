@@ -38,9 +38,9 @@ public class PartMainView extends JPanel {
 	public Run win = new Run();
 
 	public int check = 1;
-
+	
 	public PartMainView() {
-
+		// TODO Auto-generated constructor stub
 	}
 
 	public PartMainView(Run win) {

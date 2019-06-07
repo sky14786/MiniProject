@@ -3,7 +3,6 @@ package com.job.run;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
-import com.job.view.DummyData;
 import com.job.view.JobSearch2View;
 import com.job.view.JobSearchView;
 import com.job.view.LoginView;

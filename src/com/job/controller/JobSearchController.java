@@ -47,15 +47,15 @@ public class JobSearchController {
 	DummyData mm = null;
 	Notice n = new Notice();
 
-	public List<Notice> pt2 = new ArrayList<Notice>();// 조회결과를 테이블에 보여주기 위한 리스트
-	public List<Notice> pt3 = new ArrayList<Notice>();// 테이블에 선택한 결과를 담는 리스트
+	public List<Notice> notice2 = new ArrayList<Notice>();// 조회결과를 테이블에 보여주기 위한 리스트
+	public List<Notice> notice3 = new ArrayList<Notice>();// 테이블에 선택한 결과를 담는 리스트
 	private ArrayList<Connection> connections = new ArrayList<Connection>();
 	private LoadSave dao = LoadSave.getDao();
 
 	// 검색
 	public void search(String region, String typeOccup, String timeTotime, String periodType) {
 
-		pt2.clear();
+		notice2.clear();
 		System.out.println("검색 결과");
 		// js.DtmStorage.setNumRows(0); // 검색 버튼을 누를때마다 테이블 갱신
 
@@ -84,7 +84,7 @@ public class JobSearchController {
 
 				System.out.println(mm.pt.get(i).toString());
 
-				pt2.add((Notice) mm.pt.get(i));
+				notice2.add((Notice) mm.pt.get(i));
 
 				// for (int j = 0; j < pt2.size(); j++) {
 				//
@@ -101,7 +101,7 @@ public class JobSearchController {
 
 				System.out.println(mm.pt.get(i).toString());
 
-				pt2.add((Notice) mm.pt.get(i));
+				notice2.add((Notice) mm.pt.get(i));
 
 			}
 
@@ -110,7 +110,7 @@ public class JobSearchController {
 					&& periodType.equals(periodType2)) {
 				System.out.println(mm.pt.get(i));
 
-				pt2.add((Notice) mm.pt.get(i));
+				notice2.add((Notice) mm.pt.get(i));
 
 			}
 
@@ -119,7 +119,7 @@ public class JobSearchController {
 					&& periodType.equals(ki)) {
 				System.out.println(mm.pt.get(i));
 
-				pt2.add((Notice) mm.pt.get(i));
+				notice2.add((Notice) mm.pt.get(i));
 
 			}
 
@@ -128,7 +128,7 @@ public class JobSearchController {
 					&& periodType.equals(ki)) {
 				System.out.println(mm.pt.get(i));
 
-				pt2.add((Notice) mm.pt.get(i));
+				notice2.add((Notice) mm.pt.get(i));
 
 			}
 
@@ -137,7 +137,7 @@ public class JobSearchController {
 
 				System.out.println(mm.pt.get(i));
 
-				pt2.add((Notice) mm.pt.get(i));
+				notice2.add((Notice) mm.pt.get(i));
 
 			}
 
@@ -153,7 +153,7 @@ public class JobSearchController {
 					&& js.periodType.equals(ki)) {
 				System.out.println(mm.pt.get(i));
 
-				pt2.add((Notice) mm.pt.get(i));
+				notice2.add((Notice) mm.pt.get(i));
 
 			}
 
@@ -162,7 +162,7 @@ public class JobSearchController {
 					&& periodType.equals(ki)) {
 				System.out.println(mm.pt.get(i));
 
-				pt2.add((Notice) mm.pt.get(i));
+				notice2.add((Notice) mm.pt.get(i));
 
 			}
 
@@ -171,7 +171,7 @@ public class JobSearchController {
 					&& periodType.equals(periodType2)) {
 				System.out.println(mm.pt.get(i));
 
-				pt2.add((Notice) mm.pt.get(i));
+				notice2.add((Notice) mm.pt.get(i));
 
 			}
 
@@ -180,7 +180,7 @@ public class JobSearchController {
 					&& periodType.equals(periodType2)) {
 				System.out.println(mm.pt.get(i));
 
-				pt2.add((Notice) mm.pt.get(i));
+				notice2.add((Notice) mm.pt.get(i));
 
 			}
 
@@ -188,7 +188,7 @@ public class JobSearchController {
 			if (region.equals(ji) && typeOccup.equals(mo) && timeTotime.equals(timeTotime2) && periodType.equals(ki)) {
 				System.out.println(mm.pt.get(i));
 
-				pt2.add((Notice) mm.pt.get(i));
+				notice2.add((Notice) mm.pt.get(i));
 
 			}
 
@@ -196,7 +196,7 @@ public class JobSearchController {
 			if (region.equals(ji) && typeOccup.equals(mo) && timeTotime.equals(si) && periodType.equals(periodType2)) {
 				System.out.println(mm.pt.get(i));
 
-				pt2.add((Notice) mm.pt.get(i));
+				notice2.add((Notice) mm.pt.get(i));
 
 			}
 
@@ -205,7 +205,7 @@ public class JobSearchController {
 					&& periodType.equals(periodType2)) {
 				System.out.println(mm.pt.get(i));
 
-				pt2.add((Notice) mm.pt.get(i));
+				notice2.add((Notice) mm.pt.get(i));
 
 			}
 
@@ -219,7 +219,7 @@ public class JobSearchController {
 
 		js = new JobSearchView();
 
-		pt2.clear();
+		notice2.clear();
 		System.out.println("검색 결과");
 		// js.DtmStorage.setNumRows(0); // 검색 버튼을 누를때마다 테이블 갱신
 
@@ -238,7 +238,7 @@ public class JobSearchController {
 			key3 = mm.pt.get(i).getbKeyword3();
 			etc1 = mm.pt.get(i).getEtc();
 
-			pt2.add((Notice) mm.pt.get(i));
+			notice2.add((Notice) mm.pt.get(i));
 
 		}
 	}
@@ -247,7 +247,7 @@ public class JobSearchController {
 	public Notice seeMore(int row) {
 		Notice temp = new Notice();
 
-		System.out.println("상세 정보 내용");
+		
 
 		if (row == -1) {
 
@@ -259,18 +259,18 @@ public class JobSearchController {
 			System.out.println("선택 안함");
 
 		} else if (row != -1) {
-			temp.setbNo(pt2.get(row).getbNo());
-			temp.setbName(pt2.get(row).getbName());
-			temp.setPay(pt2.get(row).getPay());
-			temp.setTimeTotime(pt2.get(row).getTimeTotime());
-			temp.setCategory(pt2.get(row).getCategory());
-			temp.setPeriodType(pt2.get(row).getPeriodType());
-			temp.setTimeType(pt2.get(row).getTimeType());
-			temp.setAddr(pt2.get(row).getAddr());
-			temp.setbKeyword1(pt2.get(row).getbKeyword1());
-			temp.setbKeyword2(pt2.get(row).getbKeyword2());
-			temp.setbKeyword3(pt2.get(row).getbKeyword3());
-			temp.setEtc(pt2.get(row).getEtc());
+			temp.setbNo(notice2.get(row).getbNo());
+			temp.setbName(notice2.get(row).getbName());
+			temp.setPay(notice2.get(row).getPay());
+			temp.setTimeTotime(notice2.get(row).getTimeTotime());
+			temp.setCategory(notice2.get(row).getCategory());
+			temp.setPeriodType(notice2.get(row).getPeriodType());
+			temp.setTimeType(notice2.get(row).getTimeType());
+			temp.setAddr(notice2.get(row).getAddr());
+			temp.setbKeyword1(notice2.get(row).getbKeyword1());
+			temp.setbKeyword2(notice2.get(row).getbKeyword2());
+			temp.setbKeyword3(notice2.get(row).getbKeyword3());
+			temp.setEtc(notice2.get(row).getEtc());
 
 		}
 		return temp;
@@ -278,99 +278,101 @@ public class JobSearchController {
 	}
 
 	// 지원하기 버튼 메소드
-	public void search2(int row) {
-		Notice temp2 = new Notice();
+		public void search2(int row) {
+			Notice temp2 = new Notice();
 
-		if (row == -1) {
+			if (row == -1) {
 
-			// 아무것도 선택하지 않고 지원하기를 클릭했을때
-			// 안내메세지
-			JOptionPane.showMessageDialog(null, "원하시는 알바를 선택해주세요!");
+				// 아무것도 선택하지 않고 지원하기를 클릭했을때
+				// 안내메세지
+				JOptionPane.showMessageDialog(null, "원하시는 알바를 선택해주세요!");
 
-			System.out.println("선택 안함");
-		} else {
-
-			// 선택한 정보를 새로운 객체에 저장
-
-			temp2.setbNo(pt2.get(row).getbNo());
-			temp2.setbName(pt2.get(row).getbName());
-			temp2.setPay(pt2.get(row).getPay());
-			temp2.setTimeTotime(pt2.get(row).getTimeTotime());
-			temp2.setCategory(pt2.get(row).getCategory());
-			temp2.setPeriodType(pt2.get(row).getPeriodType());
-			temp2.setTimeType(pt2.get(row).getTimeType());
-			temp2.setAddr(pt2.get(row).getAddr());
-			temp2.setbKeyword1(pt2.get(row).getbKeyword1());
-			temp2.setbKeyword2(pt2.get(row).getbKeyword2());
-			temp2.setbKeyword3(pt2.get(row).getbKeyword3());
-			temp2.setEtc(pt2.get(row).getEtc());
-
-			// Connection 객체와 연동 부분 --------------------------------------
-			System.out.println("지원시작!");
-			Connection connection = new Connection();
-			connections = dao.loadConnection();
-			ArrayList<Resume> resumes = dao.loadResume();
-			ArrayList<Resume> tt = new ArrayList<Resume>();
-			Resume nowResume = new Resume();
-			boolean isEquals = false;
-			int temp = 0;
-			for (int i = 0; i < connections.size(); i++) {
-				if (connections.get(i).getNoticeNo() == pt2.get(row).getbNo()) {
-					connection = connections.get(i);
-					temp = i;
-					break;
-				}
-			}
-			for (int i = 0; i < resumes.size(); i++) {
-				if (resumes.get(i).getUserNo() == dao.getNowUser()) {
-					nowResume = resumes.get(i);
-				}
-			}
-
-			if (!(connection.getResumes().size() > 0)) {
-				tt.add(nowResume);
-				connection.setResuems(tt);
-				connections.set(temp, connection);
-				dao.saveConnection(connections);
-				System.out.println("단일지원성공");
+				System.out.println("선택 안함");
 			} else {
-				System.out.println(connection.getResumes().toString());
-				for (int i = 0; i < connection.getResumes().size(); i++) {
-					if (connection.getResumes().get(i).getUserNo() == nowResume.getUserNo()) {
-						isEquals = false;
+
+				// 선택한 정보를 새로운 객체에 저장
+
+				temp2.setbNo(notice2.get(row).getbNo());
+				temp2.setbName(notice2.get(row).getbName());
+				temp2.setPay(notice2.get(row).getPay());
+				temp2.setTimeTotime(notice2.get(row).getTimeTotime());
+				temp2.setCategory(notice2.get(row).getCategory());
+				temp2.setPeriodType(notice2.get(row).getPeriodType());
+				temp2.setTimeType(notice2.get(row).getTimeType());
+				temp2.setAddr(notice2.get(row).getAddr());
+				temp2.setbKeyword1(notice2.get(row).getbKeyword1());
+				temp2.setbKeyword2(notice2.get(row).getbKeyword2());
+				temp2.setbKeyword3(notice2.get(row).getbKeyword3());
+				temp2.setEtc(notice2.get(row).getEtc());
+				
+				System.out.println(notice2.get(row).getbNo());
+
+				// Connection 객체와 연동 부분 --------------------------------------
+				System.out.println("지원시작!");
+				Connection connection = new Connection();
+				connections = dao.loadConnection();
+				ArrayList<Resume> resumes = dao.loadResume();
+				ArrayList<Resume> tt = new ArrayList<Resume>();
+				Resume nowResume = new Resume();
+				boolean isEquals = false;
+				int temp = 0;
+				for (int i = 0; i < connections.size(); i++) {
+					if (connections.get(i).getNoticeNo() == notice2.get(row).getbNo()) {
+						connection = connections.get(i);
+						temp = i;
 						break;
-					} else {
-						isEquals = true;
 					}
 				}
-				if (isEquals) {
-					tt = connection.getResumes();
+				for (int i = 0; i < resumes.size(); i++) {
+					if (resumes.get(i).getUserNo() == dao.getNowUser()) {
+						nowResume = resumes.get(i);
+					}
+				}
+				System.out.println(connection.getResumes().toString());
+				if (!(connection.getResumes().size() > 0)) {
 					tt.add(nowResume);
 					connection.setResuems(tt);
 					connections.set(temp, connection);
 					dao.saveConnection(connections);
-					System.out.println("-------------------------------------------");
-					System.out.println("지원성공");
-					System.out.println("ResumesCount : " + tt.size());
-					System.out.println("Resumes : " + tt.toString());
-					System.out.println("-------------------------------------------");
-				}
+					System.out.println("단일지원성공");
+				} else {
+					System.out.println(connection.getResumes().toString());
+					for (int i = 0; i < connection.getResumes().size(); i++) {
+						if (connection.getResumes().get(i).getUserNo() == nowResume.getUserNo()) {
+							isEquals = false;
+							break;
+						} else {
+							isEquals = true;
+						}
+					}
+					if (isEquals) {
+						tt = connection.getResumes();
+						tt.add(nowResume);
+						connection.setResuems(tt);
+						connections.set(temp, connection);
+						dao.saveConnection(connections);
+						System.out.println("-------------------------------------------");
+						System.out.println("지원성공");
+						System.out.println("ResumesCount : " + tt.size());
+						System.out.println("Resumes : " + tt.toString());
+						System.out.println("-------------------------------------------");
+					}
 
-				else {
-					System.out.println("지원실패");
+					else {
+						System.out.println("지원실패");
+					}
 				}
+				System.out.println("-------------------------------------------");
+				System.out.println("now Notice : " + temp2.toString());
+				System.out.println("now Row : " + notice2.get(row).getbNo());
+				System.out.println("now Resumes Count : " + connection.getResumes().size());
+				System.out.println("now Resumes : " + connection.getResumes().toString());
+				System.out.println("now Connection : " + connection.toString());
+				System.out.println("-------------------------------------------");
+				// Connection 객체와 연동 부분 -------------------------------------------
+				// 안내메세지
+				JOptionPane.showMessageDialog(null, "지원하였습니다!");
 			}
-			System.out.println("-------------------------------------------");
-			System.out.println("now Notice : " + temp2.toString());
-			System.out.println("now Row : " + pt2.get(row).getbNo());
-			System.out.println("now Resumes Count : " + connection.getResumes().size());
-			System.out.println("now Resumes : " + connection.getResumes().toString());
-			System.out.println("now Connection : " + connection.toString());
-			System.out.println("-------------------------------------------");
-			// Connection 객체와 연동 부분 -------------------------------------------
-			// 안내메세지
-			JOptionPane.showMessageDialog(null, "지원하였습니다!");
+			// return temp2;
 		}
-		// return temp2;
-	}
 }

@@ -274,7 +274,7 @@ public class JobSearchView extends JPanel {
 				sub.subSearch2(jsc.seeMore(row));
 
 			}
-		});
+		}); 
 		viewMore.setFont(new Font("³ª´®½ºÄù¾î", Font.PLAIN, 14));
 
 		viewMore.setBounds(844, 173, 91, 35);
@@ -285,7 +285,7 @@ public class JobSearchView extends JPanel {
 		apply.setFont(new Font("³ª´®½ºÄù¾î", Font.PLAIN, 14));
 		apply.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
+				row = searchTable.getSelectedRow();
 				jsc.search2(row);
 
 			}
@@ -321,7 +321,7 @@ public class JobSearchView extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 
 				win.getContentPane().removeAll();
-				win.getContentPane().add(win.partMainView);
+				win.getContentPane().add(win.getPartMainView());
 				win.getContentPane().revalidate();
 				win.getContentPane().repaint();
 				
