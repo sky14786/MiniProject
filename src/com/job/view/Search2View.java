@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -13,9 +12,8 @@ import javax.swing.JPanel;
 import com.job.controller.SearchController;
 import com.job.model.Resume;
 import com.job.run.Run;
-import java.awt.Color;
 
-//우현
+
 public class Search2View extends JPanel {
 
 	private Run win = new Run();
@@ -33,6 +31,8 @@ public class Search2View extends JPanel {
 	private JLabel lbTypeOccup;
 	private JLabel lbPeriodType;
 	private JLabel lbDow;
+	
+	
 
 	public Search2View(Run win) {
 		this.win = win;
@@ -41,110 +41,141 @@ public class Search2View extends JPanel {
 
 	private void initialize() {
 		setLayout(null);
+
+		// 메인메뉴로 뒤로가기
+		JButton button_4 = new JButton("뒤로가기");
+		button_4.setBounds(350, 650, 90, 40);
+		add(button_4);
+		button_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				win.getContentPane().removeAll();
+				win.getContentPane().add(win.getSearch2View());
+			}
+		});
 		setVisible(true);
-		Color fontColor = new Color(0x4f4f4f);
+
+		JLabel lblNewLabel = new JLabel();
+		lblNewLabel.setFont(new Font("굴림", Font.BOLD, 25));
+		lblNewLabel.setBounds(242, 35, 84, 48);
+		add(lblNewLabel);
+
+		JLabel label = new JLabel("\uC774\uB984");
+		label.setFont(new Font("굴림", Font.BOLD, 20));
+		label.setBounds(72, 113, 54, 54);
+		add(label);
+
+		JLabel label_1 = new JLabel("\uB098\uC774");
+		label_1.setFont(new Font("굴림", Font.BOLD, 20));
+		label_1.setBounds(256, 110, 54, 61);
+		add(label_1);
+
+		JLabel label_2 = new JLabel("\uC131\uBCC4");
+		label_2.setFont(new Font("굴림", Font.BOLD, 20));
+		label_2.setBounds(72, 179, 54, 61);
+		add(label_2);
+
+		JLabel label_3 = new JLabel("\uD3F0\uBC88\uD638");
+		label_3.setFont(new Font("굴림", Font.BOLD, 20));
+		label_3.setBounds(256, 182, 84, 54);
+		add(label_3);
+
+		JLabel label_4 = new JLabel("\uD559\uB825");
+		label_4.setFont(new Font("굴림", Font.BOLD, 20));
+		label_4.setBounds(72, 315, 54, 54);
+		add(label_4);
+
+		JLabel label_5 = new JLabel("\uACBD\uB825\r\n");
+		label_5.setFont(new Font("굴림", Font.BOLD, 20));
+		label_5.setBounds(256, 252, 54, 61);
+		add(label_5);
+
+		JLabel label_6 = new JLabel("\uD76C\uB9DD \uC5C5\uBB34\uD615\uD0DC");
+		label_6.setFont(new Font("굴림", Font.BOLD, 20));
+		label_6.setBounds(127, 423, 179, 48);
+		add(label_6);
+
+		JLabel label_7 = new JLabel("\uD76C\uB9DD \uADFC\uBB34\uAE30\uAC04");
+		label_7.setFont(new Font("굴림", Font.BOLD, 20));
+		label_7.setBounds(127, 483, 179, 48);
+		add(label_7);
+
+		JLabel label_8 = new JLabel("\uC9C0\uC5ED");
+		label_8.setFont(new Font("굴림", Font.BOLD, 20));
+		label_8.setBounds(72, 252, 54, 54);
+		add(label_8);
+
+		JLabel label_9 = new JLabel("\uD76C\uB9DD \uADFC\uBB34\uC694\uC77C");
+		label_9.setFont(new Font("굴림", Font.BOLD, 20));
+		label_9.setBounds(127, 543, 179, 48);
+		add(label_9);
+
 		// 여기서부터 이력서 입력정보들어가는곳
 
 		lbName = new JLabel();
-		lbName.setText("a");
-		lbName.setFont(new Font("배달의민족 주아", Font.PLAIN, 20));
-		lbName.setForeground(fontColor);
-		lbName.setBounds(150, 151, 123, 46);
+		lbName.setBounds(138, 126, 90, 32);
 		add(lbName);
 
-		lbAge = new JLabel();
-		lbAge.setForeground(fontColor);
-		lbAge.setFont(new Font("배달의민족 주아", Font.PLAIN, 20));
-		lbAge.setBounds(397, 149, 123, 54);
-		add(lbAge);
+		
+	     lbAge = new JLabel();
+		 lbAge.setFont(new Font("굴림", Font.BOLD, 15));
+		 lbAge.setBounds(361, 113, 123, 54);
+		 add(lbAge);
 
-		lbGender = new JLabel();
-		lbGender.setForeground(fontColor);
-		lbGender.setFont(new Font("배달의민족 주아", Font.PLAIN, 20));
-		lbGender.setBounds(140, 239, 123, 54);
+	    lbGender = new JLabel();
+		lbGender.setFont(new Font("굴림", Font.BOLD, 15));
+		lbGender.setBounds(140, 179, 54, 54);
 		add(lbGender);
 
 		lbRegion = new JLabel();
-		lbRegion.setForeground(fontColor);
-		lbRegion.setFont(new Font("배달의민족 주아", Font.PLAIN, 20));
-		lbRegion.setBounds(140, 329, 155, 54);
+		lbRegion.setFont(new Font("굴림", Font.BOLD, 15));
+		lbRegion.setBounds(140, 252, 74, 54);
 		add(lbRegion);
 
 		lbAcademic = new JLabel();
-		lbAcademic.setForeground(fontColor);
-		lbAcademic.setFont(new Font("배달의민족 주아", Font.PLAIN, 20));
-		lbAcademic.setBounds(142, 420, 103, 54);
+		lbAcademic.setFont(new Font("굴림", Font.BOLD, 15));
+		lbAcademic.setBounds(140, 315, 54, 54);
 		add(lbAcademic);
 
 		lbPhone = new JLabel();
-		lbPhone.setForeground(fontColor);
-		lbPhone.setFont(new Font("배달의민족 주아", Font.PLAIN, 20));
-		lbPhone.setBounds(396, 238, 156, 54);
+		lbPhone.setFont(new Font("굴림", Font.BOLD, 15));
+		lbPhone.setBounds(354, 179, 156, 54);
 		add(lbPhone);
 
 		lbCareer = new JLabel();
-		lbCareer.setForeground(fontColor);
-		lbCareer.setFont(new Font("배달의민족 주아", Font.PLAIN, 20));
-		lbCareer.setBounds(391, 327, 164, 54);
+		lbCareer.setFont(new Font("굴림", Font.BOLD, 15));
+		lbCareer.setBounds(354, 252, 54, 54);
 		add(lbCareer);
 
 		lbTypeOccup = new JLabel();
-		lbTypeOccup.setFont(new Font("배달의민족 주아", Font.PLAIN, 20));
-		lbTypeOccup.setForeground(fontColor);
-		lbTypeOccup.setBounds(355, 497, 191, 46);
+		lbTypeOccup.setBounds(320, 440, 62, 18);
 		add(lbTypeOccup);
 
 		lbPeriodType = new JLabel();
-		lbPeriodType.setFont(new Font("배달의민족 주아", Font.PLAIN, 20));
-		lbPeriodType.setForeground(fontColor);
-		lbPeriodType.setBounds(352, 575, 207, 45);
+		lbPeriodType.setBounds(320, 500, 62, 18);
 		add(lbPeriodType);
 
 		lbDow = new JLabel();
-		lbDow.setFont(new Font("배달의민족 주아", Font.PLAIN, 20));
-		lbDow.setForeground(fontColor);
-		lbDow.setBounds(349, 650, 203, 43);
+		lbDow.setBounds(320, 560, 62, 18);
 		add(lbDow);
 
 		setBounds(100, 100, 581, 793);
-		
-				// 메인메뉴로 뒤로가기
-				JButton button_4 = new JButton("");
-				button_4.setBounds(399, 703, 135, 46);
-				button_4.setBorderPainted(false);
-				button_4.setContentAreaFilled(false);
-				button_4.setIcon(new ImageIcon(this.getClass().getResource("/resource/BackButton.png")));
-				add(button_4);
-				button_4.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						win.getContentPane().removeAll();
-						win.getContentPane().add(win.getSearchView());
-						win.setSize(1000, 620);
-						revalidate();
-						repaint();
-						win.setVisible(false);
-						win.setVisible(true);
-					}
-				});
-		
-		JLabel label_10 = new JLabel("");
-		label_10.setBounds(0, 0, 581, 783);
-		label_10.setIcon(new ImageIcon(this.getClass().getResource("/resource/SearchView2.jpg")));
-		add(label_10);
 		setVisible(true);
 	}
 
-	public void dataSetting(Run win, int userNo, String inputvar) {
-		Resume temp = sc.resumeset(win, userNo, inputvar);
-		lbName.setText(temp.getName());
-		lbAge.setText(String.valueOf(temp.getAge()));
-		lbGender.setText(temp.getGender());
-		lbPhone.setText(temp.getPhone());
-		lbRegion.setText(temp.getRegion());
-		lbCareer.setText(temp.getCareer());
-		lbAcademic.setText(temp.getAcademic());
-		lbTypeOccup.setText(temp.getTypeOccup());
-		lbPeriodType.setText(temp.getPeriodType());
-		lbDow.setText(temp.getDow());
+	public void dataSetting(Run win, Resume player) {
+	
+	lbName.setText(player.getName());
+	lbAge.setText(String.valueOf(player.getAge()));
+	lbGender.setText(player.getGender());
+	lbPhone.setText(player.getPhone());
+	lbRegion.setText(player.getRegion());
+	lbCareer.setText(player.getCareer());
+	lbAcademic.setText(player.getAcademic());
+	lbTypeOccup.setText(player.getTypeOccup());
+	lbPeriodType.setText(player.getPeriodType());
+	lbDow.setText(player.getDow());
+		
+		
 	}
+
 }

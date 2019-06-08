@@ -1,34 +1,28 @@
 package com.job.view;
 
 import java.awt.Font;
-import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
 import com.job.controller.JobSearchController;
-import com.job.model.Notice;
 import com.job.model.dao.LoadSave;
 import com.job.run.Run;
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
 
 //객체 임포트
 
@@ -309,8 +303,7 @@ public class JobSearchView extends JPanel {
 
 	}
 
-	
-	//전체보기 메소드
+	// 전체보기 메소드
 	public void normalSearch() {
 		jsc.notice2 = dao.loadNoitce();
 		DtmStorage.setNumRows(0);
@@ -325,32 +318,29 @@ public class JobSearchView extends JPanel {
 	}
 
 	public void printTable1(String keyword) {
+
 		JobSearchController jcs = new JobSearchController();
-		ArrayList<Notice> searchData = jcs.keywordSearch(keyword);
+		jsc.notice2 = jcs.keywordSearch(keyword);
 		DtmStorage.setRowCount(0);
-		System.out.println("키워드검색 결과 : " + searchData.toString());
-		for (int i = 0; i < searchData.size(); i++) {
+
+		System.out.println("키워드검색 결과 : " + jsc.notice2.toString());
+
+		for (int i = 0; i < jsc.notice2.size(); i++) {
+
 			// bNo,bName,pay,timetitime,category,periodtype,timeType,addr,keyword1,2,3,etc
-			DtmStorage.addRow(new Object[] { searchData.get(i).getbNo(), searchData.get(i).getbName(),
-					searchData.get(i).getPay(), searchData.get(i).getTimeTotime(), searchData.get(i).getCategory(),
-					searchData.get(i).getPeriodType(), searchData.get(i).getTimeType(), searchData.get(i).getAddr(),
-					searchData.get(i).getbKeyword1(), searchData.get(i).getbKeyword2(),
-					searchData.get(i).getbKeyword3(), searchData.get(i).getEtc() });
+
+			DtmStorage.addRow(new Object[] { jsc.notice2.get(i).getbNo(), jsc.notice2.get(i).getbName(),
+					jsc.notice2.get(i).getPay(), jsc.notice2.get(i).getTimeTotime(), jsc.notice2.get(i).getCategory(),
+					jsc.notice2.get(i).getPeriodType(), jsc.notice2.get(i).getTimeType(), jsc.notice2.get(i).getAddr(),
+					jsc.notice2.get(i).getbKeyword1(), jsc.notice2.get(i).getbKeyword2(),
+					jsc.notice2.get(i).getbKeyword3(), jsc.notice2.get(i).getEtc() });
 		}
 
-//		System.out.println(keyword);
-//		System.out.println("======결과=====");
-//		for (int j = 0; j < mm.notice.size(); j++) {
-//			if (keyword.contains(mm.notice.get(j).getbKeyword1())) {
-//				jsc.notice2.add((Notice) mm.notice.get(j));
-//			} else {
-//				System.out.println("잘못 입력");
-//				break;
-//			}
-//		}
+		if (jsc.notice2.size() == 0) {
+			JOptionPane.showMessageDialog(null, "검색 결과가 없습니다!");
+
+		}
 
 	}
-	
-	
 
 }

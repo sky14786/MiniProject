@@ -1,10 +1,12 @@
 package com.job.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.job.model.Resume;
 import com.job.run.Run;
 import com.job.view.SearchView;
+
 
 public class SearchController {
 
@@ -28,85 +30,54 @@ public class SearchController {
 		rs2.clear();
 
 		ss = win.getSearchView();
+
 		for (int i = 0; i < ss.rs.size(); i++) {
 
 			region2 = ss.rs.get(i).getRegion();
 			typeOccup2 = ss.rs.get(i).getTypeOccup();
 			periodType2 = ss.rs.get(i).getPeriodType();
-			re = "[근무지역]";
-			oc = "[근무형태]";
-			pe = "[근무기간]";
 
-			// 아무것도 안눌렀을시
-			if (region.equals(re) && typeOccup.equals(oc) && periodType.equals(pe)) {
+			if (ss.rs.get(i).getRegion().equals(ss.inputvar)) {
 
+				System.out.println(ss.rs.get(i).toString());
+				rs2.add((Resume) ss.rs.get(i));
+			}
+
+			if (ss.rs.get(i).getTypeOccup().equals(ss.inputvar)) {
+
+				System.out.println(ss.rs.get(i).toString());
+				rs2.add((Resume) ss.rs.get(i));
+
+			}
+			if (ss.rs.get(i).getPeriodType().equals(ss.inputvar)) {
+
+				System.out.println(ss.rs.get(i).toString());
+				rs2.add((Resume) ss.rs.get(i));
+			} else {
 				System.out.println("다시 입력하시오");
-
-			}
-
-			// 지역 , 직종
-			if (region.equals(region2) && typeOccup.equals(typeOccup2) && periodType.equals(pe)) {
-				System.out.println(ss.rs.get(i).toString());
-
-				rs2.add((Resume) ss.rs.get(i));
-
-			}
-			// 지역 , 기간
-			if (region.equals(region2) && typeOccup.equals(oc) && periodType.equals(periodType2)) {
-
-				System.out.println(ss.rs.get(i).toString());
-
-				rs2.add((Resume) ss.rs.get(i));
-
-			}
-
-			// 직종 , 기간
-			if (region.equals(re) && typeOccup.equals(typeOccup2) && periodType.equals(periodType2)) {
-				System.out.println(ss.rs.get(i));
-
-				rs2.add((Resume) ss.rs.get(i));
-
-			}
-			// 지역
-			if (region.equals(region2) && typeOccup.equals(oc) && periodType.equals(pe)) {
-				System.out.println(ss.rs.get(i));
-
-				rs2.add((Resume) ss.rs.get(i));
-
-			}
-			// 직종
-			if (region.equals(re) && typeOccup.equals(typeOccup2) && periodType.equals(pe)) {
-				System.out.println(ss.rs.get(i));
-
-				rs2.add((Resume) ss.rs.get(i));
-
-			}
-			// 기간
-			if (region.equals(re) && typeOccup.equals(oc) && periodType.equals(periodType2)) {
-				System.out.println(ss.rs.get(i));
-
-				rs2.add((Resume) ss.rs.get(i));
-
 			}
 		}
 		System.out.println();
-
 	}
 
-	public Resume resumeset(Run win, int userNo, String inputvar) {
-
-		Resume resume = new Resume();
+	public Resume resumeset(Run win) {
+		Resume resume2 = new Resume();
 		ss = win.getSearchView();
 
-		for (int i = 0; i < ss.rs.size(); i++) {
+		String userNo = ss.DtmStorage.getValueAt(ss.getidx(), 0).toString();
 
-			if (ss.rs.get(i).getUserNo() == Integer.parseInt(ss.inputvar)) {
+		System.out.println("userNo" + userNo);
 
-				resume = ss.rs.get(i);
+		List<Resume> userList = new ArrayList<Resume>();
+		userList = ss.rs;
+		String userno = "";
+		for (int i = 0; i < userList.size(); i++) {
+			userno = Integer.toString(userList.get(i).getUserNo());
+			if (userno.equals(userNo)) {
+				resume2 = userList.get(i);
 			}
 		}
-
-		System.out.println(resume.toString());
-		return resume;
+		System.out.println(">>" + resume2.toString());
+		return resume2;
 	}
 }

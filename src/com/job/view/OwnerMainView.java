@@ -156,7 +156,7 @@ public class OwnerMainView extends JPanel {
 		revalidate();
 		repaint();
 		win.setSize(1000, 620);
-		win.getSearchView().reset();
+		//win.getSearchView().reset();
 		win.setVisible(false);
 		win.setVisible(true);
 	}
