@@ -24,6 +24,7 @@ import com.job.model.dao.LoadSave;
 import com.job.run.Run;
 import java.awt.Color;
 
+//¿ìÇö
 public class SearchView extends JPanel {
 	private Run win = new Run();
 	private JTable table;
@@ -52,15 +53,16 @@ public class SearchView extends JPanel {
 	private SearchController sc = new SearchController();
 
 	public ArrayList<Resume> rs = new ArrayList<Resume>();
+	private LoadSave dao = LoadSave.getDao();
 
 	public SearchView(Run win) {
 		this.win = win;
 		initialize();
-		dummyset();
+		rs = dao.loadResume();
 	}
 
 	private void initialize() {
-		
+
 		Color fontColor = new Color(0x4f4f4f);
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(null);
@@ -232,14 +234,12 @@ public class SearchView extends JPanel {
 		button_1.setContentAreaFilled(false);
 		button_1.setIcon(new ImageIcon(this.getClass().getResource("/resource/OpenBtn.png")));
 		add(button_1);
-		
+
 		JLabel label_6 = new JLabel("");
 		label_6.setBounds(0, 0, 1000, 600);
 		label_6.setIcon(new ImageIcon(this.getClass().getResource("/resource/SearchView.jpg")));
 		add(label_6);
-		
-		
-		
+
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -257,10 +257,6 @@ public class SearchView extends JPanel {
 
 			}
 		});
-	}
-
-	private void dummyset() {
-		rs = LoadSave.getDao().loadResume();
 	}
 
 	public void reset() {

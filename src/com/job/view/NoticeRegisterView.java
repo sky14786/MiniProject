@@ -20,7 +20,7 @@ import javax.swing.SwingConstants;
 
 import com.job.controller.NoticeRegisterController;
 import com.job.run.Run;
-
+//ÁØ¿µ
 public class NoticeRegisterView extends JPanel {
 
 	private JTextField tfBName;
@@ -46,7 +46,7 @@ public class NoticeRegisterView extends JPanel {
 	private void initialize() {
 
 		setLayout(null);
-
+		setSize(1000, 600);
 		Color fontColor = new Color(0x4f4f4f);
 
 		taETC = new JTextArea();

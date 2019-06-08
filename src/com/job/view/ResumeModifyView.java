@@ -19,7 +19,7 @@ import com.job.model.Resume;
 import com.job.run.Run;
 import javax.swing.JLayeredPane;
 import javax.swing.ImageIcon;
-
+//´ö
 public class ResumeModifyView extends JPanel{
 	
 	private JTextField tfName;

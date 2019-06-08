@@ -59,20 +59,20 @@ public class JobSearchController {
 		System.out.println("검색 결과");
 		// js.DtmStorage.setNumRows(0); // 검색 버튼을 누를때마다 테이블 갱신
 
-		for (int i = 0; i < mm.pt.size(); i++) {
+		for (int i = 0; i < mm.notice.size(); i++) {
 
-			bNo2 = mm.pt.get(i).getbNo();
-			bName = mm.pt.get(i).getbName(); // pt.get(i)의 업장명 변수
-			pay = mm.pt.get(i).getPay(); // pt.get(i)의 시급 변수
-			timeTotime2 = mm.pt.get(i).getTimeTotime(); // pt.get(i)의 몇시부터 몇시까지 변수
-			typeOccup2 = mm.pt.get(i).getCategory(); // pt.get(i)의 근무형태 변수
-			periodType2 = mm.pt.get(i).getPeriodType(); // pt.get(i)의 기간 변수
-			timeType2 = mm.pt.get(i).getTimeType(); // pt.get(i)의 몇시간 시간 변수
-			region2 = mm.pt.get(i).getAddr(); // pt.get(i)의 주소 변수
-			key1 = mm.pt.get(i).getbKeyword1();
-			key2 = mm.pt.get(i).getbKeyword2();
-			key3 = mm.pt.get(i).getbKeyword3();
-			etc1 = mm.pt.get(i).getEtc();
+			bNo2 = mm.notice.get(i).getbNo();
+			bName = mm.notice.get(i).getbName(); // notice.get(i)의 업장명 변수
+			pay = mm.notice.get(i).getPay(); // pt.get(i)의 시급 변수
+			timeTotime2 = mm.notice.get(i).getTimeTotime(); // pt.get(i)의 몇시부터 몇시까지 변수
+			typeOccup2 = mm.notice.get(i).getCategory(); // pt.get(i)의 근무형태 변수
+			periodType2 = mm.notice.get(i).getPeriodType(); // pt.get(i)의 기간 변수
+			timeType2 = mm.notice.get(i).getTimeType(); // pt.get(i)의 몇시간 시간 변수
+			region2 = mm.notice.get(i).getAddr(); // pt.get(i)의 주소 변수
+			key1 = mm.notice.get(i).getbKeyword1();
+			key2 = mm.notice.get(i).getbKeyword2();
+			key3 = mm.notice.get(i).getbKeyword3();
+			etc1 = mm.notice.get(i).getEtc();
 			ki = "[기간 선택]";
 			si = "[시간 선택]";
 			mo = "[근무 형태]";
@@ -82,9 +82,9 @@ public class JobSearchController {
 			if (region.equals(region2) && typeOccup.equals(typeOccup2) && timeTotime.equals(timeTotime2)
 					&& periodType.equals(periodType2)) {
 
-				System.out.println(mm.pt.get(i).toString());
+				System.out.println(mm.notice.get(i).toString());
 
-				notice2.add((Notice) mm.pt.get(i));
+				notice2.add((Notice) mm.notice.get(i));
 
 				// for (int j = 0; j < pt2.size(); j++) {
 				//
@@ -99,45 +99,45 @@ public class JobSearchController {
 			if (region.equals(region2) && typeOccup.equals(typeOccup2) && timeTotime.equals(timeTotime2)
 					&& periodType.equals(ki)) {
 
-				System.out.println(mm.pt.get(i).toString());
+				System.out.println(mm.notice.get(i).toString());
 
-				notice2.add((Notice) mm.pt.get(i));
+				notice2.add((Notice) mm.notice.get(i));
 
 			}
 
 			// 지역 , 기간
 			if (region.equals(region2) && typeOccup.equals(mo) && timeTotime.equals(si)
 					&& periodType.equals(periodType2)) {
-				System.out.println(mm.pt.get(i));
+				System.out.println(mm.notice.get(i));
 
-				notice2.add((Notice) mm.pt.get(i));
+				notice2.add((Notice) mm.notice.get(i));
 
 			}
 
 			// 지역 , 시간
 			if (region.equals(region2) && typeOccup.equals(mo) && timeTotime.equals(timeTotime2)
 					&& periodType.equals(ki)) {
-				System.out.println(mm.pt.get(i));
+				System.out.println(mm.notice.get(i));
 
-				notice2.add((Notice) mm.pt.get(i));
+				notice2.add((Notice) mm.notice.get(i));
 
 			}
 
 			// 지역 , 직종
 			if (region.equals(region2) && typeOccup.equals(typeOccup2) && timeTotime.equals(si)
 					&& periodType.equals(ki)) {
-				System.out.println(mm.pt.get(i));
+				System.out.println(mm.notice.get(i));
 
-				notice2.add((Notice) mm.pt.get(i));
+				notice2.add((Notice) mm.notice.get(i));
 
 			}
 
 			// 지역 선택
 			if (region.equals(region2) && typeOccup.equals(mo) && timeTotime.equals(si) && js.periodType.equals(ki)) {
 
-				System.out.println(mm.pt.get(i));
+				System.out.println(mm.notice.get(i));
 
-				notice2.add((Notice) mm.pt.get(i));
+				notice2.add((Notice) mm.notice.get(i));
 
 			}
 
@@ -151,67 +151,82 @@ public class JobSearchController {
 			// 근무 형태 선택
 			if (region.equals(ji) && typeOccup.equals(typeOccup2) && timeTotime.equals(si)
 					&& js.periodType.equals(ki)) {
-				System.out.println(mm.pt.get(i));
+				System.out.println(mm.notice.get(i));
 
-				notice2.add((Notice) mm.pt.get(i));
+				notice2.add((Notice) mm.notice.get(i));
 
 			}
 
 			// 근무 형태 , 시간 선택
 			if (region.equals(ji) && typeOccup.equals(typeOccup2) && timeTotime.equals(timeTotime2)
 					&& periodType.equals(ki)) {
-				System.out.println(mm.pt.get(i));
+				System.out.println(mm.notice.get(i));
 
-				notice2.add((Notice) mm.pt.get(i));
+				notice2.add((Notice) mm.notice.get(i));
 
 			}
 
 			// 근무형태 , 시간 , 기간 선택
 			if (region.equals(ji) && typeOccup.equals(typeOccup2) && timeTotime.equals(timeTotime2)
 					&& periodType.equals(periodType2)) {
-				System.out.println(mm.pt.get(i));
+				System.out.println(mm.notice.get(i));
 
-				notice2.add((Notice) mm.pt.get(i));
+				notice2.add((Notice) mm.notice.get(i));
 
 			}
 
 			// 시간, 기간 선택
 			if (region.equals(ji) && typeOccup.equals(mo) && timeTotime.equals(timeTotime2)
 					&& periodType.equals(periodType2)) {
-				System.out.println(mm.pt.get(i));
+				System.out.println(mm.notice.get(i));
 
-				notice2.add((Notice) mm.pt.get(i));
+				notice2.add((Notice) mm.notice.get(i));
 
 			}
 
 			// 시간 선택
 			if (region.equals(ji) && typeOccup.equals(mo) && timeTotime.equals(timeTotime2) && periodType.equals(ki)) {
-				System.out.println(mm.pt.get(i));
+				System.out.println(mm.notice.get(i));
 
-				notice2.add((Notice) mm.pt.get(i));
+				notice2.add((Notice) mm.notice.get(i));
 
 			}
 
 			// 기간 선택
 			if (region.equals(ji) && typeOccup.equals(mo) && timeTotime.equals(si) && periodType.equals(periodType2)) {
-				System.out.println(mm.pt.get(i));
+				System.out.println(mm.notice.get(i));
 
-				notice2.add((Notice) mm.pt.get(i));
+				notice2.add((Notice) mm.notice.get(i));
 
 			}
 
 			// 기간 , 근무 형태 선택
 			if (region.equals(ji) && typeOccup.equals(typeOccup2) && timeTotime.equals(si)
 					&& periodType.equals(periodType2)) {
-				System.out.println(mm.pt.get(i));
+				System.out.println(mm.notice.get(i));
 
-				notice2.add((Notice) mm.pt.get(i));
+				notice2.add((Notice) mm.notice.get(i));
 
 			}
 
 		}
 		System.out.println();
 
+	}
+
+	// 키워드 검색 메소드
+	public ArrayList<Notice> keywordSearch(String keyword) {
+		ArrayList<Notice> arr = arr = dao.loadNoitce();
+		ArrayList<Notice> temp = new ArrayList<Notice>();
+
+		for (int i = 0; i < arr.size(); i++) {
+			if (arr.get(i).getbKeyword1().contains(keyword) || arr.get(i).getbKeyword2().contains(keyword)
+					|| arr.get(i).getbKeyword3().contains(keyword)) {
+				temp.add(arr.get(i));
+			}
+		}
+
+		return temp;
 	}
 
 	// 전체 보기 메소드
@@ -223,22 +238,22 @@ public class JobSearchController {
 		System.out.println("검색 결과");
 		// js.DtmStorage.setNumRows(0); // 검색 버튼을 누를때마다 테이블 갱신
 
-		for (int i = 0; i < mm.pt.size(); i++) {
+		for (int i = 0; i < mm.notice.size(); i++) {
 
-			bNo2 = mm.pt.get(i).getbNo();
-			bName = mm.pt.get(i).getbName(); // pt.get(i)의 업장명 변수
-			pay = mm.pt.get(i).getPay(); // pt.get(i)의 시급 변수
-			timeTotime2 = mm.pt.get(i).getTimeTotime(); // pt.get(i)의 몇시부터 몇시까지 변수
-			typeOccup2 = mm.pt.get(i).getCategory(); // pt.get(i)의 근무형태 변수
-			periodType2 = mm.pt.get(i).getPeriodType(); // pt.get(i)의 기간 변수
-			timeType2 = mm.pt.get(i).getTimeType(); // pt.get(i)의 몇시간 시간 변수
-			region2 = mm.pt.get(i).getAddr(); // pt.get(i)의 주소 변수
-			key1 = mm.pt.get(i).getbKeyword1();
-			key2 = mm.pt.get(i).getbKeyword2();
-			key3 = mm.pt.get(i).getbKeyword3();
-			etc1 = mm.pt.get(i).getEtc();
+			bNo2 = mm.notice.get(i).getbNo();
+			bName = mm.notice.get(i).getbName(); // pt.get(i)의 업장명 변수
+			pay = mm.notice.get(i).getPay(); // pt.get(i)의 시급 변수
+			timeTotime2 = mm.notice.get(i).getTimeTotime(); // pt.get(i)의 몇시부터 몇시까지 변수
+			typeOccup2 = mm.notice.get(i).getCategory(); // pt.get(i)의 근무형태 변수
+			periodType2 = mm.notice.get(i).getPeriodType(); // pt.get(i)의 기간 변수
+			timeType2 = mm.notice.get(i).getTimeType(); // pt.get(i)의 몇시간 시간 변수
+			region2 = mm.notice.get(i).getAddr(); // pt.get(i)의 주소 변수
+			key1 = mm.notice.get(i).getbKeyword1();
+			key2 = mm.notice.get(i).getbKeyword2();
+			key3 = mm.notice.get(i).getbKeyword3();
+			etc1 = mm.notice.get(i).getEtc();
 
-			notice2.add((Notice) mm.pt.get(i));
+			notice2.add((Notice) mm.notice.get(i));
 
 		}
 	}
@@ -278,6 +293,7 @@ public class JobSearchController {
 	// 지원하기 버튼 메소드
 	public void search2(int row) {
 		Notice temp2 = new Notice();
+		System.out.println("Apply Row : " + row);
 
 		if (row == -1) {
 
@@ -303,7 +319,7 @@ public class JobSearchController {
 			temp2.setbKeyword3(notice2.get(row).getbKeyword3());
 			temp2.setEtc(notice2.get(row).getEtc());
 
-			System.out.println(notice2.get(row).getbNo());
+			System.out.println(notice2.get(row).toString());
 
 			// Connection 객체와 연동 부분 --------------------------------------
 			System.out.println("지원시작!");

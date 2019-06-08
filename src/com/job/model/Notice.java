@@ -141,6 +141,5 @@ public class Notice implements Serializable {
 				+ ", bKeyword1=" + bKeyword1 + ", bKeyword2=" + bKeyword2 + ", bKeyword3=" + bKeyword3 + ", addr="
 				+ addr + "]";
 	}
-	
 
 }

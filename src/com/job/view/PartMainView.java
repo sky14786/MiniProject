@@ -21,7 +21,7 @@ import com.job.run.Run;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import java.awt.Color;
-
+//덕
 public class PartMainView extends JPanel {
 
 	private JTextField tfKeyword;
@@ -210,6 +210,7 @@ public class PartMainView extends JPanel {
 					System.out.println("-------------------------------------------");
 					System.out.println("검색 키워드 : " + keyword);
 					System.out.println("-------------------------------------------");
+					win.getJobSearchView().printTable1(keyword);
 
 					// 화면전환
 					win.getContentPane().removeAll();
@@ -238,6 +239,8 @@ public class PartMainView extends JPanel {
 						System.out.println("-------------------------------------------");
 						System.out.println("검색 키워드 : " + keyword);
 						System.out.println("-------------------------------------------");
+						
+//						win.getJobSearchView().printTable1(keyword);
 
 						// 화면전환
 						win.getContentPane().removeAll();
@@ -269,6 +272,7 @@ public class PartMainView extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				win.getContentPane().removeAll();
 				win.getContentPane().add(win.getJobSearchView()); // 여기서 기호오빠 화면으로 전환
+				win.getJobSearchView().normalSearch(); //기본 전체보기 메소드
 				win.getContentPane().revalidate();
 				win.getContentPane().repaint();
 			}

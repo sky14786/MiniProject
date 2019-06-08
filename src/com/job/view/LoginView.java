@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 import com.job.controller.LoginController;
 import com.job.controller.NoticeRegisterController;
 import com.job.run.Run;
-
+//ÁØ¿µ
 public class LoginView extends JPanel {
 
 	private JTextField tfID;

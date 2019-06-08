@@ -11,7 +11,7 @@ import com.job.run.Run;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+//Çö½Ä
 public class OwnerDetailView extends JPanel {
 	private JTextField textField;
 	private Resume temp1 = null;

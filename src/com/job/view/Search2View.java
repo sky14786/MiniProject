@@ -15,6 +15,7 @@ import com.job.model.Resume;
 import com.job.run.Run;
 import java.awt.Color;
 
+//¿ìÇö
 public class Search2View extends JPanel {
 
 	private Run win = new Run();

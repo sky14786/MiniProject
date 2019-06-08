@@ -20,7 +20,7 @@ import javax.swing.SwingConstants;
 
 import com.job.controller.PartimerSignUpController;
 import com.job.run.Run;
-
+//ÁØ¿µ
 public class PartimerSignUpView extends JPanel {
 
 	private JTextField tfID;

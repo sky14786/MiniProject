@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -24,6 +25,7 @@ import com.job.model.Resume;
 import com.job.model.dao.LoadSave;
 import com.job.run.Run;
 
+//현식,준영
 public class OwnerMainView extends JPanel {
 	private JTable table;
 	private DefaultTableModel Dtm;
@@ -31,7 +33,7 @@ public class OwnerMainView extends JPanel {
 	private ArrayList<Notice> notices = new ArrayList<Notice>();
 	private ArrayList<Connection> connections = new ArrayList<Connection>();
 	private Connection connection = null;
-	private JButton btnShowNoticeReg, btnShowMyNotice, btnsShowSearchView, btnDetailView;
+	private JButton btnShowNoticeReg, btnShowMyNotice, btnsShowSearchView, btnDetailView, btnLogout;
 
 	private NoticeRegisterController nrc = new NoticeRegisterController();
 	private LoadSave dao = LoadSave.getDao();
@@ -69,13 +71,21 @@ public class OwnerMainView extends JPanel {
 		add(btnsShowSearchView);
 		// ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-		String[] colum = { "", "", "", "" };
-		Dtm = new DefaultTableModel(colum, 0);
+		String[] colnum = { "", "", "", "" };
+		Dtm = new DefaultTableModel(colnum, 0) {
+			// 셀 더블클릭시 에디팅 금지
+			public boolean isCellEditable(int i, int c) {
+				return false;
+			}
+		};
 
 		table = new JTable(Dtm);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 		table.setAutoCreateRowSorter(true);
 		table.setRowHeight(20);
+		table.getTableHeader().setReorderingAllowed(false); // 테이블 컬럼 이동방지
+		table.getTableHeader().setResizingAllowed(false); // 테이블 컬럼 사이즈고정
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); // 테이블 로우 한개선택
 		Dtm.setColumnIdentifiers(new String[] { "이름", "성별", "나이", "전화번호" });
 
 		JScrollPane scrollPane1 = new JScrollPane(table);
@@ -89,7 +99,7 @@ public class OwnerMainView extends JPanel {
 		add(btnDetailView);
 		// ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-		JButton btnLogout = new JButton("");
+		btnLogout = new JButton("");
 		btnLogout.setBounds(876, 25, 112, 28);
 		btnLogout.setIcon(new ImageIcon(this.getClass().getResource("/resource/LogoutBtn.png")));
 		btnLogout.setContentAreaFilled(false);
@@ -225,6 +235,14 @@ public class OwnerMainView extends JPanel {
 				int num = table.getSelectedRow();
 				win.getOwnerDetailView().OwnerDetailButton1(seeMore(num));
 
+			}
+		});
+
+		btnLogout.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				logout();
 			}
 		});
 	}

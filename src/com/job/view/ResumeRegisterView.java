@@ -21,7 +21,7 @@ import com.job.model.Partimer;
 import com.job.run.Run;
 import javax.swing.ImageIcon;
 import java.awt.Color;
-
+//´ö
 public class ResumeRegisterView extends JPanel {
 
 	private JTextField tfName;

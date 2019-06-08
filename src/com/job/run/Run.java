@@ -4,8 +4,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import com.job.view.ApplicationDeleteView;
-import com.job.view.JobSearch2View;
 import com.job.view.JobSearchView;
+import com.job.view.JobSearchView2;
 import com.job.view.LoginView;
 import com.job.view.NoticeRegisterView;
 import com.job.view.NoticeUpdateView;
@@ -33,7 +33,6 @@ public class Run extends JFrame {
 	private ResumeRegisterView resumeEnrollView = null;
 	private ResumeModifyView resumeModifyView = null;
 	private JobSearchView jobSearchView = null;
-	private JobSearch2View jobSearch2View = null;
 	private ApplicationDeleteView applicationDeleteView = null;
 	private SearchView searchView = null;
 	private Search2View search2View = null;
@@ -54,7 +53,6 @@ public class Run extends JFrame {
 		win.resumeEnrollView = new ResumeRegisterView(win);
 		win.resumeModifyView = new ResumeModifyView(win);
 		win.jobSearchView = new JobSearchView(win);
-		win.jobSearch2View = new JobSearch2View(win);
 		win.applicationDeleteView = new ApplicationDeleteView(win);
 		win.searchView = new SearchView(win);
 		win.search2View = new Search2View(win);
@@ -118,10 +116,6 @@ public class Run extends JFrame {
 
 	public JobSearchView getJobSearchView() {
 		return jobSearchView;
-	}
-
-	public JobSearch2View getJobSearch2View() {
-		return jobSearch2View;
 	}
 
 	public SignUpCategory getSignUpCategory() {

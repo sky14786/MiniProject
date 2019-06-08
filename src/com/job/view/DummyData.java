@@ -8,9 +8,9 @@ import com.job.model.dao.LoadSave;
 public class DummyData {
 	
 	private LoadSave dao = LoadSave.getDao();
-    public static List<Notice> pt = new ArrayList<Notice>();
+    public static List<Notice> notice = new ArrayList<Notice>();
     public DummyData() {
-    	pt = dao.loadNoitce();
+    	notice = dao.loadNoitce();
     }
 
 	public void mainMenu()

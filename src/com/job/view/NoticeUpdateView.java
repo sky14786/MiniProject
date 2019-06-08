@@ -20,6 +20,7 @@ import com.job.run.Run;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 
+//준영, 현식(삭제)
 public class NoticeUpdateView extends JPanel {
 	private JTextField tfBKeyword1;
 	private JTextField tfBKeyword2;
@@ -36,17 +37,11 @@ public class NoticeUpdateView extends JPanel {
 	public Run win = new Run();
 	private NoticeUpdateController noticeUpdateController = new NoticeUpdateController();
 
-	/**
-	 * Create the application.
-	 */
 	public NoticeUpdateView(Run win) {
 		this.win = win;
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		setLayout(null);
 
@@ -187,6 +182,7 @@ public class NoticeUpdateView extends JPanel {
 
 		resetTextField();
 		settingData();
+		settingButton();
 	}
 
 	public void settingData() {
@@ -222,8 +218,8 @@ public class NoticeUpdateView extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				resetTextField();
 				backMove();
+				resetTextField();
 				settingData();
 			}
 		});
@@ -289,5 +285,7 @@ public class NoticeUpdateView extends JPanel {
 		noticeUpdateController.applyUpdate();
 		win.getOwnerMainView().isNoticeTest();
 	}
+	
+	
 
 }
