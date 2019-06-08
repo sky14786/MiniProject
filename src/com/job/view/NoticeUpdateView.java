@@ -254,7 +254,6 @@ public class NoticeUpdateView extends JPanel {
 	}
 
 	private void backMove() {
-
 		win.getContentPane().removeAll();
 		win.getContentPane().add(win.getOwnerMainView());
 		win.setSize(1000, 620);

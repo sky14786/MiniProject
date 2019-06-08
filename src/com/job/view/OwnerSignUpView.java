@@ -16,6 +16,7 @@ import javax.swing.SwingConstants;
 
 import com.job.controller.OwnerSignUpController;
 import com.job.run.Run;
+
 //ÁØ¿µ
 public class OwnerSignUpView extends JPanel {
 

@@ -7,7 +7,6 @@ import com.job.model.Resume;
 import com.job.run.Run;
 import com.job.view.SearchView;
 
-
 public class SearchController {
 
 	public String region2;
@@ -63,11 +62,7 @@ public class SearchController {
 	public Resume resumeset(Run win) {
 		Resume resume2 = new Resume();
 		ss = win.getSearchView();
-
 		String userNo = ss.DtmStorage.getValueAt(ss.getidx(), 0).toString();
-
-		System.out.println("userNo" + userNo);
-
 		List<Resume> userList = new ArrayList<Resume>();
 		userList = ss.rs;
 		String userno = "";
@@ -77,7 +72,8 @@ public class SearchController {
 				resume2 = userList.get(i);
 			}
 		}
-		System.out.println(">>" + resume2.toString());
+
+		System.out.println(">>>" + resume2);
 		return resume2;
 	}
 }

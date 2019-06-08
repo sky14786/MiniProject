@@ -69,22 +69,6 @@ public class ApplicationDeleteView extends JPanel {
 	public Run win = new Run();
 	private JFrame frame;
 
-	/**
-	 * Launch the application.
-	 */
-//   public static void main(String[] args) {
-//      EventQueue.invokeLater(new Runnable() {
-//         public void run() {
-//            try {
-//               ApplicationDeleteView window = new ApplicationDeleteView();
-//               window.frame.setVisible(true);
-//            } catch (Exception e) {
-//               e.printStackTrace();
-//            }
-//         }
-//      });
-//   }
-
 	public ApplicationDeleteView(Run win) {
 		this.win = win;
 		initialize();

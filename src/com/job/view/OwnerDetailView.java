@@ -8,133 +8,110 @@ import javax.swing.JTextField;
 
 import com.job.model.Resume;
 import com.job.run.Run;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
+import java.awt.Font;
+
 //현식
 public class OwnerDetailView extends JPanel {
-	private JTextField textField;
 	private Resume temp1 = null;
-	private JLabel label_4;
-	private JLabel label_5;
-	private JLabel label_6;
-	private JLabel label_7;
-	private JLabel label_8;
-	private JLabel label_9;
-	private JLabel label_10;
-	private JLabel label_11;
-	private JLabel label_12;
-	private JLabel label_13;
-	private JLabel label_14;
+	private JLabel lbName;
+	private JLabel lbAge;
+	private JLabel lbGender;
+	private JLabel lbPhone;
+	private JLabel lbAcademic;
+	private JLabel lbc;
+	private JLabel lbcategory;
+	private JLabel lbTimeOccup;
+	private JLabel lbDow;
+	private JLabel lbTimeType;
+	private JLabel lbAddr;
 
 	public Run win = new Run();
 
 	public OwnerDetailView(Run win) {
 		setLayout(null);
+		setSize(581, 783);
 
-		JPanel panel = new JPanel();
-		panel.setBounds(14, 12, 451, 588);
-		add(panel);
-		panel.setLayout(null);
+		Color fontColor = new Color(0x4f4f4f);
 
-		JLabel lblNewLabel = new JLabel("이름");
-		lblNewLabel.setBounds(14, 51, 57, 30);
-		panel.add(lblNewLabel);
+		lbName = new JLabel("\uC815\uBCF4 \uC5C6\uC74C");
+		lbName.setFont(new Font("배달의민족 주아", Font.PLAIN, 20));
+		lbName.setBounds(141, 157, 123, 32);
+		lbName.setForeground(fontColor);
+		add(lbName);
 
-		textField = new JTextField();
-		textField.setBounds(184, 5, 116, 24);
-		textField.setText("\uC0C1\uC138\uC815\uBCF4");
-		panel.add(textField);
-		textField.setColumns(10);
+		lbAge = new JLabel("\uC815\uBCF4 \uC5C6\uC74C");
+		lbAge.setFont(new Font("배달의민족 주아", Font.PLAIN, 20));
+		lbAge.setBounds(392, 159, 123, 32);
+		lbAge.setForeground(fontColor);
+		add(lbAge);
 
-		JLabel label = new JLabel("\uB098\uC774");
-		label.setBounds(14, 99, 62, 18);
-		panel.add(label);
+		lbGender = new JLabel("\uC815\uBCF4 \uC5C6\uC74C");
+		lbGender.setFont(new Font("배달의민족 주아", Font.PLAIN, 20));
+		lbGender.setBounds(137, 251, 123, 32);
+		lbGender.setForeground(fontColor);
+		add(lbGender);
 
-		JLabel label_1 = new JLabel("\uC131\uBCC4");
-		label_1.setBounds(14, 147, 62, 18);
-		panel.add(label_1);
+		lbPhone = new JLabel("\uC815\uBCF4 \uC5C6\uC74C");
+		lbPhone.setFont(new Font("배달의민족 주아", Font.PLAIN, 20));
+		lbPhone.setBounds(389, 248, 123, 32);
+		lbPhone.setForeground(fontColor);
+		add(lbPhone);
 
-		JLabel label_2 = new JLabel("\uC804\uD654\uBC88\uD638");
-		label_2.setBounds(14, 202, 62, 18);
-		panel.add(label_2);
+		lbAcademic = new JLabel("\uC815\uBCF4 \uC5C6\uC74C");
+		lbAcademic.setFont(new Font("배달의민족 주아", Font.PLAIN, 20));
+		lbAcademic.setBounds(139, 428, 123, 32);
+		lbAcademic.setForeground(fontColor);
+		add(lbAcademic);
 
-		JLabel lblNewLabel_1 = new JLabel("\uD559\uB825");
-		lblNewLabel_1.setBounds(14, 251, 62, 18);
-		panel.add(lblNewLabel_1);
+		lbc = new JLabel("\uC815\uBCF4 \uC5C6\uC74C");
+		lbc.setFont(new Font("배달의민족 주아", Font.PLAIN, 20));
+		lbc.setBounds(391, 341, 123, 32);
+		lbc.setForeground(fontColor);
+		add(lbc);
 
-		JLabel lblNewLabel_2 = new JLabel("\uACBD\uB825");
-		lblNewLabel_2.setBounds(14, 302, 62, 18);
-		panel.add(lblNewLabel_2);
+		lbcategory = new JLabel("\uC815\uBCF4 \uC5C6\uC74C");
+		lbcategory.setFont(new Font("배달의민족 주아", Font.PLAIN, 20));
+		lbcategory.setBounds(349, 504, 123, 32);
+		lbcategory.setForeground(fontColor);
+		add(lbcategory);
 
-		JLabel lblNewLabel_3 = new JLabel("\uC9C1\uC885");
-		lblNewLabel_3.setBounds(14, 353, 62, 18);
-		panel.add(lblNewLabel_3);
+		lbTimeOccup = new JLabel("\uC815\uBCF4 \uC5C6\uC74C");
+		lbTimeOccup.setFont(new Font("배달의민족 주아", Font.PLAIN, 20));
+		lbTimeOccup.setBounds(349, 584, 123, 32);
+		lbTimeOccup.setForeground(fontColor);
+		add(lbTimeOccup);
 
-		JLabel label_3 = new JLabel("\uAE30\uAC04");
-		label_3.setBounds(14, 401, 62, 18);
-		panel.add(label_3);
+		lbDow = new JLabel("\uC815\uBCF4 \uC5C6\uC74C");
+		lbDow.setFont(new Font("배달의민족 주아", Font.PLAIN, 20));
+		lbDow.setBounds(349, 653, 123, 32);
+		lbDow.setForeground(fontColor);
+		add(lbDow);
 
-		JLabel lblNewLabel_4 = new JLabel("\uC694\uC77C");
-		lblNewLabel_4.setBounds(231, 57, 62, 18);
-		panel.add(lblNewLabel_4);
+		lbTimeType = new JLabel("\uC815\uBCF4 \uC5C6\uC74C");
+		lbTimeType.setFont(new Font("배달의민족 주아", Font.PLAIN, 20));
+		lbTimeType.setBounds(293, 428, 123, 32);
+		lbTimeType.setForeground(fontColor);
+		add(lbTimeType);
 
-		JLabel lblNewLabel_5 = new JLabel("\uC2DC\uAC04");
-		lblNewLabel_5.setBounds(231, 99, 62, 18);
-		panel.add(lblNewLabel_5);
+		lbAddr = new JLabel("\uC815\uBCF4 \uC5C6\uC74C");
+		lbAddr.setFont(new Font("배달의민족 주아", Font.PLAIN, 20));
+		lbAddr.setBounds(141, 341, 123, 32);
+		lbAddr.setForeground(fontColor);
+		add(lbAddr);
 
-		JLabel lblNewLabel_6 = new JLabel("\uC9C0\uC5ED");
-		lblNewLabel_6.setBounds(231, 147, 62, 18);
-		panel.add(lblNewLabel_6);
-
-		label_4 = new JLabel("\uC815\uBCF4 \uC5C6\uC74C");//
-		label_4.setBounds(68, 57, 99, 18);
-
-		panel.add(label_4);
-
-		label_5 = new JLabel("\uC815\uBCF4 \uC5C6\uC74C");
-		label_5.setBounds(68, 99, 99, 18);
-		panel.add(label_5);
-
-		label_6 = new JLabel("\uC815\uBCF4 \uC5C6\uC74C");
-		label_6.setBounds(68, 147, 99, 18);
-		panel.add(label_6);
-
-		label_7 = new JLabel("\uC815\uBCF4 \uC5C6\uC74C");
-		label_7.setBounds(85, 202, 125, 18);
-		panel.add(label_7);
-
-		label_8 = new JLabel("\uC815\uBCF4 \uC5C6\uC74C");
-		label_8.setBounds(68, 251, 99, 18);
-		panel.add(label_8);
-
-		label_9 = new JLabel("\uC815\uBCF4 \uC5C6\uC74C");
-		label_9.setBounds(68, 302, 125, 18);
-		panel.add(label_9);
-
-		label_10 = new JLabel("\uC815\uBCF4 \uC5C6\uC74C");
-		label_10.setBounds(68, 353, 142, 18);
-		panel.add(label_10);
-
-		label_11 = new JLabel("\uC815\uBCF4 \uC5C6\uC74C");
-		label_11.setBounds(68, 401, 160, 18);
-		panel.add(label_11);
-
-		label_12 = new JLabel("\uC815\uBCF4 \uC5C6\uC74C");
-		label_12.setBounds(285, 57, 116, 18);
-		panel.add(label_12);
-
-		label_13 = new JLabel("\uC815\uBCF4 \uC5C6\uC74C");
-		label_13.setBounds(285, 99, 116, 18);
-		panel.add(label_13);
-
-		label_14 = new JLabel("\uC815\uBCF4 \uC5C6\uC74C");
-		label_14.setBounds(285, 147, 99, 18);
-		panel.add(label_14);
-
-		JButton btnNewButton = new JButton("\uB4A4\uB85C\uAC00\uAE30");
+		JButton btnNewButton = new JButton("");
+		btnNewButton.setBounds(227, 695, 123, 52);
+		btnNewButton.setIcon(new ImageIcon(this.getClass().getResource("/resource/BackButton.png")));
+		btnNewButton.setContentAreaFilled(false);
+		btnNewButton.setBorderPainted(false);
+		add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
-            //뒤로가기
 			public void actionPerformed(ActionEvent e) {
 				win.getContentPane().removeAll();
 				win.getContentPane().add(win.getOwnerMainView());
@@ -143,36 +120,43 @@ public class OwnerDetailView extends JPanel {
 				repaint();
 				win.setVisible(false);
 				win.setVisible(true);
-			
+
 			}
 		});
-		btnNewButton.setBounds(285, 419, 105, 27);
-		panel.add(btnNewButton);
-		initialize();
-	}
 
-	private void initialize() {
+		JLabel lbBack = new JLabel("");
+		lbBack.setFont(new Font("배달의민족 주아", Font.PLAIN, 20));
+		lbBack.setBounds(0, 0, 581, 783);
+		lbBack.setIcon(new ImageIcon(this.getClass().getResource("/resource/SearchView2.jpg")));
+		add(lbBack);
+		btnNewButton.addActionListener(new ActionListener() {
+			// 뒤로가기
+			public void actionPerformed(ActionEvent e) {
+				win.getContentPane().removeAll();
+				win.getContentPane().add(win.getOwnerMainView());
+				win.setSize(1000, 620);
+				revalidate();
+				repaint();
+				win.setVisible(false);
+				win.setVisible(true);
 
-		setLayout(null);
-		setSize(1000, 600);
+			}
+		});
 	}
 
 	public void OwnerDetailButton1(Resume temp) {
 
-		setLayout(null);
-		setSize(1000, 600);
-
-		label_4.setText(temp.getName());
-		label_5.setText(Integer.toString(temp.getAge()));
-		label_6.setText(temp.getGender());
-		label_7.setText(temp.getPhone());
-		label_8.setText(temp.getAcademic());
-		label_9.setText(temp.getCareer());
-		label_10.setText(temp.getTypeOccup());
-		label_11.setText(temp.getPeriodType());
-		label_12.setText(temp.getDow());
-		label_13.setText(temp.getTime());
-		label_14.setText(temp.getRegion());
+		lbName.setText(temp.getName());
+		lbAge.setText(Integer.toString(temp.getAge()));
+		lbGender.setText(temp.getGender());
+		lbPhone.setText(temp.getPhone());
+		lbAcademic.setText(temp.getAcademic());
+		lbc.setText(temp.getCareer());
+		lbcategory.setText(temp.getTypeOccup());
+		lbTimeOccup.setText(temp.getPeriodType());
+		lbDow.setText(temp.getDow());
+		lbTimeType.setText("");
+		lbAddr.setText(temp.getRegion());
 
 	}
 }

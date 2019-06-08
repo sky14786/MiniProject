@@ -91,18 +91,26 @@ public class JobSearchView extends JPanel {
 			}
 		};
 
+		// ------------------------------------------테이블설정----------------------------------------------------
 		searchTable = new JTable(DtmStorage);
 		searchTable.setEnabled(true);
+		searchTable.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
+		searchTable.setAutoCreateRowSorter(true);
+		searchTable.getTableHeader().setResizingAllowed(false); // 테이블 컬럼 사이즈고정
+		searchTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); // 테이블 로우 한개선택
+		searchTable.setFont(new Font("나눔스퀘어", Font.PLAIN, 14));
 
 		// 테이블 행 타이틀
 		DtmStorage.setColumnIdentifiers(new String[] { "업장번호", "업장명", "시급", "근무시간", "근무형태", "기간", "시간", "주소", "키워드 1",
 				"키워드 2", "키워드 3", "추가 설명" });
 		// 키워드랑 상세설명은 상세설명 클래스에서 보여주기
 
-		searchTable.getTableHeader().setReorderingAllowed(false); // 테이블 드래그 불가
-		searchTable.getTableHeader().setResizingAllowed(false); // 테이블 사이즈 고정
-		searchTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); // 한개의 ROW 선택 가능
-
+		searchTable.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
+		searchTable.getTableHeader().setReorderingAllowed(false); // 테이블 셀 마우스로 이동 못하게
+		searchTable.setAutoCreateRowSorter(true);
+		searchTable.setRowHeight(40);
+		searchTable.getSelectedRow();
+		// -----------------------------------------------------------------------------------------------------------------
 //       화면이 나올때 전체 출력
 //       jsc.printAll();
 //       for(int i = 0; i < jsc.notice2.size(); i++)
@@ -113,12 +121,6 @@ public class JobSearchView extends JPanel {
 //    			   jsc.notice2.get(i).getbKeyword1(), jsc.notice2.get(i).getbKeyword2(), jsc.notice2.get(i).getbKeyword3(),
 //    			   jsc.notice2.get(i).getEtc() });
 //       }
-
-		searchTable.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
-		searchTable.getTableHeader().setReorderingAllowed(false); // 테이블 셀 마우스로 이동 못하게
-		searchTable.setAutoCreateRowSorter(true);
-		searchTable.setRowHeight(50);
-		searchTable.getSelectedRow();
 
 		// 키워드 1 항목 숨기기
 		searchTable.getColumn("키워드 1").setWidth(0);
@@ -225,7 +227,12 @@ public class JobSearchView extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 
 				row = searchTable.getSelectedRow();
-				sub.subSearch2(jsc.seeMore(row));
+				if (row > -1) {
+					sub.subSearch2(jsc.seeMore(row));
+				} else {
+					JOptionPane.showMessageDialog(null, "원하시는 알바를 선택해 주세요.");
+
+				}
 
 			}
 		});

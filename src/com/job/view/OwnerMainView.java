@@ -1,6 +1,7 @@
 package com.job.view;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -78,16 +79,17 @@ public class OwnerMainView extends JPanel {
 				return false;
 			}
 		};
-
+		// ------------------------------------------테이블설정----------------------------------------------------
 		table = new JTable(Dtm);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 		table.setAutoCreateRowSorter(true);
-		table.setRowHeight(20);
 		table.getTableHeader().setReorderingAllowed(false); // 테이블 컬럼 이동방지
 		table.getTableHeader().setResizingAllowed(false); // 테이블 컬럼 사이즈고정
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); // 테이블 로우 한개선택
+		table.setRowHeight(40);
+		table.setFont(new Font("나눔스퀘어", Font.PLAIN, 14));
 		Dtm.setColumnIdentifiers(new String[] { "이름", "성별", "나이", "전화번호" });
-
+		// -----------------------------------------------------------------------------------------
 		JScrollPane scrollPane1 = new JScrollPane(table);
 		scrollPane1.setEnabled(false);
 		scrollPane1.setBounds(99, 255, 786, 320);
@@ -95,7 +97,10 @@ public class OwnerMainView extends JPanel {
 
 		// 상세보기 버튼
 		btnDetailView = new JButton("\uC0C1\uC138\uBCF4\uAE30");
-		btnDetailView.setBounds(563, 204, 105, 27);
+		btnDetailView.setIcon(new ImageIcon(this.getClass().getResource("/resource/OpenBtn.png")));
+		btnDetailView.setContentAreaFilled(false);
+		btnDetailView.setBorderPainted(false);
+		btnDetailView.setBounds(99, 207, 105, 27);
 		add(btnDetailView);
 		// ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -156,7 +161,7 @@ public class OwnerMainView extends JPanel {
 		revalidate();
 		repaint();
 		win.setSize(1000, 620);
-		//win.getSearchView().reset();
+		win.getSearchView().normalSearch(); // 구직자 전체조회 메소드
 		win.setVisible(false);
 		win.setVisible(true);
 	}
@@ -178,6 +183,7 @@ public class OwnerMainView extends JPanel {
 		ArrayList<Connection> connections = dao.loadConnection();
 		Connection connection = new Connection();
 		ArrayList<Resume> resumes = null;
+		resetDTM();
 		if (connections != null) {
 			for (int i = 0; i < connections.size(); i++) {
 				if (connections.get(i).getNoticeNo() == dao.getNowUser()) {
@@ -214,7 +220,6 @@ public class OwnerMainView extends JPanel {
 			}
 		});
 		btnShowNoticeReg.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				showNoticeReg();
@@ -298,7 +303,7 @@ public class OwnerMainView extends JPanel {
 			win.getContentPane().add(win.getOwnerDetailView());
 			revalidate();
 			repaint();
-			win.setSize(1000, 600);
+			win.setSize(581, 783);
 			win.setVisible(false);
 			win.setVisible(true);
 
