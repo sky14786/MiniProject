@@ -14,33 +14,39 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import com.job.controller.CheckingController;
-import com.job.controller.ResumeDeleteController;
+import com.job.controller.ApplicationDeleteController;
 import com.job.model.Partimer;
 import com.job.run.Run;
+
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import java.awt.Color;
 
 public class PartMainView extends JPanel {
 
 	private JTextField tfKeyword;
 	private JButton searchBtn;
-	private JButton enrollBtn;
+	private JButton registerBtn;
 	private JButton modifyBtn;
 	private JButton deleteBtn;
 	private JButton listBtn;
+	private JButton lookAroundBtn;
 	private JButton logoutBtn;
 	private JButton ansYes;
 	private JButton ansNo;
 	private JLabel loginLabel;
 	private JLabel nowUserLabel;
+	private JLabel liner;
+	private JLabel typingLabel;
 
-	private ResumeDeleteController resumeDeleteController = new ResumeDeleteController();
+	private ApplicationDeleteController applicationDeleteController = new ApplicationDeleteController();
 	private CheckingController checkingController = new CheckingController();
 
 	public Run win = new Run();
 
 	public int check = 1;
-	
+
 	public PartMainView() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public PartMainView(Run win) {
@@ -52,58 +58,105 @@ public class PartMainView extends JPanel {
 		setSize(1000, 600);
 		setLayout(null);
 
+		liner = new JLabel("");
+		liner.setHorizontalAlignment(SwingConstants.CENTER);
+		liner.setIcon(new ImageIcon(PartMainView.class.getResource("/resource/line_label.png")));
+		liner.setBounds(372, 323, 230, 2);
+		add(liner);
+
 		tfKeyword = new JTextField();
 		tfKeyword.setHorizontalAlignment(SwingConstants.CENTER);
 		tfKeyword.setFont(new Font("나눔스퀘어", Font.PLAIN, 20));
-		tfKeyword.setBounds(340, 256, 230, 70);
+		tfKeyword.setBounds(372, 288, 230, 35);
+		tfKeyword.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		tfKeyword.setOpaque(false);
 		add(tfKeyword);
 		tfKeyword.setColumns(10);
 
-		searchBtn = new JButton("\uAC80\uC0C9");
+		searchBtn = new JButton("");
+		searchBtn.setIcon(new ImageIcon(PartMainView.class.getResource("/resource/find_button_2.png")));
 		searchBtn.setFont(new Font("나눔스퀘어", Font.PLAIN, 20));
-		searchBtn.setBounds(570, 256, 70, 70);
+		searchBtn.setBounds(603, 285, 40, 40);
+		searchBtn.setBorderPainted(false);
+		searchBtn.setContentAreaFilled(false);
 		add(searchBtn);
 
-		enrollBtn = new JButton("\uC774\uB825\uC11C \uB4F1\uB85D");
-		enrollBtn.setFont(new Font("나눔스퀘어", Font.PLAIN, 15));
-		enrollBtn.setBounds(245, 190, 110, 30);
-		add(enrollBtn);
+		registerBtn = new JButton("");
+		registerBtn.setIcon(new ImageIcon(PartMainView.class.getResource("/resource/regist_button.png")));
+		registerBtn.setFont(new Font("나눔스퀘어", Font.PLAIN, 15));
+		registerBtn.setBounds(205, 190, 110, 30);
+		registerBtn.setBorderPainted(false);
+		registerBtn.setContentAreaFilled(false);
+		add(registerBtn);
 
-		modifyBtn = new JButton("\uC774\uB825\uC11C \uC218\uC815");
+		modifyBtn = new JButton("");
+		modifyBtn.setIcon(new ImageIcon(PartMainView.class.getResource("/resource/modi_button.png")));
 		modifyBtn.setFont(new Font("나눔스퀘어", Font.PLAIN, 15));
-		modifyBtn.setBounds(365, 190, 110, 30);
+		modifyBtn.setBounds(325, 190, 110, 30);
+		modifyBtn.setBorderPainted(false);
+		modifyBtn.setContentAreaFilled(false);
 		add(modifyBtn);
 
-		deleteBtn = new JButton("\uC774\uB825\uC11C \uC0AD\uC81C");
+		deleteBtn = new JButton("");
+		deleteBtn.setIcon(new ImageIcon(PartMainView.class.getResource("/resource/delete_button.png")));
 		deleteBtn.setFont(new Font("나눔스퀘어", Font.PLAIN, 15));
-		deleteBtn.setBounds(485, 190, 110, 30);
+		deleteBtn.setBounds(445, 190, 110, 30);
+		deleteBtn.setBorderPainted(false);
+		deleteBtn.setContentAreaFilled(false);
 		add(deleteBtn);
 
-		listBtn = new JButton("\uC9C0\uC6D0 \uBAA9\uB85D");
+		listBtn = new JButton("");
+		listBtn.setIcon(new ImageIcon(PartMainView.class.getResource("/resource/list_button.png")));
 		listBtn.setFont(new Font("나눔스퀘어", Font.PLAIN, 15));
-		listBtn.setBounds(605, 190, 110, 30);
+		listBtn.setBounds(565, 190, 110, 30);
+		listBtn.setBorderPainted(false);
+		listBtn.setContentAreaFilled(false);
 		add(listBtn);
 
-		logoutBtn = new JButton("\uB85C\uADF8\uC544\uC6C3");
+		logoutBtn = new JButton("");
+		logoutBtn.setIcon(new ImageIcon(PartMainView.class.getResource("/resource/logout_button.png")));
 		logoutBtn.setFont(new Font("나눔스퀘어", Font.PLAIN, 15));
-		logoutBtn.setBounds(896, 12, 90, 30);
+		logoutBtn.setBounds(962, 5, 24, 24);
+		logoutBtn.setBorderPainted(false);
+		logoutBtn.setContentAreaFilled(false);
 		add(logoutBtn);
+
+		lookAroundBtn = new JButton("");
+		lookAroundBtn.setIcon(new ImageIcon(PartMainView.class.getResource("/resource/lookAround_button.png")));
+		lookAroundBtn.setFont(new Font("나눔스퀘어", Font.PLAIN, 15));
+		lookAroundBtn.setContentAreaFilled(false);
+		lookAroundBtn.setBorderPainted(false);
+		lookAroundBtn.setBounds(685, 190, 110, 30);
+		add(lookAroundBtn);
 
 		loginLabel = new JLabel("\uB2D8 \uC811\uC18D\uC911");
 		loginLabel.setFont(new Font("나눔스퀘어 Bold", Font.PLAIN, 15));
-		loginLabel.setBounds(822, 12, 60, 30);
+		loginLabel.setBounds(898, 4, 60, 25);
 		add(loginLabel);
 
 		nowUserLabel = new JLabel("anonymous");
 		nowUserLabel.setFont(new Font("나눔스퀘어 Bold", Font.PLAIN, 15));
 		nowUserLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		nowUserLabel.setBounds(704, 12, 110, 30);
+		nowUserLabel.setBounds(782, 4, 110, 25);
 		add(nowUserLabel);
+
+		typingLabel = new JLabel("");
+		typingLabel.setFont(new Font("나눔스퀘어", Font.PLAIN, 15));
+		typingLabel.setForeground(Color.RED);
+		typingLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		typingLabel.setBounds(422, 333, 140, 20);
+		add(typingLabel);
+
+		JLabel background = new JLabel("");
+		background.setIcon(new ImageIcon(PartMainView.class.getResource("/resource/resumeE&M_Background.png")));
+		background.setBounds(0, 0, 1000, 600);
+		add(background);
 
 		showId();
 		buttonTest();
 		searchClick();
 		searchEnter();
+		lookAroundScene();
 		enrollScene();
 		modifyScene();
 		deleteScene();
@@ -130,11 +183,11 @@ public class PartMainView extends JPanel {
 		check = checkingController.isApplyCheck();
 		// System.out.println("버튼 활성화 : " + check);
 		if (check == 3) {
-			enrollBtn.setEnabled(true);
+			registerBtn.setEnabled(true);
 			deleteBtn.setEnabled(false);
 			modifyBtn.setEnabled(false);
 		} else if (check == 2) {
-			enrollBtn.setEnabled(false);
+			registerBtn.setEnabled(false);
 			deleteBtn.setEnabled(true);
 			modifyBtn.setEnabled(true);
 		} else {
@@ -149,15 +202,21 @@ public class PartMainView extends JPanel {
 			{
 				// 키워드 넘기기 임시테스트
 				String keyword = tfKeyword.getText();
-				System.out.println("-------------------------------------------");
-				System.out.println("검색 키워드 : " + keyword);
-				System.out.println("-------------------------------------------");
 
-				// 화면전환
-				win.getContentPane().removeAll();
-				win.getContentPane().add(win.getJobSearchView()); // 여기서 기호오빠 화면으로 전환
-				win.getContentPane().revalidate();
-				win.getContentPane().repaint();
+				if (keyword.equals("")) {
+					typingLabel.setText("키워드를 입력하세요.");
+				} else {
+					typingLabel.setText("");
+					System.out.println("-------------------------------------------");
+					System.out.println("검색 키워드 : " + keyword);
+					System.out.println("-------------------------------------------");
+
+					// 화면전환
+					win.getContentPane().removeAll();
+					win.getContentPane().add(win.getJobSearchView()); // 여기서 기호오빠 화면으로 전환
+					win.getContentPane().revalidate();
+					win.getContentPane().repaint();
+				}
 			}
 		});
 	}
@@ -171,15 +230,21 @@ public class PartMainView extends JPanel {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					// 키워드 넘기기 임시테스트
 					String keyword = tfKeyword.getText();
-					System.out.println("-------------------------------------------");
-					System.out.println("검색 키워드 : " + keyword);
-					System.out.println("-------------------------------------------");
 
-					// 화면전환
-					win.getContentPane().removeAll();
-					win.getContentPane().add(win.getJobSearchView()); // 여기서 기호오빠 화면으로 전환
-					win.getContentPane().revalidate();
-					win.getContentPane().repaint();
+					if (keyword.equals("")) {
+						typingLabel.setText("키워드를 입력하세요.");
+					} else {
+						typingLabel.setText("");
+						System.out.println("-------------------------------------------");
+						System.out.println("검색 키워드 : " + keyword);
+						System.out.println("-------------------------------------------");
+
+						// 화면전환
+						win.getContentPane().removeAll();
+						win.getContentPane().add(win.getJobSearchView()); // 여기서 기호오빠 화면으로 전환
+						win.getContentPane().revalidate();
+						win.getContentPane().repaint();
+					}
 				}
 			}
 
@@ -198,10 +263,22 @@ public class PartMainView extends JPanel {
 		});
 	}
 
+	// 구인공고 전체보기 버튼 액션
+	public void lookAroundScene() {
+		lookAroundBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				win.getContentPane().removeAll();
+				win.getContentPane().add(win.getJobSearchView()); // 여기서 기호오빠 화면으로 전환
+				win.getContentPane().revalidate();
+				win.getContentPane().repaint();
+			}
+		});
+	}
+
 	// 이력서 등록 버튼 액션
 	// 스위치 확인, 이력서 등록창 띄우기
 	public void enrollScene() {
-		enrollBtn.addActionListener(new ActionListener() {
+		registerBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				win.getContentPane().removeAll();
 				win.getContentPane().add(win.getResumeEnrollView());
@@ -251,7 +328,7 @@ public class PartMainView extends JPanel {
 				ansYes.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						// 이력서 삭제
-						resumeDeleteController.delResume();
+//						applicationDeleteController.delResume();
 
 						// 삭제시 등록 버튼 활성화
 						buttonTest();
@@ -285,10 +362,12 @@ public class PartMainView extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// 지원목록 띄우기 (현희언니꺼랑 연결)
 				win.getContentPane().removeAll();
-				win.setSize(1000, 600);
-				win.getContentPane().add(win.getResumeDeleteView()); // 여기서 현희언니 화면으로 전환
+				 win.getContentPane().add(win.getApplicationDeleteView()); //여기서 현희언니 화면으로 전환
 				win.getContentPane().revalidate();
 				win.getContentPane().repaint();
+				win.getApplicationDeleteView().tableSetting();
+				win.setVisible(false);
+				win.setVisible(true);
 			}
 		});
 	}
@@ -305,4 +384,5 @@ public class PartMainView extends JPanel {
 			}
 		});
 	}
+
 }

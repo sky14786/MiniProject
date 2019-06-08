@@ -247,8 +247,6 @@ public class JobSearchController {
 	public Notice seeMore(int row) {
 		Notice temp = new Notice();
 
-		
-
 		if (row == -1) {
 
 			// 아무것도 선택하지 않고 지원하기를 클릭했을때
@@ -278,101 +276,100 @@ public class JobSearchController {
 	}
 
 	// 지원하기 버튼 메소드
-		public void search2(int row) {
-			Notice temp2 = new Notice();
+	public void search2(int row) {
+		Notice temp2 = new Notice();
 
-			if (row == -1) {
+		if (row == -1) {
 
-				// 아무것도 선택하지 않고 지원하기를 클릭했을때
-				// 안내메세지
-				JOptionPane.showMessageDialog(null, "원하시는 알바를 선택해주세요!");
+			// 아무것도 선택하지 않고 지원하기를 클릭했을때
+			// 안내메세지
+			JOptionPane.showMessageDialog(null, "원하시는 알바를 선택해주세요!");
 
-				System.out.println("선택 안함");
+			System.out.println("선택 안함");
+		} else {
+
+			// 선택한 정보를 새로운 객체에 저장
+
+			temp2.setbNo(notice2.get(row).getbNo());
+			temp2.setbName(notice2.get(row).getbName());
+			temp2.setPay(notice2.get(row).getPay());
+			temp2.setTimeTotime(notice2.get(row).getTimeTotime());
+			temp2.setCategory(notice2.get(row).getCategory());
+			temp2.setPeriodType(notice2.get(row).getPeriodType());
+			temp2.setTimeType(notice2.get(row).getTimeType());
+			temp2.setAddr(notice2.get(row).getAddr());
+			temp2.setbKeyword1(notice2.get(row).getbKeyword1());
+			temp2.setbKeyword2(notice2.get(row).getbKeyword2());
+			temp2.setbKeyword3(notice2.get(row).getbKeyword3());
+			temp2.setEtc(notice2.get(row).getEtc());
+
+			System.out.println(notice2.get(row).getbNo());
+
+			// Connection 객체와 연동 부분 --------------------------------------
+			System.out.println("지원시작!");
+			Connection connection = new Connection();
+			connections = dao.loadConnection();
+			ArrayList<Resume> resumes = dao.loadResume();
+			ArrayList<Resume> tt = new ArrayList<Resume>();
+			Resume nowResume = new Resume();
+			boolean isEquals = false;
+			int temp = 0;
+			for (int i = 0; i < connections.size(); i++) {
+				if (connections.get(i).getNoticeNo() == notice2.get(row).getbNo()) {
+					connection = connections.get(i);
+					temp = i;
+					break;
+				}
+			}
+			for (int i = 0; i < resumes.size(); i++) {
+				if (resumes.get(i).getUserNo() == dao.getNowUser()) {
+					nowResume = resumes.get(i);
+				}
+			}
+			if (connection.getResumes() == null) {
+				tt.add(nowResume);
+				connection.setResuems(tt);
+				connections.set(temp, connection);
+				dao.saveConnection(connections);
+				System.out.println("단일지원성공");
 			} else {
-
-				// 선택한 정보를 새로운 객체에 저장
-
-				temp2.setbNo(notice2.get(row).getbNo());
-				temp2.setbName(notice2.get(row).getbName());
-				temp2.setPay(notice2.get(row).getPay());
-				temp2.setTimeTotime(notice2.get(row).getTimeTotime());
-				temp2.setCategory(notice2.get(row).getCategory());
-				temp2.setPeriodType(notice2.get(row).getPeriodType());
-				temp2.setTimeType(notice2.get(row).getTimeType());
-				temp2.setAddr(notice2.get(row).getAddr());
-				temp2.setbKeyword1(notice2.get(row).getbKeyword1());
-				temp2.setbKeyword2(notice2.get(row).getbKeyword2());
-				temp2.setbKeyword3(notice2.get(row).getbKeyword3());
-				temp2.setEtc(notice2.get(row).getEtc());
-				
-				System.out.println(notice2.get(row).getbNo());
-
-				// Connection 객체와 연동 부분 --------------------------------------
-				System.out.println("지원시작!");
-				Connection connection = new Connection();
-				connections = dao.loadConnection();
-				ArrayList<Resume> resumes = dao.loadResume();
-				ArrayList<Resume> tt = new ArrayList<Resume>();
-				Resume nowResume = new Resume();
-				boolean isEquals = false;
-				int temp = 0;
-				for (int i = 0; i < connections.size(); i++) {
-					if (connections.get(i).getNoticeNo() == notice2.get(row).getbNo()) {
-						connection = connections.get(i);
-						temp = i;
-						break;
-					}
-				}
-				for (int i = 0; i < resumes.size(); i++) {
-					if (resumes.get(i).getUserNo() == dao.getNowUser()) {
-						nowResume = resumes.get(i);
-					}
-				}
 				System.out.println(connection.getResumes().toString());
-				if (!(connection.getResumes().size() > 0)) {
+				for (int i = 0; i < connection.getResumes().size(); i++) {
+					if (connection.getResumes().get(i).getUserNo() == nowResume.getUserNo()) {
+						isEquals = false;
+						break;
+					} else {
+						isEquals = true;
+					}
+				}
+				if (isEquals) {
+					tt = connection.getResumes();
 					tt.add(nowResume);
 					connection.setResuems(tt);
 					connections.set(temp, connection);
 					dao.saveConnection(connections);
-					System.out.println("단일지원성공");
-				} else {
-					System.out.println(connection.getResumes().toString());
-					for (int i = 0; i < connection.getResumes().size(); i++) {
-						if (connection.getResumes().get(i).getUserNo() == nowResume.getUserNo()) {
-							isEquals = false;
-							break;
-						} else {
-							isEquals = true;
-						}
-					}
-					if (isEquals) {
-						tt = connection.getResumes();
-						tt.add(nowResume);
-						connection.setResuems(tt);
-						connections.set(temp, connection);
-						dao.saveConnection(connections);
-						System.out.println("-------------------------------------------");
-						System.out.println("지원성공");
-						System.out.println("ResumesCount : " + tt.size());
-						System.out.println("Resumes : " + tt.toString());
-						System.out.println("-------------------------------------------");
-					}
-
-					else {
-						System.out.println("지원실패");
-					}
+					System.out.println("-------------------------------------------");
+					System.out.println("지원성공");
+					System.out.println("ResumesCount : " + tt.size());
+					System.out.println("Resumes : " + tt.toString());
+					System.out.println("-------------------------------------------");
 				}
-				System.out.println("-------------------------------------------");
-				System.out.println("now Notice : " + temp2.toString());
-				System.out.println("now Row : " + notice2.get(row).getbNo());
-				System.out.println("now Resumes Count : " + connection.getResumes().size());
-				System.out.println("now Resumes : " + connection.getResumes().toString());
-				System.out.println("now Connection : " + connection.toString());
-				System.out.println("-------------------------------------------");
-				// Connection 객체와 연동 부분 -------------------------------------------
-				// 안내메세지
-				JOptionPane.showMessageDialog(null, "지원하였습니다!");
+
+				else {
+					System.out.println("지원실패");
+				}
 			}
-			// return temp2;
+			System.out.println("-------------------------------------------");
+			System.out.println("now Notice : " + temp2.toString());
+			System.out.println("now Row : " + notice2.get(row).getbNo());
+			System.out.println("now Resumes Count : " + connection.getResumes().size());
+			System.out.println("now Resumes : " + connection.getResumes().toString());
+			System.out.println("now Connection : " + connection.toString());
+			System.out.println("-------------------------------------------");
+			// Connection 객체와 연동 부분 -------------------------------------------
+			// 안내메세지
+			JOptionPane.showMessageDialog(null, "지원하였습니다!");
 		}
+		// return temp2;
+	}
 }

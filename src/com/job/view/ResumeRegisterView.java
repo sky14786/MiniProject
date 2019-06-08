@@ -80,7 +80,7 @@ public class ResumeRegisterView extends JPanel {
 		add(label_13);
 		
 		label_14 = new JLabel("");
-		label_14.setIcon(new ImageIcon(ResumeRegisterView.class.getResource("/resource/line_label.png")));
+		label_14.setIcon(new ImageIcon(this.getClass().getResource("/resource/line_label.png")));
 		label_14.setHorizontalAlignment(SwingConstants.CENTER);
 		label_14.setBounds(780, 152, 150, 2);
 		add(label_14);

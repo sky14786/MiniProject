@@ -26,17 +26,18 @@ import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
+import com.job.controller.LoadApplicationListController;
 import com.job.model.Notice;
 import com.job.model.dao.LoadSave;
 import com.job.run.Run;
 
-public class ResumeDeleteView extends JPanel {
+public class ApplicationDeleteView extends JPanel {
 
-	// 기호코드
 	private ArrayList<Notice> pt = new ArrayList<Notice>();
 	private ArrayList<Notice> pt2 = new ArrayList<Notice>();
 	private ArrayList<Connection> connections = new ArrayList<Connection>();
 	private LoadSave dao = LoadSave.getDao();
+	private LoadApplicationListController loadController = new LoadApplicationListController();
 
 	private DefaultTableModel DtmStorage;
 	private JTable searchTable;
@@ -59,22 +60,47 @@ public class ResumeDeleteView extends JPanel {
 	String timeType; // pt.get(i)의 몇시까지의 시간 변수
 	String periodType2; // pt.get(i)의 기간 변수
 
-	private JFrame frame;
+//   private JFrame frame;
 
 	private static final long serialVersionUID = 1L;
 	private JPanel jobTable;
 	private JButton searchButton;
 	private JComboBox<?> typeOccurType;
-	private Run win = new Run();
+	public Run win = new Run();
+	private JFrame frame;
 
-	public ResumeDeleteView(Run win) {
+	/**
+	 * Launch the application.
+	 */
+//   public static void main(String[] args) {
+//      EventQueue.invokeLater(new Runnable() {
+//         public void run() {
+//            try {
+//               ApplicationDeleteView window = new ApplicationDeleteView();
+//               window.frame.setVisible(true);
+//            } catch (Exception e) {
+//               e.printStackTrace();
+//            }
+//         }
+//      });
+//   }
+
+	public ApplicationDeleteView(Run win) {
 		this.win = win;
 		initialize();
+
+	}
+
+	public void tableSetting() {
+		DtmStorage.setNumRows(0);
+		DtmStorage.setColumnIdentifiers(new String[] { "업장명", "시급", "근무시간", "근무형태", "기간", "시간", "주소" });
+		DtmStorage.addRow(new Object[] { bNo, pay, timeTotime2, category, periodType2, timeType, region2 });
+		DtmStorage = loadController.loadApplicationList();
 	}
 
 	private void initialize() {
 
-		setSize(1000, 600);
+		setBounds(100, 100, 1000, 600);
 		setLayout(null);
 
 		ImagePanel imgPanel = new ImagePanel(new ImageIcon("./image/메인틀.jpg").getImage());
@@ -83,7 +109,7 @@ public class ResumeDeleteView extends JPanel {
 		imgPanel.setBounds(0, 0, 1000, 600);
 		add(imgPanel);
 		imgPanel.setLayout(null);
-		// //frame.pack();
+		// frame.pack();
 
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 984, 561);
@@ -94,7 +120,7 @@ public class ResumeDeleteView extends JPanel {
 
 		JButton deleteButton = new JButton("");
 		deleteButton.setBackground(new Color(255, 215, 0));
-		deleteButton.setIcon(new ImageIcon(ResumeDeleteView.class.getResource("/resourses/deleteButton.jpg")));
+		deleteButton.setIcon(new ImageIcon(ApplicationDeleteView.class.getResource("/resourses/deleteButton.jpg")));
 		deleteButton.setFont(new Font("나눔스퀘어", Font.PLAIN, 14));
 		deleteButton.setBorderPainted(false);
 		deleteButton.addActionListener(new ActionListener() {
@@ -116,16 +142,15 @@ public class ResumeDeleteView extends JPanel {
 		imgPanel.add(scrollPane);
 
 		String[] colum = { "", "", "", "", "", "", "" };
-		DtmStorage = new DefaultTableModel(colum, 0);
+		DtmStorage = loadController.loadApplicationList();
 		searchTable = new JTable(DtmStorage);
 
 		// 테이블 행 타이틀
-		DtmStorage.setColumnIdentifiers(new String[] { "업장번호", "업장명", "시급", "근무시간", "근무형태", "기간", "시간", "주소" });
-
+		DtmStorage.setColumnIdentifiers(new String[] { "업장명", "시급", "근무시간", "근무형태", "기간", "시간", "주소" });
+		DtmStorage.addRow(new Object[] { bName, pay, timeTotime2, category, periodType2, timeType, region2 });
 		// 테이블에 행 삽입
 
 		// 여기 데이터 기호씨에게서 받아야 함 Connection_Table
-		DtmStorage.addRow(new Object[] { bNo, bName, pay, timeTotime2, category, periodType2, timeType, region2 });
 
 		searchTable.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 		searchTable.getTableHeader().setReorderingAllowed(false); // 테이블 셀 마우스로 이동 못하게
@@ -136,42 +161,21 @@ public class ResumeDeleteView extends JPanel {
 		scrollPane.setViewportView(searchTable);
 
 		// 기호 코드
-		// 조회하기
-		JButton searchB = new JButton("\uC870\uD68C\uD558\uAE30");
-		searchB.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				DtmStorage.setNumRows(0);
-				for (int i = 0; i < pt.size(); i++) {
-					// typeOccup2 = pt.get(i).; // pt.get(i)의 근무형태 변수
-					bNo = Integer.toString(pt.get(i).getbNo());
-					bName = pt.get(i).getbName(); // pt.get(i)의 업장명 변수
-					timeTotime2 = pt.get(i).getTimeTotime(); // pt.get(i)의 근무시간 변수
-					pay = Double.toString(pt.get(i).getPay()); // pt.get(i)의 시급 변수
-					region2 = pt.get(i).getAddr(); // pt.get(i)의 주소 변수
-					timeType = pt.get(i).getTimeType(); // pt.get(i)의 몇시까지의 시간 변수
-					periodType2 = pt.get(i).getPeriodType(); // pt.get(i)의 기간 변수
-					category = pt.get(i).getCategory();
-					System.out.println(pt.get(i));
-
-					pt2.add((Notice) pt.get(i));
-					// { bNo, bName, pay, timeTotime2, category, periodType2, timeType, region2 });
-					for (int j = 0; j < pt2.size(); j++) {
-						DtmStorage.addRow(new String[] { (String) bNo, bName, pay, timeTotime2, category, periodType2,
-								timeType, region2 });
-						break;
-
-					}
-				}
-			}
-		});
-		searchB.setFont(new Font("나눔스퀘어", Font.PLAIN, 15));
-		searchB.setBounds(438, 496, 135, 37);
-		imgPanel.add(searchB);
+		// 조회하기 = loadApplicationList
+//		JButton searchB = new JButton("\uC870\uD68C\uD558\uAE30");
+//		searchB.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				tableSetting();
+//
+//			}
+//		});
+//		searchB.setFont(new Font("나눔스퀘어", Font.PLAIN, 15));
+//		searchB.setBounds(438, 496, 135, 37);
+//		imgPanel.add(searchB);
 
 		// <<뒤로가기 버튼
 		JButton backButton = new JButton("");
-		backButton.setIcon(new ImageIcon(ResumeDeleteView.class.getResource("/resourses/backButton.jpg")));
+		backButton.setIcon(new ImageIcon(ApplicationDeleteView.class.getResource("/resourses/backButton.jpg")));
 		backButton.setBackground(new Color(255, 215, 0));
 		backButton.setFont(new Font("나눔스퀘어", Font.PLAIN, 14));
 		backButton.setBorderPainted(false);
@@ -182,39 +186,19 @@ public class ResumeDeleteView extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-//				imgPanel.setVisible(false);
 				win.getContentPane().removeAll();
 				win.getContentPane().add(win.getPartMainView());
+				win.setSize(1000, 600);
 				revalidate();
 				repaint();
+				win.getPartMainView().buttonTest();
+				win.getPartMainView().showId();
 				win.setVisible(false);
 				win.setVisible(true);
-
-				// 여기다가 뒤로가는 화면 구현
-				// 선덕이꺼
-
-				// 선덕쓰 메인 화면 = PartMainView
-
-				// PartMainView pmv = new PartMainView(panel);
-				// PartMainView.setVisible(true);
 
 			}
 		});
 
-		// 기호 코드
-		// 테스트 목록
-		// pt.add(new PartTime("KH 정보교육원", "10000", "오후 3시부터", "IT", "서울", "1개월 이상",
-		// "3시간 ~ 6시간"));
-		// pt.add(new PartTime("피씨방", "25000", "오전 9시부터", "매장관리", "인천", "3개월 이상", "6시간 ~
-		// 8시간"));
-		// pt.add(new PartTime("분식집", "50000", "오후 2시부터", "영업", "충남", "일주일", "8시간 이상"));
-		// pt.add(new PartTime("학원", "10000", "오전 10시부터", "사무", "부산", "하루", "1시간 ~
-		// 3시간"));
-		// pt.add(new PartTime("레스토랑", "14000", "오후 6시부터", "주방", "서울", "1개월 이상", "3시간 ~
-		// 6시간"));
-		// pt.add(new PartTime("정비소", " 8000", "오후 4시부터", "운전", "인천", "일주일", "3시간 ~
-		// 6시간"));
-		// pt.add(new PartTime("대리운전", "5000", "오후 3시부터", "운전", "인천", "하루", "8시간 이상"));
 		pt = dao.loadNoitce();
 
 	}
@@ -269,7 +253,7 @@ public class ResumeDeleteView extends JPanel {
 
 			JButton yesBtn = new JButton("예");
 			yesBtn.setBounds(100, 150, 60, 30);
-			yesBtn.setIcon(new ImageIcon(ResumeDeleteView.class.getResource("/resourses/yesBtn.jpg")));
+			yesBtn.setIcon(new ImageIcon(ApplicationDeleteView.class.getResource("/resourses/yesBtn.jpg")));
 			yesBtn.setFont(new Font("나눔스퀘어", Font.PLAIN, 14));
 			yesBtn.setBorderPainted(false);
 			yesBtn.addActionListener(new ActionListener() {
@@ -278,19 +262,6 @@ public class ResumeDeleteView extends JPanel {
 				public void actionPerformed(ActionEvent e) {
 
 					yesBtn();
-
-					// pt.add(new PartTime("KH 정보교육원", "10000", "오후 3시부터", "IT", "서울", "1개월 이상",
-					// "3시간 ~ 6시간"));
-					// pt.add(new PartTime("피씨방", "25000", "오전 9시부터", "매장관리", "인천", "3개월 이상", "6시간 ~
-					// 8시간"));
-					// pt.add(new PartTime("분식집", "50000", "오후 2시부터", "영업", "충남", "일주일", "8시간 이상"));
-					// pt.add(new PartTime("학원", "10000", "오전 10시부터", "사무", "부산", "하루", "1시간 ~
-					// 3시간"));
-					// pt.add(new PartTime("레스토랑", "14000", "오후 6시부터", "주방", "서울", "1개월 이상", "3시간 ~
-					// 6시간"));
-					// pt.add(new PartTime("정비소", " 8000", "오후 4시부터", "운전", "인천", "일주일", "3시간 ~
-					// 6시간"));
-					// pt.add(new PartTime("대리운전", "5000", "오후 3시부터", "운전", "인천", "하루", "8시간 이상"));
 
 					// +배열에서 삭제하는 코드 구현
 
@@ -308,9 +279,9 @@ public class ResumeDeleteView extends JPanel {
 
 			JButton noBtn = new JButton("아니오");
 			noBtn.setBounds(225, 150, 73, 30);
-			noBtn.setIcon(new ImageIcon(ResumeDeleteView.class.getResource("/resourses/noBtn.jpg")));
+			noBtn.setIcon(new ImageIcon(ApplicationDeleteView.class.getResource("/resourses/noBtn.jpg")));
 			noBtn.setFont(new Font("나눔스퀘어", Font.PLAIN, 14));
-			// noBtn.setSelectedIcon(new
+
 			// ImageIcon(ResumeDelete.class.getResource("/resourses/noBtn4.jpg")));
 			noBtn.setBorderPainted(false);
 			noBtn.addActionListener(new ActionListener() {
@@ -342,28 +313,26 @@ public class ResumeDeleteView extends JPanel {
 
 		pt.remove(row);
 
-		// 만약 하나만 지원 할 수 있게 한다면
+		System.out.println(pt.size());
 
-		//
-		//
-		// save = dao.saveConnection();
-		// pt = dao.loadPartimer();
-		// for (int i = 0; i < pt.size(); i++) {
-		// if (pt.get(i).getUserNo() == UserNo) {
-		// pt.remove(i);
-		// break;
-		// }
-		// }
-		// dao.saveConnection(어쩌구);
-		// }
-		//
+		// delController.delApplicationList();
 
-		// for ( int i = 0 ; i<pt.size() ; i++ ) {
-		//
-		//
-		//
-		// }
-		//
+//      save = dao.saveConnection();
+//      pt = dao.loadPartimer();
+//      for (int i = 0; i < pt.size(); i++) {
+//         if (pt.get(i).getUserNo() == UserNo) {
+//            pt.remove(i);
+//            break;
+//         }
+//      }
+//      dao.saveConnection(어쩌구);
+//   }
+
+//       for ( int i = 0 ; i<pt.size() ; i++ ) {
+//          
+//          
+//          
+//       }
 
 	}
 
@@ -398,7 +367,7 @@ public class ResumeDeleteView extends JPanel {
 			JButton okBtn = new JButton("확인");
 			okBtn.setFont(new Font("나눔스퀘어", Font.PLAIN, 14));
 			okBtn.setBounds(160, 150, 73, 30);
-			okBtn.setIcon(new ImageIcon(ResumeDeleteView.class.getResource("/resourses/okBtn.jpg")));
+			okBtn.setIcon(new ImageIcon(ApplicationDeleteView.class.getResource("/resourses/okBtn.jpg")));
 			okBtn.setBorderPainted(false);
 			okBtn.addActionListener(new ActionListener() {
 
@@ -416,24 +385,4 @@ public class ResumeDeleteView extends JPanel {
 		}
 
 	}
-}
-
-class ImagePanel extends JPanel {
-
-	private Image img;
-
-	public ImagePanel(Image img) {
-
-		this.img = img;
-		setSize(new Dimension(img.getWidth(null), img.getHeight(null)));
-		setLayout(null);
-		setPreferredSize(new Dimension(img.getWidth(null), img.getHeight(null)));
-
-	}
-
-	public void paintComponent(Graphics g) {
-
-		g.drawImage(img, 0, 0, null);
-	}
-
 }

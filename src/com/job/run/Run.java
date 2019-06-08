@@ -3,6 +3,7 @@ package com.job.run;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
+import com.job.view.ApplicationDeleteView;
 import com.job.view.JobSearch2View;
 import com.job.view.JobSearchView;
 import com.job.view.LoginView;
@@ -12,9 +13,8 @@ import com.job.view.OwnerMainView;
 import com.job.view.OwnerSignUpView;
 import com.job.view.PartMainView;
 import com.job.view.PartimerSignUpView;
-import com.job.view.ResumeDeleteView;
-import com.job.view.ResumeRegisterView;
 import com.job.view.ResumeModifyView;
+import com.job.view.ResumeRegisterView;
 import com.job.view.Search2View;
 import com.job.view.SearchView;
 import com.job.view.SignUpCategory;
@@ -33,7 +33,7 @@ public class Run extends JFrame {
 	private ResumeModifyView resumeModifyView = null;
 	private JobSearchView jobSearchView = null;
 	private JobSearch2View jobSearch2View = null;
-	private ResumeDeleteView resumeDeleteView = null;
+	private ApplicationDeleteView applicationDeleteView = null;
 	private SearchView searchView = null;
 	private Search2View search2View = null;
 
@@ -53,7 +53,7 @@ public class Run extends JFrame {
 		win.resumeModifyView = new ResumeModifyView(win);
 		win.jobSearchView = new JobSearchView(win);
 		win.jobSearch2View = new JobSearch2View(win);
-		win.resumeDeleteView = new ResumeDeleteView(win);
+		win.applicationDeleteView = new ApplicationDeleteView(win);
 		win.searchView = new SearchView(win);
 		win.search2View = new Search2View(win);
 
@@ -75,8 +75,8 @@ public class Run extends JFrame {
 		return search2View;
 	}
 
-	public ResumeDeleteView getResumeDeleteView() {
-		return resumeDeleteView;
+	public ApplicationDeleteView getApplicationDeleteView() {
+		return applicationDeleteView;
 	}
 
 	public LoginView getLoginView() {
