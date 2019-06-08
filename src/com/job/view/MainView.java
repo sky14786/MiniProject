@@ -21,8 +21,11 @@ import javax.swing.table.DefaultTableModel;
 import com.job.controller.MiniController;
 import com.job.model.Resume;
 import com.job.model.dao.LoadSave;
+import javax.swing.JTree;
 
 public class MainView extends JFrame {
+	public MainView() {
+	}
 
 	private JPanel contentPane;
 	private JPanel contentPane2;

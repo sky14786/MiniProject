@@ -4,11 +4,11 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -31,7 +31,7 @@ public class OwnerMainView extends JPanel {
 	private ArrayList<Notice> notices = new ArrayList<Notice>();
 	private ArrayList<Connection> connections = new ArrayList<Connection>();
 	private Connection connection = null;
-	private JButton btnShowNoticeReg, btnShowMyNotice, btnsShowSearchView;
+	private JButton btnShowNoticeReg, btnShowMyNotice, btnsShowSearchView, btnDetailView;
 
 	private NoticeRegisterController nrc = new NoticeRegisterController();
 	private LoadSave dao = LoadSave.getDao();
@@ -83,6 +83,10 @@ public class OwnerMainView extends JPanel {
 		scrollPane1.setBounds(99, 255, 786, 320);
 		add(scrollPane1);
 
+		// 상세보기 버튼
+		btnDetailView = new JButton("\uC0C1\uC138\uBCF4\uAE30");
+		btnDetailView.setBounds(563, 204, 105, 27);
+		add(btnDetailView);
 		// ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 		JButton btnLogout = new JButton("");
@@ -214,6 +218,15 @@ public class OwnerMainView extends JPanel {
 				showSearchView();
 			}
 		});
+
+		btnDetailView.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int num = table.getSelectedRow();
+				win.getOwnerDetailView().OwnerDetailButton1(seeMore(num));
+
+			}
+		});
 	}
 
 	public void isNoticeTest() {
@@ -225,5 +238,54 @@ public class OwnerMainView extends JPanel {
 			btnShowMyNotice.setEnabled(true);
 			btnShowNoticeReg.setEnabled(false);
 		}
+	}
+
+	// 상세보기
+	public Resume seeMore(int num) {
+		Resume temp = new Resume();
+		ArrayList<Resume> arr = LoadSave.getDao().loadResume();
+		ArrayList<Connection> con = LoadSave.getDao().loadConnection();
+
+		if (num == -1) {
+
+			// 아무것도 선택하지 않고 지원하기를 클릭했을때
+			// 안내메세지
+
+			JOptionPane.showMessageDialog(null, "원하시는 알바를 선택해주세요!");
+
+			System.out.println("선택 안함");
+
+		} else if (num != -1) {
+			for (int i = 0; i < con.size(); i++) {
+				if (con.get(i).getNoticeNo() == dao.getNowUser()) {
+					arr = con.get(i).getResumes();
+				}
+			}
+
+			temp.setName(arr.get(num).getName());
+			temp.setAge(arr.get(num).getAge());
+			temp.setGender(arr.get(num).getGender());
+			temp.setPhone(arr.get(num).getPhone());
+			temp.setCareer(arr.get(num).getCareer());
+			temp.setPeriodType(arr.get(num).getPeriodType());
+			temp.setTypeOccup(arr.get(num).getTypeOccup());
+			temp.setPeriodType(arr.get(num).getPeriodType());
+			temp.setDow(arr.get(num).getDow());
+			temp.setTime(arr.get(num).getTime());
+			temp.setRegion(arr.get(num).getRegion());
+
+			System.out.println(temp.toString());
+
+			win.getContentPane().removeAll();
+			win.getContentPane().add(win.getOwnerDetailView());
+			revalidate();
+			repaint();
+			win.setSize(1000, 600);
+			win.setVisible(false);
+			win.setVisible(true);
+
+		}
+
+		return temp;
 	}
 }

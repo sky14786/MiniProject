@@ -9,6 +9,7 @@ import com.job.view.JobSearchView;
 import com.job.view.LoginView;
 import com.job.view.NoticeRegisterView;
 import com.job.view.NoticeUpdateView;
+import com.job.view.OwnerDetailView;
 import com.job.view.OwnerMainView;
 import com.job.view.OwnerSignUpView;
 import com.job.view.PartMainView;
@@ -36,6 +37,7 @@ public class Run extends JFrame {
 	private ApplicationDeleteView applicationDeleteView = null;
 	private SearchView searchView = null;
 	private Search2View search2View = null;
+	private OwnerDetailView ownerDetailView = null;
 
 	public static void main(String[] args) {
 
@@ -56,6 +58,7 @@ public class Run extends JFrame {
 		win.applicationDeleteView = new ApplicationDeleteView(win);
 		win.searchView = new SearchView(win);
 		win.search2View = new Search2View(win);
+		win.ownerDetailView = new OwnerDetailView(win);
 
 		win.add(win.loginView);
 		win.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -67,6 +70,8 @@ public class Run extends JFrame {
 
 	}
 
+	// View Getter
+
 	public SearchView getSearchView() {
 		return searchView;
 	}
@@ -77,6 +82,10 @@ public class Run extends JFrame {
 
 	public ApplicationDeleteView getApplicationDeleteView() {
 		return applicationDeleteView;
+	}
+
+	public OwnerDetailView getOwnerDetailView() {
+		return ownerDetailView;
 	}
 
 	public LoginView getLoginView() {
