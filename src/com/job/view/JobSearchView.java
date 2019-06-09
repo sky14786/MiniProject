@@ -55,7 +55,6 @@ public class JobSearchView extends JPanel {
 
 	public JobSearchView(Run win) {
 		// this.win = win;
-		setBounds(100, 100, 1000, 600);
 		setLayout(null);
 
 		setSize(1000, 600);

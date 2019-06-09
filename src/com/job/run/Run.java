@@ -5,7 +5,6 @@ import javax.swing.JFrame;
 
 import com.job.view.ApplicationDeleteView;
 import com.job.view.JobSearchView;
-import com.job.view.JobSearchView2;
 import com.job.view.LoginView;
 import com.job.view.NoticeRegisterView;
 import com.job.view.NoticeUpdateView;

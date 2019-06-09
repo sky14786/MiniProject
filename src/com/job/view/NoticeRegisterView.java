@@ -20,20 +20,21 @@ import javax.swing.SwingConstants;
 
 import com.job.controller.NoticeRegisterController;
 import com.job.run.Run;
+
 //준영
 public class NoticeRegisterView extends JPanel {
 
 	private JTextField tfBName;
 	private JTextField tfPay;
 	private JTextField tfTimeToTime;
-	private JTextField tfCategory;
-	private JTextField tfAddr;
+//	private JTextField tfCategory;
+//	private JTextField tfAddr;
 	private JTextField tfBKeyword1;
 	private JTextField tfBKeyword2;
 	private JTextField tfBKeyword3;
 	private JButton btnAddNotice, btnBack;
 	private JTextArea taETC;
-	private JComboBox periodType, timeType;
+	private JComboBox periodType, timeType, typeCategory, typeRegion;
 	private NoticeRegisterController noticeRegisterController = new NoticeRegisterController();
 	private JLabel lbErrorMsg;
 	public Run win = new Run();
@@ -87,33 +88,33 @@ public class NoticeRegisterView extends JPanel {
 
 		timeType = new JComboBox();
 		timeType.setFont(new Font("나눔스퀘어", Font.PLAIN, 14));
-		timeType.setBounds(385, 424, 122, 35);
+		timeType.setBounds(219, 440, 122, 35);
 		timeType.setModel(new DefaultComboBoxModel(new String[] { "\uC2DC\uAC04 \uC120\uD0DD",
 				"1\uC2DC\uAC04 ~ 3\uC2DC\uAC04", "3\uC2DC\uAC04 ~ 6\uC2DC\uAC04", "6\uC2DC\uAC04 ~ 8\uC2DC\uAC04",
 				"8\uC2DC\uAC04\uC774\uC0C1" }));
 		add(timeType);
 
-		tfAddr = new JTextField();
-		tfAddr.setForeground(fontColor);
-		tfAddr.setFont(new Font("배달의민족 주아", Font.PLAIN, 18));
-		tfAddr.setColumns(10);
-		tfAddr.setBounds(162, 426, 211, 35);
-		tfAddr.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-		tfAddr.setOpaque(false);
-		add(tfAddr);
-
-		tfCategory = new JTextField();
-		tfCategory.setForeground(fontColor);
-		tfCategory.setFont(new Font("배달의민족 주아", Font.PLAIN, 18));
-		tfCategory.setColumns(10);
-		tfCategory.setBounds(163, 356, 210, 35);
-		tfCategory.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-		tfCategory.setOpaque(false);
-		add(tfCategory);
+//		tfAddr = new JTextField();
+//		tfAddr.setForeground(fontColor);
+//		tfAddr.setFont(new Font("배달의민족 주아", Font.PLAIN, 18));
+//		tfAddr.setColumns(10);
+//		tfAddr.setBounds(162, 426, 211, 35);
+//		tfAddr.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+//		tfAddr.setOpaque(false);
+//		add(tfAddr);
+//
+//		tfCategory = new JTextField();
+//		tfCategory.setForeground(fontColor);
+//		tfCategory.setFont(new Font("배달의민족 주아", Font.PLAIN, 18));
+//		tfCategory.setColumns(10);
+//		tfCategory.setBounds(163, 356, 210, 35);
+//		tfCategory.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+//		tfCategory.setOpaque(false);
+//		add(tfCategory);
 
 		periodType = new JComboBox();
 		periodType.setFont(new Font("나눔스퀘어", Font.PLAIN, 14));
-		periodType.setBounds(385, 356, 122, 35);
+		periodType.setBounds(434, 440, 122, 35);
 		periodType.setModel(new DefaultComboBoxModel(
 				new String[] { "\uAE30\uAC04 \uC120\uD0DD", "\uD558\uB8E8", "\uC77C\uC8FC\uC77C",
 						"1\uAC1C\uC6D4 \uC774\uC0C1", "3\uAC1C\uC6D4 \uC774\uC0C1", "6\uAC1C\uC6D4 \uC774\uC0C1" }));
@@ -169,8 +170,25 @@ public class NoticeRegisterView extends JPanel {
 		lbErrorMsg.setBounds(483, 29, 423, 44);
 		add(lbErrorMsg);
 
+		typeRegion = new JComboBox();
+		typeRegion.setModel(new DefaultComboBoxModel(new String[] { "[\uADFC\uBB34 \uC9C0\uC5ED]", "\uAC15\uC6D0",
+				"\uACBD\uAE30", "\uACBD\uB0A8", "\uACBD\uBD81", "\uAD11\uC8FC", "\uB300\uAD6C", "\uB300\uC804",
+				"\uC11C\uC6B8", "\uC138\uC885", "\uC6B8\uC0B0", "\uC778\uCC9C", "\uC804\uB0A8", "\uC804\uBD81",
+				"\uC81C\uC8FC", "\uBD80\uC0B0", "\uCDA9\uB0A8", "\uCDA9\uBD81" }));
+		typeRegion.setFont(new Font("나눔스퀘어", Font.PLAIN, 14));
+		typeRegion.setBounds(434, 375, 122, 35);
+		add(typeRegion);
+
+		typeCategory = new JComboBox();
+		typeCategory.setModel(new DefaultComboBoxModel(
+				new String[] { "[\uADFC\uBB34 \uD615\uD0DC]", "\uB9E4\uC7A5\uAD00\uB9AC", "\uC8FC\uBC29",
+						"\uBBF8\uB514\uC5B4", "\uC6B4\uC804", "\uC0AC\uBB34", "IT", "\uC601\uC5C5", "\uAD50\uC721" }));
+		typeCategory.setFont(new Font("나눔스퀘어", Font.PLAIN, 14));
+		typeCategory.setBounds(219, 377, 122, 35);
+		add(typeCategory);
+
 		JLabel label_10 = new JLabel(" ");
-		label_10.setIcon(new ImageIcon(this.getClass().getResource("/resource/NoticeRegister.jpg")));
+		label_10.setIcon(new ImageIcon(this.getClass().getResource("/resource/NoticeRegister-2.jpg")));
 		label_10.setBounds(0, 0, 1000, 600);
 		add(label_10);
 
@@ -200,15 +218,16 @@ public class NoticeRegisterView extends JPanel {
 	}
 
 	private void addNotice() {
-		if (((!tfAddr.getText().equals("")) && !tfBName.getText().equals("") && !tfCategory.getText().equals("")
-				&& !tfPay.getText().equals("") && !tfTimeToTime.getText().equals("")
-				&& !timeType.getSelectedItem().toString().equals("시간 선택")
-				&& !periodType.getSelectedItem().toString().equals("기간 선택"))) {
+		if (((!typeRegion.getSelectedItem().toString().equals("지역 선택") && !tfBName.getText().equals("")
+				&& !typeCategory.getSelectedItem().toString().equals("직종 선택") && !tfPay.getText().equals("")
+				&& !tfTimeToTime.getText().equals("") && !timeType.getSelectedItem().toString().equals("시간 선택")
+				&& !periodType.getSelectedItem().toString().equals("기간 선택")))) {
 			if (noticeRegisterController.isApplyCheck()) {
 				noticeRegisterController.addNotice(tfBName.getText(), Double.parseDouble(tfPay.getText()),
-						tfTimeToTime.getText(), tfCategory.getText(), tfAddr.getText(),
-						periodType.getSelectedItem().toString(), timeType.getSelectedItem().toString(),
-						tfBKeyword1.getText(), tfBKeyword2.getText(), tfBKeyword3.getText(), taETC.getText());
+						tfTimeToTime.getText(), typeCategory.getSelectedItem().toString(),
+						typeRegion.getSelectedItem().toString(), periodType.getSelectedItem().toString(),
+						timeType.getSelectedItem().toString(), tfBKeyword1.getText(), tfBKeyword2.getText(),
+						tfBKeyword3.getText(), taETC.getText());
 				resetTextField();
 				win.getOwnerMainView().isNoticeTest();
 				moveBack();
@@ -232,16 +251,18 @@ public class NoticeRegisterView extends JPanel {
 	}
 
 	private void resetTextField() {
-		tfAddr.setText("");
+//		tfAddr.setText("");
 		tfBKeyword1.setText("");
 		tfBKeyword2.setText("");
 		tfBKeyword3.setText("");
 		tfBName.setText("");
-		tfCategory.setText("");
+//		tfCategory.setText("");
 		tfPay.setText("");
 		tfTimeToTime.setText("");
 		timeType.setSelectedItem("시간 선택");
 		periodType.setSelectedItem("기간 선택");
+		typeCategory.setSelectedItem("[직종 선택]");
+		typeRegion.setSelectedItem("[지역 선택]");
 		taETC.setText("");
 		lbErrorMsg.setText("");
 	}

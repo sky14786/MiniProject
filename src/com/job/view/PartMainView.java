@@ -1,11 +1,14 @@
 package com.job.view;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -13,14 +16,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import com.job.controller.CheckingController;
 import com.job.controller.ApplicationDeleteController;
+import com.job.controller.CheckingController;
+import com.job.controller.ResumeDeleteController;
 import com.job.model.Partimer;
 import com.job.run.Run;
 
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import java.awt.Color;
 //덕
 public class PartMainView extends JPanel {
 
@@ -39,7 +40,7 @@ public class PartMainView extends JPanel {
 	private JLabel liner;
 	private JLabel typingLabel;
 
-	private ApplicationDeleteController applicationDeleteController = new ApplicationDeleteController();
+	private ResumeDeleteController resumeDeleteController = new ResumeDeleteController();
 	private CheckingController checkingController = new CheckingController();
 
 	public Run win = new Run();
@@ -239,8 +240,8 @@ public class PartMainView extends JPanel {
 						System.out.println("-------------------------------------------");
 						System.out.println("검색 키워드 : " + keyword);
 						System.out.println("-------------------------------------------");
-						
-//						win.getJobSearchView().printTable1(keyword);
+
+						win.getJobSearchView().printTable1(keyword);
 
 						// 화면전환
 						win.getContentPane().removeAll();
@@ -272,7 +273,7 @@ public class PartMainView extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				win.getContentPane().removeAll();
 				win.getContentPane().add(win.getJobSearchView()); // 여기서 기호오빠 화면으로 전환
-				win.getJobSearchView().normalSearch(); //기본 전체보기 메소드
+				win.getJobSearchView().normalSearch(); // 기본 전체보기 메소드
 				win.getContentPane().revalidate();
 				win.getContentPane().repaint();
 			}
@@ -332,7 +333,7 @@ public class PartMainView extends JPanel {
 				ansYes.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						// 이력서 삭제
-//						applicationDeleteController.delResume();
+						resumeDeleteController.delResume();
 
 						// 삭제시 등록 버튼 활성화
 						buttonTest();
@@ -366,7 +367,7 @@ public class PartMainView extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// 지원목록 띄우기 (현희언니꺼랑 연결)
 				win.getContentPane().removeAll();
-				 win.getContentPane().add(win.getApplicationDeleteView()); //여기서 현희언니 화면으로 전환
+				win.getContentPane().add(win.getApplicationDeleteView()); // 여기서 현희언니 화면으로 전환
 				win.getContentPane().revalidate();
 				win.getContentPane().repaint();
 				win.getApplicationDeleteView().tableSetting();

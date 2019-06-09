@@ -88,7 +88,7 @@ public class OwnerMainView extends JPanel {
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); // 테이블 로우 한개선택
 		table.setRowHeight(40);
 		table.setFont(new Font("나눔스퀘어", Font.PLAIN, 14));
-		Dtm.setColumnIdentifiers(new String[] { "이름", "성별", "나이", "전화번호" });
+		Dtm.setColumnIdentifiers(new String[] { "이름", "나이", "성별", "전화번호" });
 		// -----------------------------------------------------------------------------------------
 		JScrollPane scrollPane1 = new JScrollPane(table);
 		scrollPane1.setEnabled(false);
