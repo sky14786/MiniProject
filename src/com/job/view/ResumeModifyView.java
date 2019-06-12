@@ -1,9 +1,11 @@
 package com.job.view;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -40,8 +42,13 @@ public class ResumeModifyView extends JPanel{
 	private JLabel dowLabel;
 	private JLabel timeLabel;
 	private JLabel modifyBackground;
+	private JLabel label_11;
+	private JLabel label_12;
+	private JLabel label_13;
+	private JLabel label_14;
 	
 	public Run win = new Run();
+	
 	private ResumeModifyController resumeModifyController = new ResumeModifyController();
 	private CheckingController checkingController = new CheckingController();
 
@@ -51,12 +58,36 @@ public class ResumeModifyView extends JPanel{
 		initialize();
 	}
 
-
 	private void initialize() {
 		setSize(1000, 600);
 		setLayout(null);
 		
+		label_11 = new JLabel("");
+		label_11.setIcon(new ImageIcon(ResumeRegisterView.class.getResource("/resource/line_label.png")));
+		label_11.setHorizontalAlignment(SwingConstants.CENTER);
+		label_11.setBounds(100, 152, 150, 2);
+		add(label_11);
+		
+		label_12 = new JLabel("");
+		label_12.setIcon(new ImageIcon(ResumeRegisterView.class.getResource("/resource/line_label.png")));
+		label_12.setHorizontalAlignment(SwingConstants.CENTER);
+		label_12.setBounds(320, 152, 150, 2);
+		add(label_12);
+		
+		label_13 = new JLabel("");
+		label_13.setIcon(new ImageIcon(ResumeRegisterView.class.getResource("/resource/line_label.png")));
+		label_13.setHorizontalAlignment(SwingConstants.CENTER);
+		label_13.setBounds(540, 152, 150, 2);
+		add(label_13);
+		
+		label_14 = new JLabel("");
+		label_14.setIcon(new ImageIcon(this.getClass().getResource("/resource/line_label.png")));
+		label_14.setHorizontalAlignment(SwingConstants.CENTER);
+		label_14.setBounds(780, 152, 150, 2);
+		add(label_14);
+		
 		JLabel lblNewLabel = new JLabel("\uC774\uB825\uC11C \uC218\uC815");
+		lblNewLabel.setForeground(Color.ORANGE);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("¹è´ÞÀÇ¹ÎÁ· ÁÖ¾Æ", Font.PLAIN, 40));
 		lblNewLabel.setBounds(390, 30, 200, 40);
@@ -132,15 +163,19 @@ public class ResumeModifyView extends JPanel{
 		tfName = new JTextField();
 		tfName.setEditable(false);
 		tfName.setHorizontalAlignment(SwingConstants.CENTER);
-		tfName.setBounds(100, 124, 150, 30);
-		add(tfName);
 		tfName.setColumns(10);
+		tfName.setBounds(100, 124, 150, 30);
+		tfName.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		tfName.setOpaque(false);
+		add(tfName);
 
 		tfAge = new JTextField();
 		tfAge.setEditable(false);
 		tfAge.setHorizontalAlignment(SwingConstants.CENTER);
 		tfAge.setColumns(10);
 		tfAge.setBounds(320, 124, 150, 30);
+		tfAge.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		tfAge.setOpaque(false);
 		add(tfAge);
 		
 		tfGender = new JTextField();
@@ -148,16 +183,20 @@ public class ResumeModifyView extends JPanel{
 		tfGender.setHorizontalAlignment(SwingConstants.CENTER);
 		tfGender.setColumns(10);
 		tfGender.setBounds(540, 124, 150, 30);
+		tfGender.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		tfGender.setOpaque(false);
 		add(tfGender);
 
 		tfPhone = new JTextField();
 		tfPhone.setHorizontalAlignment(SwingConstants.CENTER);
 		tfPhone.setColumns(10);
 		tfPhone.setBounds(780, 124, 150, 30);
+		tfPhone.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		tfPhone.setOpaque(false);
 		add(tfPhone);
 
 		tfCareer = new JTextField();
-		tfCareer.setHorizontalAlignment(SwingConstants.CENTER);
+		tfCareer.setHorizontalAlignment(SwingConstants.LEFT);
 		tfCareer.setColumns(10);
 		tfCareer.setBounds(440, 222, 150, 30);
 		add(tfCareer);
@@ -193,30 +232,40 @@ public class ResumeModifyView extends JPanel{
 		comboRegion.setBounds(440, 432, 150, 30);
 		add(comboRegion);
 		
-		complete = new JButton("\uC644\uB8CC");
+		complete = new JButton("");
+		complete.setIcon(new ImageIcon(ResumeRegisterView.class.getResource("/resource/complete_button_n.png")));
 		complete.setFont(new Font("³ª´®½ºÄù¾î Bold", Font.PLAIN, 25));
 		complete.setBounds(390, 490, 90, 50);
+		complete.setBorderPainted(false);
+		complete.setContentAreaFilled(false);
 		add(complete);
-		
-		cancel = new JButton("\uCDE8\uC18C");
+
+		cancel = new JButton("");
+		cancel.setIcon(new ImageIcon(ResumeRegisterView.class.getResource("/resource/cancel_button_n.png")));
 		cancel.setFont(new Font("³ª´®½ºÄù¾î Bold", Font.PLAIN, 25));
 		cancel.setBounds(500, 490, 90, 50);
+		cancel.setBorderPainted(false);
+		cancel.setContentAreaFilled(false);
 		add(cancel);
 		
 		phoneLabel = new JLabel("");
+		phoneLabel.setForeground(Color.RED);
 		phoneLabel.setBounds(780, 160, 150, 18);
 		add(phoneLabel);
 		
 		typeOccupLabel = new JLabel("");
-		typeOccupLabel.setBounds(609, 283, 150, 18);
+		typeOccupLabel.setForeground(Color.RED);
+		typeOccupLabel.setBounds(603, 270, 150, 18);
 		add(typeOccupLabel);
 		
 		dowLabel = new JLabel("");
-		dowLabel.setBounds(609, 367, 150, 18);
+		dowLabel.setForeground(Color.RED);
+		dowLabel.setBounds(603, 354, 150, 18);
 		add(dowLabel);
 		
 		timeLabel = new JLabel("");
-		timeLabel.setBounds(609, 409, 150, 18);
+		timeLabel.setForeground(Color.RED);
+		timeLabel.setBounds(603, 396, 150, 18);
 		add(timeLabel);
 		
 		modifyBackground = new JLabel("");

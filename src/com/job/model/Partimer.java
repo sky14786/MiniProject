@@ -28,7 +28,7 @@ public class Partimer implements Serializable {
 		this.isApply = isApply;
 	}
 
-	public boolean isApply() {
+	public boolean getIsApply() {
 		return isApply;
 	}
 

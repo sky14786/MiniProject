@@ -258,18 +258,22 @@ public class ResumeRegisterView extends JPanel {
 		add(cancel);
 
 		phoneLabel = new JLabel("");
+		phoneLabel.setForeground(Color.RED);
 		phoneLabel.setBounds(780, 160, 150, 18);
 		add(phoneLabel);
 
 		typeOccupLabel = new JLabel("");
+		typeOccupLabel.setForeground(Color.RED);
 		typeOccupLabel.setBounds(603, 270, 150, 18);
 		add(typeOccupLabel);
 
 		dowLabel = new JLabel("");
+		dowLabel.setForeground(Color.RED);
 		dowLabel.setBounds(603, 354, 150, 18);
 		add(dowLabel);
 
 		timeLabel = new JLabel("");
+		timeLabel.setForeground(Color.RED);
 		timeLabel.setBounds(603, 396, 150, 18);
 		add(timeLabel);
 		

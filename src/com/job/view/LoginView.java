@@ -98,7 +98,7 @@ public class LoginView extends JPanel {
 		settingButton();
 
 	}
-
+	//버튼 셋팅용 메소드
 	private void settingButton() {
 		btnSignup.addActionListener(new ActionListener() {
 
@@ -116,13 +116,14 @@ public class LoginView extends JPanel {
 			}
 		});
 	}
-
+	//입력칸 공백 리셋화
 	private void resetTextField() {
 		tfID.setText("");
 		tfPW.setText("");
 		lbTest.setText("");
 	}
-
+	
+	//회원가입시 구인/구직 분기화면 보여주는 메소드
 	private void signUpCategory() {
 		resetTextField();
 		win.getContentPane().removeAll();
@@ -131,7 +132,8 @@ public class LoginView extends JPanel {
 		revalidate();
 		repaint();
 	}
-
+	
+	//로그인 메소드
 	private void login() {
 		switch (loginController.login(tfID.getText(), tfPW.getText(), radio[0].isSelected())) {
 		case 1:
@@ -155,6 +157,7 @@ public class LoginView extends JPanel {
 			repaint();
 			win.getPartMainView().buttonTest();
 			win.getPartMainView().showId();
+			win.getPartMainView().clearKeywordTextField();
 			break;
 		case 2:
 			lbTest.setText("존재하지 않는 아이디입니다.");

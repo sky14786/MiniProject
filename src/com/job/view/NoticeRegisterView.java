@@ -150,7 +150,7 @@ public class NoticeRegisterView extends JPanel {
 		btnAddNotice = new JButton("");
 		btnAddNotice.setIcon(new ImageIcon(this.getClass().getResource("/resource/ButtonNoticeRegister.png")));
 		btnAddNotice.setFont(new Font("나눔스퀘어", Font.PLAIN, 26));
-		btnAddNotice.setBounds(252, 510, 146, 53);
+		btnAddNotice.setBounds(410, 510, 146, 53);
 		btnAddNotice.setContentAreaFilled(false);
 		btnAddNotice.setBorderPainted(false);
 		add(btnAddNotice);
@@ -158,7 +158,7 @@ public class NoticeRegisterView extends JPanel {
 		btnBack = new JButton("");
 		btnBack.setIcon(new ImageIcon(this.getClass().getResource("/resource/BackButton.png")));
 		btnBack.setFont(new Font("나눔스퀘어", Font.PLAIN, 26));
-		btnBack.setBounds(570, 510, 146, 53);
+		btnBack.setBounds(804, 510, 146, 53);
 		btnBack.setContentAreaFilled(false);
 		btnBack.setBorderPainted(false);
 		add(btnBack);
@@ -196,6 +196,7 @@ public class NoticeRegisterView extends JPanel {
 
 	}
 
+	// 버튼 기능 설정 메소드
 	private void settingButton() {
 		btnAddNotice.addActionListener(new ActionListener() {
 
@@ -217,11 +218,14 @@ public class NoticeRegisterView extends JPanel {
 		});
 	}
 
+	// 구인공고 등록 메소드
 	private void addNotice() {
-		if (((!typeRegion.getSelectedItem().toString().equals("지역 선택") && !tfBName.getText().equals("")
-				&& !typeCategory.getSelectedItem().toString().equals("직종 선택") && !tfPay.getText().equals("")
+		// 선택 및 입력사항에 빈칸이 없을경우
+		if (((!typeRegion.getSelectedItem().toString().equals("[근무 지역]") && !tfBName.getText().equals("")
+				&& !typeCategory.getSelectedItem().toString().equals("[근무 형태]") && !tfPay.getText().equals("")
 				&& !tfTimeToTime.getText().equals("") && !timeType.getSelectedItem().toString().equals("시간 선택")
 				&& !periodType.getSelectedItem().toString().equals("기간 선택")))) {
+			// 로그인한 구인자 유저의 구인공고를 등록하지 않았을 경우
 			if (noticeRegisterController.isApplyCheck()) {
 				noticeRegisterController.addNotice(tfBName.getText(), Double.parseDouble(tfPay.getText()),
 						tfTimeToTime.getText(), typeCategory.getSelectedItem().toString(),
@@ -240,6 +244,7 @@ public class NoticeRegisterView extends JPanel {
 		}
 	}
 
+	// 뒤로가기 메소드
 	private void moveBack() {
 		win.getContentPane().removeAll();
 		win.getContentPane().add(win.getOwnerMainView());
@@ -250,6 +255,7 @@ public class NoticeRegisterView extends JPanel {
 		win.setVisible(true);
 	}
 
+	// 입력 및 선택사항 초기화 메소드
 	private void resetTextField() {
 //		tfAddr.setText("");
 		tfBKeyword1.setText("");
@@ -261,8 +267,8 @@ public class NoticeRegisterView extends JPanel {
 		tfTimeToTime.setText("");
 		timeType.setSelectedItem("시간 선택");
 		periodType.setSelectedItem("기간 선택");
-		typeCategory.setSelectedItem("[직종 선택]");
-		typeRegion.setSelectedItem("[지역 선택]");
+		typeCategory.setSelectedItem("[근무 형태]");
+		typeRegion.setSelectedItem("[근무 지역]");
 		taETC.setText("");
 		lbErrorMsg.setText("");
 	}

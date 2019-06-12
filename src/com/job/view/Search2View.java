@@ -42,7 +42,7 @@ public class Search2View extends JPanel {
 
 		// 메인메뉴로 뒤로가기
 		JButton button_4 = new JButton("");
-		button_4.setBounds(209, 712, 123, 48);
+		button_4.setBounds(430, 695, 123, 52);
 		button_4.setIcon(new ImageIcon(this.getClass().getResource("/resource/BackButton.png")));
 		button_4.setContentAreaFilled(false);
 		button_4.setBorderPainted(false);

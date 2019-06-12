@@ -9,7 +9,6 @@ public class ResumeModifyController {
 
 	private int userNo;
 	private ArrayList<Resume> resumes = new ArrayList<Resume>();
-	private String fileName = "resume.txt";
 	private LoadSave dao = LoadSave.getDao();
 
 	
@@ -17,6 +16,7 @@ public class ResumeModifyController {
 	public void modifyResume(String name, int age, String gender, String phoneNum, String academic, String career,
 			String typeOccup, String periodType, String dow, String time, String region) {
 		userNo = dao.getNowUser();
+		resumes = dao.loadResume();
 		for (int i = 0; i < resumes.size(); i++) {
 			if (resumes.get(i).getUserNo() == userNo) {
 				resumes.set(i, new Resume(userNo, name, age, gender, phoneNum, academic, career, typeOccup, periodType,

@@ -14,9 +14,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 import com.job.controller.SearchController;
 import com.job.model.Resume;
@@ -95,6 +98,13 @@ public class SearchView extends JPanel {
 		scrollPane.setBounds(83, 276, 833, 257);
 		add(scrollPane);
 
+		DefaultTableCellRenderer DtmCellRender = new DefaultTableCellRenderer();
+		DtmCellRender.setHorizontalAlignment(SwingConstants.CENTER);
+		TableColumnModel tcm = table.getColumnModel();
+		for (int i = 0; i < tcm.getColumnCount(); i++) {
+			tcm.getColumn(i).setCellRenderer(DtmCellRender);
+		}
+
 		TableColumn column = table.getColumnModel().getColumn(0);
 
 		column.setMinWidth(0);
@@ -112,7 +122,7 @@ public class SearchView extends JPanel {
 					sc.Search(win, region, typeOccup, periodType);
 
 					for (int i = 0; i < sc.rs2.size(); i++) {
-						DtmStorage.addRow(new Object[] { sc.rs2.get(i).getUserNo(), sc.rs2.get(i).getTypeOccup(),
+						DtmStorage.addRow(new Object[] { rs.get(i).getUserNo(), sc.rs2.get(i).getTypeOccup(),
 								rs.get(i).getName(), sc.rs2.get(i).getRegion(), sc.rs2.get(i).getPeriodType(),
 								rs.get(i).getDow(), rs.get(i).getPhone() });
 					}

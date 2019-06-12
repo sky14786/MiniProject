@@ -47,7 +47,7 @@ public class OwnerSignUpView extends JPanel {
 		tfID.setFont(new Font("배달의민족 주아", Font.PLAIN, 18));
 		tfID.setColumns(10);
 		tfID.setForeground(fontColor);
-		tfID.setBounds(165, 151, 189, 35);
+		tfID.setBounds(204, 143, 189, 35);
 		tfID.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		tfID.setOpaque(false);
 		add(tfID);
@@ -57,7 +57,7 @@ public class OwnerSignUpView extends JPanel {
 		tfPW.setFont(new Font("배달의민족 주아", Font.PLAIN, 18));
 		tfPW.setColumns(10);
 		tfPW.setForeground(fontColor);
-		tfPW.setBounds(165, 221, 189, 35);
+		tfPW.setBounds(204, 213, 189, 35);
 		tfPW.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		tfPW.setOpaque(false);
 		add(tfPW);
@@ -66,7 +66,7 @@ public class OwnerSignUpView extends JPanel {
 		tfName.setFont(new Font("배달의민족 주아", Font.PLAIN, 18));
 		tfName.setColumns(10);
 		tfName.setForeground(fontColor);
-		tfName.setBounds(165, 292, 189, 35);
+		tfName.setBounds(204, 284, 189, 35);
 		tfName.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		tfName.setOpaque(false);
 		add(tfName);
@@ -75,7 +75,7 @@ public class OwnerSignUpView extends JPanel {
 		tfbNumber.setFont(new Font("배달의민족 주아", Font.PLAIN, 18));
 		tfbNumber.setColumns(10);
 		tfbNumber.setForeground(fontColor);
-		tfbNumber.setBounds(165, 361, 189, 35);
+		tfbNumber.setBounds(204, 353, 189, 35);
 		tfbNumber.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		tfbNumber.setOpaque(false);
 		add(tfbNumber);
@@ -84,7 +84,7 @@ public class OwnerSignUpView extends JPanel {
 		tfAddr.setFont(new Font("배달의민족 주아", Font.PLAIN, 18));
 		tfAddr.setForeground(fontColor);
 		tfAddr.setColumns(10);
-		tfAddr.setBounds(165, 430, 203, 35);
+		tfAddr.setBounds(204, 422, 203, 35);
 		tfAddr.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		tfAddr.setOpaque(false);
 		add(tfAddr);
@@ -92,7 +92,7 @@ public class OwnerSignUpView extends JPanel {
 		btnSignUp = new JButton("");
 		btnSignUp.setIcon(new ImageIcon(this.getClass().getResource("/resource/SignUpButton.png")));
 		btnSignUp.setFont(new Font("나눔스퀘어", Font.PLAIN, 26));
-		btnSignUp.setBounds(134, 507, 146, 53);
+		btnSignUp.setBounds(121, 494, 146, 53);
 		btnSignUp.setContentAreaFilled(false);
 		btnSignUp.setBorderPainted(false);
 		add(btnSignUp);
@@ -100,7 +100,7 @@ public class OwnerSignUpView extends JPanel {
 		btnBack = new JButton("");
 		btnBack.setIcon(new ImageIcon(this.getClass().getResource("/resource/BackButton.png")));
 		btnBack.setFont(new Font("나눔스퀘어", Font.PLAIN, 26));
-		btnBack.setBounds(328, 507, 146, 53);
+		btnBack.setBounds(315, 494, 146, 53);
 		btnBack.setContentAreaFilled(false);
 		btnBack.setBorderPainted(false);
 		add(btnBack);
@@ -115,13 +115,13 @@ public class OwnerSignUpView extends JPanel {
 		btnDuplicateCheck = new JButton("");
 		btnDuplicateCheck.setIcon(new ImageIcon(this.getClass().getResource("/resource/DuplicateCheckButton.png")));
 		btnDuplicateCheck.setFont(new Font("나눔스퀘어", Font.PLAIN, 14));
-		btnDuplicateCheck.setBounds(401, 143, 112, 53);
+		btnDuplicateCheck.setBounds(420, 134, 103, 44);
 		btnDuplicateCheck.setContentAreaFilled(false);
 		btnDuplicateCheck.setBorderPainted(false);
 		add(btnDuplicateCheck);
 
 		label_6 = new JLabel("");
-		label_6.setIcon(new ImageIcon(this.getClass().getResource("/resource/OwnerSignUpImage.jpg")));
+		label_6.setIcon(new ImageIcon(this.getClass().getResource("/resource/OwnerSignUpImage-2.jpg")));
 		label_6.setBounds(0, 0, 994, 571);
 		add(label_6);
 
@@ -130,6 +130,7 @@ public class OwnerSignUpView extends JPanel {
 		settingButton();
 	}
 
+	// 버튼 기능 설정 메소드
 	private void settingButton() {
 		btnDuplicateCheck.addActionListener(new ActionListener() {
 
@@ -156,6 +157,7 @@ public class OwnerSignUpView extends JPanel {
 		});
 	}
 
+	// 입력 사항 초기화
 	private void resetTextField() {
 		tfID.setText("");
 		tfPW.setText("");
@@ -165,6 +167,7 @@ public class OwnerSignUpView extends JPanel {
 		lbErrorMsg.setText("");
 	}
 
+	// 뒤로가기
 	private void moveLoginView() {
 		resetTextField();
 		win.getContentPane().removeAll();
@@ -191,13 +194,16 @@ public class OwnerSignUpView extends JPanel {
 		}
 	}
 
+	// 회원가입 메소드
 	private void signUp() {
 		if (!tfID.getText().equals("")) {
 			if (!tfPW.getText().equals("") && (tfPW.getText().length() >= 8 && tfPW.getText().length() <= 12)) {
 				if (!tfName.getText().equals("")) {
 					if (!tfbNumber.getText().equals("")) {
 						if (!tfAddr.getText().equals("")) {
+							//공백이 없고 패스워드가 8~12자 일경우
 							if (isDuplicate) {
+								//중복확인을 했고 그 값이 true일 경우
 								ownerSignUpController.addOwner(tfID.getText(), tfPW.getText(), tfName.getText(),
 										tfbNumber.getText(), tfAddr.getText());
 

@@ -1,16 +1,12 @@
 package com.job.controller;
 
-import java.sql.Connection;
-
 import java.util.ArrayList;
 
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import com.job.model.Connection;
 import com.job.model.Notice;
 import com.job.model.dao.LoadSave;
-import com.job.view.ApplicationDeleteView;
 
 public class ApplicationDeleteController {
 
@@ -20,9 +16,8 @@ public class ApplicationDeleteController {
 	private ArrayList<Integer> resuems = new ArrayList<Integer>();
 	private LoadSave dao = LoadSave.getDao();
 	private DefaultTableModel DtmStorage = new DefaultTableModel();
+	private LoadApplicationListController lac = new LoadApplicationListController();
 	private int noticeNo;
-
-    
 
 	String bNo;
 	String category; // pt.get(i)의 근무형태 변수
@@ -57,21 +52,55 @@ public class ApplicationDeleteController {
 		return DtmStorage;
 
 	}
-	
-	
+
 	public void deleteApplicationList() {
-		
-		
-		
-		
-		
-		
-		
+
 	}
-	
-	
-	
+
+	public void deleteApplicationFromConnection(int row) {
+		ArrayList<Notice> arr = lac.loadApplicationList();
+		int noticeNum = arr.get(row).getbNo();
+		connections = dao.loadConnection();
+		Connection con = new Connection();
+		int temp = -1;
+		if (connections != null) {
+			for (int i = 0; i < connections.size(); i++) {
+				if (connections.get(i).getNoticeNo() == noticeNum) {
+					con = connections.get(i);
+					temp = i;
+					break;
+				}
+			}
+		}
+
+		if (con.getResumes() != null) {
+			for (int i = 0; i < con.getResumes().size(); i++) {
+				if (con.getResumes().get(i).getUserNo() == dao.getNowUser()) {
+					con.getResumes().remove(i);
+					break;
+				}
+			}
+
+			if (temp != -1) {
+				connections.set(temp, con);
+				dao.saveConnection(connections);
+			}
+		}
+
+		// 선덕코드
+//		if (connections != null) { // connections비어있지 않으면
+//			for (int i = 0; i < connections.size(); i++) { // 쭉 돌기
+//				if (connections.get(i).getResumes() != null) { // 이력서가 하나라도 있다면
+//					for (int j = 0; j < connections.get(i).getResumes().size(); j++) {
+//						if (connections.get(i).getResumes().get(j).getUserNo() == dao.getNowUser()) { // 지원된 이력서 찾아서
+//							connections.get(i).getResumes().remove(j); // 지우기
+//							break;
+//						}
+//					}
+//				}
+//			}
+//		}
+		dao.saveConnection(connections);
+	}
 
 }
-
-        

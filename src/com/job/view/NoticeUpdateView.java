@@ -65,7 +65,7 @@ public class NoticeUpdateView extends JPanel {
 		btnBack = new JButton("");
 		btnBack.setIcon(new ImageIcon(this.getClass().getResource("/resource/BackButton.png")));
 		btnBack.setFont(new Font("나눔스퀘어", Font.PLAIN, 26));
-		btnBack.setBounds(570, 510, 146, 53);
+		btnBack.setBounds(804, 510, 146, 53);
 		btnBack.setContentAreaFilled(false);
 		btnBack.setBorderPainted(false);
 		add(btnBack);
@@ -73,7 +73,7 @@ public class NoticeUpdateView extends JPanel {
 		btnUpdate = new JButton("");
 		btnUpdate.setIcon(new ImageIcon(this.getClass().getResource("/resource/ButtonNoticeUpdate.png")));
 		btnUpdate.setFont(new Font("나눔스퀘어", Font.PLAIN, 26));
-		btnUpdate.setBounds(252, 510, 146, 53);
+		btnUpdate.setBounds(410, 510, 146, 53);
 		btnUpdate.setContentAreaFilled(false);
 		btnUpdate.setBorderPainted(false);
 		add(btnUpdate);
@@ -202,6 +202,7 @@ public class NoticeUpdateView extends JPanel {
 		settingButton();
 	}
 
+	// 업데이트 뷰 전환시 데이터 셋팅 메소드
 	public void settingData() {
 		Notice temp = null;
 		if ((temp = noticeUpdateController.sendUserInformation()) != null) {
@@ -223,6 +224,7 @@ public class NoticeUpdateView extends JPanel {
 
 	}
 
+	// 버튼 셋팅 메소드
 	private void settingButton() {
 		btnUpdate.addActionListener(new ActionListener() {
 
@@ -253,11 +255,14 @@ public class NoticeUpdateView extends JPanel {
 
 	}
 
+	// 업데이트 메소드
 	private void update() {
-		if (!(typeRegion.getSelectedItem().toString().equals("지역 선택") && tfBName.getText().equals("")
-				&& typeCategory.getSelectedItem().toString().equals("직종 선택") && tfPay.getText().equals("")
+		// 입력 및 선택사항이 기본값일 경우
+		if (!(typeRegion.getSelectedItem().toString().equals("[근무 지역]") && tfBName.getText().equals("")
+				&& typeCategory.getSelectedItem().toString().equals("[근무 형태]") && tfPay.getText().equals("")
 				&& tfTimeToTime.getText().equals("") && timeType.getSelectedItem().toString().equals("시간 선택")
 				&& periodType.getSelectedItem().toString().equals("기간 선택"))) {
+			// 업데이트 메소드 실행
 			noticeUpdateController.updateNotice(tfBName.getText(), Double.parseDouble(tfPay.getText()),
 					tfTimeToTime.getText(), typeCategory.getSelectedItem().toString(),
 					typeRegion.getSelectedItem().toString(), periodType.getSelectedItem().toString(),
@@ -272,6 +277,7 @@ public class NoticeUpdateView extends JPanel {
 		}
 	}
 
+	// 뒤로가기 메소드
 	private void backMove() {
 		win.getContentPane().removeAll();
 		win.getContentPane().add(win.getOwnerMainView());
@@ -282,6 +288,7 @@ public class NoticeUpdateView extends JPanel {
 		win.setVisible(true);
 	}
 
+	// 입력 및 선택사항 기본 설정 메소드
 	private void resetTextField() {
 //		tfAddr.setText("");
 		tfBKeyword1.setText("");
@@ -293,10 +300,13 @@ public class NoticeUpdateView extends JPanel {
 		tfTimeToTime.setText("");
 		timeType.setSelectedItem("시간 선택");
 		periodType.setSelectedItem("기간 선택");
+		typeCategory.setSelectedItem("[근무 형태]");
+		typeRegion.setSelectedItem("[근무 지역]");
 		taETC.setText("");
 		lbErrorMsg.setText("");
 	}
 
+	// 구인공고 삭제 메소드
 	private void delete() {
 		noticeUpdateController.deleteNotice();
 		noticeUpdateController.deleteConnection();

@@ -16,7 +16,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import com.job.controller.ApplicationDeleteController;
 import com.job.controller.CheckingController;
 import com.job.controller.ResumeDeleteController;
 import com.job.model.Partimer;
@@ -155,6 +154,7 @@ public class PartMainView extends JPanel {
 
 		showId();
 		buttonTest();
+		clearKeywordTextField();
 		searchClick();
 		searchEnter();
 		lookAroundScene();
@@ -195,6 +195,11 @@ public class PartMainView extends JPanel {
 			// System.out.println("버튼 활성화 오류");
 		}
 	}
+	
+	// 키워드 입력란 비우기
+		public void clearKeywordTextField() {
+			tfKeyword.setText("");
+		}
 
 	// 검색버튼 액션
 	public void searchClick() {
@@ -240,7 +245,6 @@ public class PartMainView extends JPanel {
 						System.out.println("-------------------------------------------");
 						System.out.println("검색 키워드 : " + keyword);
 						System.out.println("-------------------------------------------");
-
 						win.getJobSearchView().printTable1(keyword);
 
 						// 화면전환

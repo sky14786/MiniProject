@@ -27,19 +27,17 @@ public class LoadApplicationListController {
 	String timeType; // pt.get(i)의 몇시까지의 시간 변수
 	String periodType2; // pt.get(i)의 기간 변수
 
-	
-	//지원한 목록 Load 메소드
-	public DefaultTableModel loadApplicationList() {
-		
-		//Data Access Object 로부터 필요 Data Load
+	// 지원한 목록 Load 메소드
+	public ArrayList<Notice> loadApplicationList() {
+
+		// Data Access Object 로부터 필요 Data Load
 		notices = dao.loadNoitce();
 		connections = dao.loadConnection();
 		notices = dao.loadNoitce();
-		
-		//이력서 지원한 공고를 받아올 객체 선언
+
+		// 이력서 지원한 공고를 받아올 객체 선언
 		ArrayList<Notice> myApply = new ArrayList<Notice>();
 
-		
 		for (int i = 0; i < connections.size(); i++) {
 			if (connections.get(i).getResumes() != null) {
 				for (int j = 0; j < connections.get(i).getResumes().size(); j++) {
@@ -56,21 +54,7 @@ public class LoadApplicationListController {
 			}
 		}
 
-		DtmStorage.setNumRows(0);
-
-		for (int i = 0; i < myApply.size(); i++) {
-			bNo = Integer.toString(myApply.get(i).getbNo());
-			category = myApply.get(i).getCategory();
-			bName = myApply.get(i).getbName();
-			timeTotime2 = myApply.get(i).getTimeTotime();
-			pay = Double.toString(myApply.get(i).getPay());
-			region2 = myApply.get(i).getAddr();
-			timeType = myApply.get(i).getTimeType();
-			periodType2 = myApply.get(i).getPeriodType();
-
-			DtmStorage.addRow(
-					new String[] { (String) bName, pay, timeTotime2, category, periodType2, timeType, region2 });
-		}
+		
 //      for (int i = 0; i < notices.size(); i++) {
 //         // typeOccup2 = pt.get(i).; // pt.get(i)의 근무형태 변수
 //         // bNo = Integer.toString(pt.get(i).getbNo());
@@ -87,7 +71,7 @@ public class LoadApplicationListController {
 //               new String[] { (String) bName, pay, timeTotime2, category, periodType2, timeType, region2 });
 //
 //      }
-		return DtmStorage;
+		return myApply;
 
 	}
 

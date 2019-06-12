@@ -8,6 +8,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -20,6 +21,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
+import com.job.controller.CheckingController;
 import com.job.controller.JobSearchController;
 import com.job.model.dao.LoadSave;
 import com.job.run.Run;
@@ -48,6 +50,8 @@ public class JobSearchView extends JPanel {
 	private JScrollPane scrollPane;
 	private Run win = new Run();
 	private LoadSave dao = LoadSave.getDao();
+	
+	private CheckingController checkingController = new CheckingController();
 
 	public JobSearchView() {
 
@@ -55,6 +59,7 @@ public class JobSearchView extends JPanel {
 
 	public JobSearchView(Run win) {
 		// this.win = win;
+		//setBounds(100, 100, 1000, 600);
 		setLayout(null);
 
 		setSize(1000, 600);
@@ -247,10 +252,49 @@ public class JobSearchView extends JPanel {
 		apply.setFont(new Font("나눔스퀘어", Font.PLAIN, 14));
 		apply.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+				int check = checkingController.isApplyCheck();
+				System.out.println("이력서 존재여부 : " + check);
+				
+				if (check == 2) {	//이력서 있음(지원됨)
+					row = searchTable.getSelectedRow();
+					jsc.search2(searchTable.getSelectedRow());
+				}
+				else if (check == 3) {	//이력서 없음(지원불가)
+					// 팝업 알림창
+					JDialog notice = new JDialog(win, "지원불가 알림창", false);
+					notice.setBounds(300, 150, 400, 300);
+					notice.getContentPane().setLayout(null);
 
-				row = searchTable.getSelectedRow();
-				jsc.search2(searchTable.getSelectedRow());
-
+					JLabel label1 = new JLabel("먼저 이력서를 등록한 후에");
+					label1.setFont(new Font("나눔스퀘어 Bold", Font.PLAIN, 20));
+					label1.setHorizontalAlignment(SwingConstants.CENTER);
+					label1.setBounds(40, 70, 300, 20);
+					notice.getContentPane().add(label1);
+					
+					JLabel label2 = new JLabel("지원해주세요^-^");
+					label2.setFont(new Font("나눔스퀘어 Bold", Font.PLAIN, 20));
+					label2.setHorizontalAlignment(SwingConstants.CENTER);
+					label2.setBounds(85, 100, 200, 20);
+					notice.getContentPane().add(label2);
+					
+					// 삭제 진행 취소 버튼
+					JButton ans = new JButton("OK");
+					ans.setBounds(155, 150, 80, 50);
+					ans.setFont(new Font("나눔스퀘어", Font.PLAIN, 15));
+					ans.setVisible(true);
+					notice.getContentPane().add(ans);
+					ans.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							notice.setVisible(false);
+						}
+					});
+					
+					notice.setVisible(true);
+				}
+				else {	//유저찾기 실패(지원불가)
+					System.out.println("유저찾기 실패");
+				}
 			}
 		});
 		apply.setBounds(741, 173, 91, 35);

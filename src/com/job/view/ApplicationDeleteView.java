@@ -8,7 +8,6 @@ import java.awt.Image;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -24,12 +23,15 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
+import com.job.controller.ApplicationDeleteController;
 import com.job.controller.LoadApplicationListController;
 import com.job.model.Notice;
 import com.job.model.dao.LoadSave;
 import com.job.run.Run;
+import com.job.model.Connection;
 
 public class ApplicationDeleteView extends JPanel {
 
@@ -38,6 +40,7 @@ public class ApplicationDeleteView extends JPanel {
 	private ArrayList<Connection> connections = new ArrayList<Connection>();
 	private LoadSave dao = LoadSave.getDao();
 	private LoadApplicationListController loadController = new LoadApplicationListController();
+	private ApplicationDeleteController applicationDeleteController = new ApplicationDeleteController();
 
 	private DefaultTableModel DtmStorage;
 	private JTable searchTable;
@@ -68,6 +71,7 @@ public class ApplicationDeleteView extends JPanel {
 	private JComboBox<?> typeOccurType;
 	public Run win = new Run();
 	private JFrame frame;
+	private LoadApplicationListController loadALC = new LoadApplicationListController();
 
 	public ApplicationDeleteView(Run win) {
 		this.win = win;
@@ -79,7 +83,22 @@ public class ApplicationDeleteView extends JPanel {
 		DtmStorage.setNumRows(0);
 		DtmStorage.setColumnIdentifiers(new String[] { "업장명", "시급", "근무시간", "근무형태", "기간", "시간", "주소" });
 		DtmStorage.addRow(new Object[] { bNo, pay, timeTotime2, category, periodType2, timeType, region2 });
-		DtmStorage = loadController.loadApplicationList();
+		ArrayList<Notice> myApply = loadALC.loadApplicationList();
+		DtmStorage.setNumRows(0);
+
+		for (int i = 0; i < myApply.size(); i++) {
+			bNo = Integer.toString(myApply.get(i).getbNo());
+			category = myApply.get(i).getCategory();
+			bName = myApply.get(i).getbName();
+			timeTotime2 = myApply.get(i).getTimeTotime();
+			pay = Double.toString(myApply.get(i).getPay());
+			region2 = myApply.get(i).getAddr();
+			timeType = myApply.get(i).getTimeType();
+			periodType2 = myApply.get(i).getPeriodType();
+
+			DtmStorage.addRow(
+					new String[] { (String) bName, pay, timeTotime2, category, periodType2, timeType, region2 });
+		}
 	}
 
 	private void initialize() {
@@ -111,8 +130,40 @@ public class ApplicationDeleteView extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Modal m = new Modal(frame);
-				m.setVisible(true);
+				
+				int row = searchTable.getSelectedRow();
+				
+				if(row>=0) {
+					Modal m = new Modal(frame, row);
+					m.setVisible(true);
+				}
+				else {
+					System.out.println("지원취소할 구인공고를 선택하세요");
+					// 팝업 알림창
+					JDialog notice = new JDialog(win, "선택알림창", false);
+					notice.setBounds(300, 150, 400, 300);
+					notice.getContentPane().setLayout(null);
+
+					JLabel label = new JLabel("취소할 구인공고를 선택하세요");
+					label.setFont(new Font("나눔스퀘어 Bold", Font.PLAIN, 20));
+					label.setHorizontalAlignment(SwingConstants.CENTER);
+					label.setBounds(40, 70, 300, 20);
+					notice.getContentPane().add(label);
+					
+					// 확인버튼
+					JButton ans = new JButton("확인");
+					ans.setBounds(150, 150, 80, 50);
+					ans.setFont(new Font("나눔스퀘어", Font.PLAIN, 15));
+					ans.setVisible(true);
+					notice.getContentPane().add(ans);
+					ans.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							notice.setVisible(false);
+						}
+					});
+
+					notice.setVisible(true);
+				}
 
 			}
 		});
@@ -126,7 +177,7 @@ public class ApplicationDeleteView extends JPanel {
 		imgPanel.add(scrollPane);
 
 		String[] colum = { "", "", "", "", "", "", "" };
-		DtmStorage = loadController.loadApplicationList();
+		DtmStorage = new DefaultTableModel();
 		searchTable = new JTable(DtmStorage);
 
 		// 테이블 행 타이틀
@@ -185,6 +236,8 @@ public class ApplicationDeleteView extends JPanel {
 
 		pt = dao.loadNoitce();
 
+		tableSetting();
+
 	}
 
 	class ImagePanel extends JPanel {
@@ -212,7 +265,7 @@ public class ApplicationDeleteView extends JPanel {
 
 		private Image img;
 
-		public Modal(Window parent) {
+		public Modal(Window parent, int row) {
 
 			super(parent, "지원 취소", ModalityType.APPLICATION_MODAL);
 			setSize(400, 260);
@@ -245,7 +298,7 @@ public class ApplicationDeleteView extends JPanel {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 
-					yesBtn();
+					yesBtn(row);
 
 					// +배열에서 삭제하는 코드 구현
 
@@ -285,19 +338,22 @@ public class ApplicationDeleteView extends JPanel {
 
 	}
 
-	void yesBtn() {
+	public void yesBtn(int row) {
 
-		int row = searchTable.getSelectedRow();
-		if (row == -1)
-			return;
+		applicationDeleteController.deleteApplicationFromConnection(row);
+		tableSetting();
 
-		DefaultTableModel model = (DefaultTableModel) searchTable.getModel();
-		System.out.println(model.getValueAt(row, 0));
-		model.removeRow(row);
-
-		pt.remove(row);
-
-		System.out.println(pt.size());
+//		int row = searchTable.getSelectedRow();
+//		if (row == -1)
+//			return;
+//
+//		DefaultTableModel model = (DefaultTableModel) searchTable.getModel();
+//		System.out.println(model.getValueAt(row, 0));
+//		model.removeRow(row);
+//
+//		pt.remove(row);
+//
+//		System.out.println(pt.size());
 
 		// delController.delApplicationList();
 

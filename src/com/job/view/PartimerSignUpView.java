@@ -20,6 +20,7 @@ import javax.swing.SwingConstants;
 
 import com.job.controller.PartimerSignUpController;
 import com.job.run.Run;
+
 //준영
 public class PartimerSignUpView extends JPanel {
 
@@ -58,7 +59,7 @@ public class PartimerSignUpView extends JPanel {
 		tfID.setFont(new Font("배달의민족 주아", Font.PLAIN, 18));
 		tfID.setColumns(10);
 		tfID.setForeground(fontColor);
-		tfID.setBounds(165, 151, 189, 35);
+		tfID.setBounds(202, 143, 189, 35);
 		tfID.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		tfID.setOpaque(false);
 		add(tfID);
@@ -68,7 +69,7 @@ public class PartimerSignUpView extends JPanel {
 		tfPW.setFont(new Font("배달의민족 주아", Font.PLAIN, 18));
 		tfPW.setColumns(10);
 		tfPW.setForeground(fontColor);
-		tfPW.setBounds(165, 221, 189, 35);
+		tfPW.setBounds(202, 213, 189, 35);
 		tfPW.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		tfPW.setOpaque(false);
 		add(tfPW);
@@ -77,7 +78,7 @@ public class PartimerSignUpView extends JPanel {
 		tfName.setFont(new Font("배달의민족 주아", Font.PLAIN, 18));
 		tfName.setColumns(10);
 		tfName.setForeground(fontColor);
-		tfName.setBounds(165, 292, 189, 35);
+		tfName.setBounds(202, 284, 189, 35);
 		tfName.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		tfName.setOpaque(false);
 		add(tfName);
@@ -86,7 +87,7 @@ public class PartimerSignUpView extends JPanel {
 		tfAge.setFont(new Font("배달의민족 주아", Font.PLAIN, 18));
 		tfAge.setColumns(10);
 		tfAge.setForeground(fontColor);
-		tfAge.setBounds(165, 361, 189, 35);
+		tfAge.setBounds(202, 353, 189, 35);
 		tfAge.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		tfAge.setOpaque(false);
 		add(tfAge);
@@ -95,7 +96,7 @@ public class PartimerSignUpView extends JPanel {
 		tfPhone.setFont(new Font("배달의민족 주아", Font.PLAIN, 18));
 		tfPhone.setColumns(10);
 		tfPhone.setForeground(fontColor);
-		tfPhone.setBounds(165, 430, 203, 35);
+		tfPhone.setBounds(202, 422, 203, 35);
 		tfPhone.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		tfPhone.setOpaque(false);
 		add(tfPhone);
@@ -122,7 +123,7 @@ public class PartimerSignUpView extends JPanel {
 		btnSignUp = new JButton("");
 		btnSignUp.setIcon(new ImageIcon(this.getClass().getResource("/resource/SignUpButton.png")));
 		btnSignUp.setFont(new Font("나눔스퀘어", Font.PLAIN, 26));
-		btnSignUp.setBounds(134, 507, 146, 53);
+		btnSignUp.setBounds(121, 494, 146, 53);
 		btnSignUp.setContentAreaFilled(false);
 		btnSignUp.setBorderPainted(false);
 		add(btnSignUp);
@@ -130,7 +131,7 @@ public class PartimerSignUpView extends JPanel {
 		btnBack = new JButton("");
 
 		btnBack.setFont(new Font("나눔스퀘어", Font.PLAIN, 26));
-		btnBack.setBounds(328, 507, 146, 53);
+		btnBack.setBounds(315, 494, 146, 53);
 		btnBack.setIcon(new ImageIcon(this.getClass().getResource("/resource/BackButton.png")));
 		btnBack.setContentAreaFilled(false);
 		btnBack.setBorderPainted(false);
@@ -139,7 +140,7 @@ public class PartimerSignUpView extends JPanel {
 		btnDuplicateCheck = new JButton("");
 		btnDuplicateCheck.setIcon(new ImageIcon(this.getClass().getResource("/resource/DuplicateCheckButton.png")));
 		btnDuplicateCheck.setFont(new Font("나눔스퀘어", Font.PLAIN, 14));
-		btnDuplicateCheck.setBounds(401, 143, 112, 53);
+		btnDuplicateCheck.setBounds(416, 134, 101, 44);
 		btnDuplicateCheck.setContentAreaFilled(false);
 		btnDuplicateCheck.setBorderPainted(false);
 		add(btnDuplicateCheck);
@@ -152,7 +153,7 @@ public class PartimerSignUpView extends JPanel {
 		add(lbErrorMsg);
 
 		label = new JLabel("");
-		label.setIcon(new ImageIcon(this.getClass().getResource("/resource/PartimerSignUpImage2.jpg")));
+		label.setIcon(new ImageIcon(this.getClass().getResource("/resource/PartimerSignUpImage-2.jpg")));
 		label.setBounds(0, 0, 994, 571);
 		add(label);
 
@@ -162,6 +163,7 @@ public class PartimerSignUpView extends JPanel {
 
 	}
 
+	// 버튼 기능설정 메소드
 	private void settingButton() {
 		btnBack.addActionListener(new ActionListener() {
 
@@ -188,6 +190,7 @@ public class PartimerSignUpView extends JPanel {
 		});
 	}
 
+	// 입력사항 초기화 메소드
 	public void resetTextField() {
 		tfID.setText("");
 		tfPW.setText("");
@@ -198,6 +201,7 @@ public class PartimerSignUpView extends JPanel {
 
 	}
 
+	// 뒤로가기 메소드
 	private void showLoginView() {
 		resetTextField();
 		win.getContentPane().removeAll();
@@ -207,6 +211,7 @@ public class PartimerSignUpView extends JPanel {
 		repaint();
 	}
 
+	// ID 중복확인 메소드
 	private void duplicateCheck() {
 		if (!tfID.getText().equals("")) {
 			if (partimerSignUpController.englishCheck(tfID.getText())) {
@@ -226,13 +231,16 @@ public class PartimerSignUpView extends JPanel {
 
 	}
 
+	// 회원가입 메소드
 	private void signUp() {
 		if (!tfID.getText().equals("")) {
 			if (!tfPW.getText().equals("") && (tfPW.getText().length() >= 8 && tfPW.getText().length() <= 12)) {
 				if (!tfName.getText().equals("")) {
 					if (!tfAge.getText().equals("")) {
 						if (!tfPhone.getText().equals("")) {
+							// 모든 입력사항이 공백이 아니고 비밀번호가 8~12자 일경우
 							if (isDuplicate) {
+								// 중복확인을 했고 그 값이 true일 경우
 								partimerSignUpController.addPartimer(tfID.getText(), tfPW.getText(), tfName.getText(),
 										Integer.parseInt(tfAge.getText()), radio[0].isSelected() == true ? "여자" : "남자",
 										tfPhone.getText());

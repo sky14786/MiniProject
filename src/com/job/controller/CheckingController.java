@@ -20,11 +20,11 @@ public class CheckingController {
 		for(int i=0; i<parttimers.size(); i++) {
 			if(parttimers.get(i).getNo() == userNo) {	//유저 찾음
 				System.out.println(parttimers.get(i).toString());
-				if(parttimers.get(i).isApply() == true)
+				if(parttimers.get(i).getIsApply() == true)
 				{
 					check = 2;	//이력서 있음
 				}
-				else if(parttimers.get(i).isApply() == false)
+				else if(parttimers.get(i).getIsApply() == false)
 				{
 					check = 3;	//이력서 없음
 				}

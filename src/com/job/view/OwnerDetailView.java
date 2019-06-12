@@ -35,7 +35,7 @@ public class OwnerDetailView extends JPanel {
 
 	public OwnerDetailView(Run win) {
 		setLayout(null);
-		setSize(581, 783);
+		setSize(581,800);
 
 		Color fontColor = new Color(0x4f4f4f);
 
@@ -59,7 +59,7 @@ public class OwnerDetailView extends JPanel {
 
 		lbPhone = new JLabel("\uC815\uBCF4 \uC5C6\uC74C");
 		lbPhone.setFont(new Font("배달의민족 주아", Font.PLAIN, 20));
-		lbPhone.setBounds(389, 248, 123, 32);
+		lbPhone.setBounds(389, 248, 164, 32);
 		lbPhone.setForeground(fontColor);
 		add(lbPhone);
 
@@ -77,19 +77,19 @@ public class OwnerDetailView extends JPanel {
 
 		lbcategory = new JLabel("\uC815\uBCF4 \uC5C6\uC74C");
 		lbcategory.setFont(new Font("배달의민족 주아", Font.PLAIN, 20));
-		lbcategory.setBounds(349, 504, 123, 32);
+		lbcategory.setBounds(349, 504, 165, 32);
 		lbcategory.setForeground(fontColor);
 		add(lbcategory);
 
 		lbTimeOccup = new JLabel("\uC815\uBCF4 \uC5C6\uC74C");
 		lbTimeOccup.setFont(new Font("배달의민족 주아", Font.PLAIN, 20));
-		lbTimeOccup.setBounds(349, 584, 123, 32);
+		lbTimeOccup.setBounds(349, 584, 166, 32);
 		lbTimeOccup.setForeground(fontColor);
 		add(lbTimeOccup);
 
 		lbDow = new JLabel("\uC815\uBCF4 \uC5C6\uC74C");
 		lbDow.setFont(new Font("배달의민족 주아", Font.PLAIN, 20));
-		lbDow.setBounds(349, 653, 123, 32);
+		lbDow.setBounds(349, 653, 166, 32);
 		lbDow.setForeground(fontColor);
 		add(lbDow);
 
@@ -106,7 +106,7 @@ public class OwnerDetailView extends JPanel {
 		add(lbAddr);
 
 		JButton btnNewButton = new JButton("");
-		btnNewButton.setBounds(227, 695, 123, 52);
+		btnNewButton.setBounds(430, 695, 123, 52);
 		btnNewButton.setIcon(new ImageIcon(this.getClass().getResource("/resource/BackButton.png")));
 		btnNewButton.setContentAreaFilled(false);
 		btnNewButton.setBorderPainted(false);

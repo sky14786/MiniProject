@@ -79,7 +79,7 @@ public class JobSearchController {
 			ji = "[근무 지역]";
 
 			// 지역 , 직종 , 시간, 기간
-			if (region.equals(region2) && typeOccup.equals(typeOccup2) && timeTotime.equals(timeTotime2)
+			if (region.equals(region2) && typeOccup.equals(typeOccup2) && timeTotime.equals(timeType2)
 					&& periodType.equals(periodType2)) {
 
 				System.out.println(mm.notice.get(i).toString());
@@ -96,8 +96,18 @@ public class JobSearchController {
 
 			}
 			// 지역 , 직종 , 시간
-			if (region.equals(region2) && typeOccup.equals(typeOccup2) && timeTotime.equals(timeTotime2)
+			if (region.equals(region2) && typeOccup.equals(typeOccup2) && timeTotime.equals(timeType2)
 					&& periodType.equals(ki)) {
+
+				System.out.println(mm.notice.get(i).toString());
+
+				notice2.add((Notice) mm.notice.get(i));
+
+			}
+			
+			// 지역 , 직종 , 기간
+			if (region.equals(region2) && typeOccup.equals(typeOccup2) && timeTotime.equals(si)
+					&& periodType.equals(periodType2)) {
 
 				System.out.println(mm.notice.get(i).toString());
 
@@ -115,7 +125,7 @@ public class JobSearchController {
 			}
 
 			// 지역 , 시간
-			if (region.equals(region2) && typeOccup.equals(mo) && timeTotime.equals(timeTotime2)
+			if (region.equals(region2) && typeOccup.equals(mo) && timeTotime.equals(timeType2)
 					&& periodType.equals(ki)) {
 				System.out.println(mm.notice.get(i));
 
@@ -158,7 +168,7 @@ public class JobSearchController {
 			}
 
 			// 근무 형태 , 시간 선택
-			if (region.equals(ji) && typeOccup.equals(typeOccup2) && timeTotime.equals(timeTotime2)
+			if (region.equals(ji) && typeOccup.equals(typeOccup2) && timeTotime.equals(timeType2)
 					&& periodType.equals(ki)) {
 				System.out.println(mm.notice.get(i));
 
@@ -167,7 +177,7 @@ public class JobSearchController {
 			}
 
 			// 근무형태 , 시간 , 기간 선택
-			if (region.equals(ji) && typeOccup.equals(typeOccup2) && timeTotime.equals(timeTotime2)
+			if (region.equals(ji) && typeOccup.equals(typeOccup2) && timeTotime.equals(timeType2)
 					&& periodType.equals(periodType2)) {
 				System.out.println(mm.notice.get(i));
 
@@ -176,7 +186,7 @@ public class JobSearchController {
 			}
 
 			// 시간, 기간 선택
-			if (region.equals(ji) && typeOccup.equals(mo) && timeTotime.equals(timeTotime2)
+			if (region.equals(ji) && typeOccup.equals(mo) && timeTotime.equals(timeType2)
 					&& periodType.equals(periodType2)) {
 				System.out.println(mm.notice.get(i));
 
@@ -185,7 +195,7 @@ public class JobSearchController {
 			}
 
 			// 시간 선택
-			if (region.equals(ji) && typeOccup.equals(mo) && timeTotime.equals(timeTotime2) && periodType.equals(ki)) {
+			if (region.equals(ji) && typeOccup.equals(mo) && timeTotime.equals(timeType2) && periodType.equals(ki)) {
 				System.out.println(mm.notice.get(i));
 
 				notice2.add((Notice) mm.notice.get(i));
@@ -323,13 +333,16 @@ public class JobSearchController {
 
 			// Connection 객체와 연동 부분 --------------------------------------
 			System.out.println("지원시작!");
+			
 			Connection connection = new Connection();
 			connections = dao.loadConnection();
 			ArrayList<Resume> resumes = dao.loadResume();
 			ArrayList<Resume> tt = new ArrayList<Resume>();
 			Resume nowResume = new Resume();
+			
 			boolean isEquals = false;
 			int temp = 0;
+			
 			for (int i = 0; i < connections.size(); i++) {
 				if (connections.get(i).getNoticeNo() == notice2.get(row).getbNo()) {
 					connection = connections.get(i);
@@ -342,19 +355,22 @@ public class JobSearchController {
 					nowResume = resumes.get(i);
 				}
 			}
+			
 			if (connection.getResumes() == null) {
 				tt.add(nowResume);
 				connection.setResuems(tt);
 				connections.set(temp, connection);
 				dao.saveConnection(connections);
 				System.out.println("단일지원성공");
-			} else {
+				JOptionPane.showMessageDialog(null, "지원하였습니다!");
+			}
+			else {	//구인공고에 지원된 이력서가 하나라도 있으면
 				System.out.println(connection.getResumes().toString());
 				for (int i = 0; i < connection.getResumes().size(); i++) {
-					if (connection.getResumes().get(i).getUserNo() == nowResume.getUserNo()) {
+					if (connection.getResumes().get(i).getUserNo() == nowResume.getUserNo()) { //이미 지원해놓은 상태
 						isEquals = false;
 						break;
-					} else {
+					} else { //처음지원
 						isEquals = true;
 					}
 				}
@@ -369,10 +385,12 @@ public class JobSearchController {
 					System.out.println("ResumesCount : " + tt.size());
 					System.out.println("Resumes : " + tt.toString());
 					System.out.println("-------------------------------------------");
+					JOptionPane.showMessageDialog(null, "지원하였습니다!");
 				}
 
 				else {
 					System.out.println("지원실패");
+					JOptionPane.showMessageDialog(null, "이미 지원하셨습니다!");
 				}
 			}
 			System.out.println("-------------------------------------------");
@@ -384,7 +402,6 @@ public class JobSearchController {
 			System.out.println("-------------------------------------------");
 			// Connection 객체와 연동 부분 -------------------------------------------
 			// 안내메세지
-			JOptionPane.showMessageDialog(null, "지원하였습니다!");
 		}
 		// return temp2;
 	}

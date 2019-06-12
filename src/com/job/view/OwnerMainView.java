@@ -46,7 +46,7 @@ public class OwnerMainView extends JPanel {
 		setSize(1000, 600);
 		btnShowNoticeReg = new JButton("");
 		btnShowNoticeReg.setBackground(Color.WHITE);
-		btnShowNoticeReg.setBounds(63, 119, 161, 66);
+		btnShowNoticeReg.setBounds(97, 177, 161, 66);
 		btnShowNoticeReg.setIcon(new ImageIcon(this.getClass().getResource("/resource/NoticeReg.png")));
 		btnShowNoticeReg.setContentAreaFilled(false);
 		btnShowNoticeReg.setBorderPainted(false);
@@ -54,7 +54,7 @@ public class OwnerMainView extends JPanel {
 
 		btnShowMyNotice = new JButton("");
 		btnShowMyNotice.setBackground(Color.WHITE);
-		btnShowMyNotice.setBounds(236, 119, 161, 66);
+		btnShowMyNotice.setBounds(268, 177, 161, 66);
 		btnShowMyNotice.setIcon(new ImageIcon(this.getClass().getResource("/resource/MyNotice.png")));
 		btnShowMyNotice.setContentAreaFilled(false);
 		btnShowMyNotice.setBorderPainted(false);
@@ -68,7 +68,7 @@ public class OwnerMainView extends JPanel {
 		btnsShowSearchView.setContentAreaFilled(false);
 		btnsShowSearchView.setBorderPainted(false);
 
-		btnsShowSearchView.setBounds(726, 119, 161, 66);
+		btnsShowSearchView.setBounds(739, 128, 132, 66);
 		add(btnsShowSearchView);
 		// ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -100,12 +100,12 @@ public class OwnerMainView extends JPanel {
 		btnDetailView.setIcon(new ImageIcon(this.getClass().getResource("/resource/OpenBtn.png")));
 		btnDetailView.setContentAreaFilled(false);
 		btnDetailView.setBorderPainted(false);
-		btnDetailView.setBounds(99, 207, 105, 27);
+		btnDetailView.setBounds(443, 198, 105, 27);
 		add(btnDetailView);
 		// ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 		btnLogout = new JButton("");
-		btnLogout.setBounds(876, 25, 112, 28);
+		btnLogout.setBounds(874, 44, 112, 28);
 		btnLogout.setIcon(new ImageIcon(this.getClass().getResource("/resource/LogoutBtn.png")));
 		btnLogout.setContentAreaFilled(false);
 		btnLogout.setBorderPainted(false);
@@ -135,6 +135,7 @@ public class OwnerMainView extends JPanel {
 
 	}
 
+	// 공고 등록 화면 띄우기
 	private void showNoticeReg() {
 		win.getContentPane().removeAll();
 		win.getContentPane().add(win.getNoticeRegisterView());
@@ -144,6 +145,7 @@ public class OwnerMainView extends JPanel {
 		repaint();
 	}
 
+	// 내 공고 확인
 	private void showMyNotice() {
 		win.getContentPane().removeAll();
 		win.getContentPane().add(win.getNoticeUpdateView());
@@ -155,6 +157,7 @@ public class OwnerMainView extends JPanel {
 
 	}
 
+	// 검색화면 띄우기
 	private void showSearchView() {
 		win.getContentPane().removeAll();
 		win.getContentPane().add(win.getSearchView());
@@ -166,10 +169,12 @@ public class OwnerMainView extends JPanel {
 		win.setVisible(true);
 	}
 
+	// Table의 Row 초기화
 	public void resetDTM() {
 		Dtm.setNumRows(0);
 	}
 
+	// 로그아웃 메소드
 	private void logout() {
 		win.getContentPane().removeAll();
 		win.getContentPane().add(win.getLoginView());
@@ -211,6 +216,7 @@ public class OwnerMainView extends JPanel {
 		}
 	}
 
+	// 버튼 기능 설정 메소드
 	private void settingButton() {
 		btnShowMyNotice.addActionListener(new ActionListener() {
 
@@ -252,6 +258,7 @@ public class OwnerMainView extends JPanel {
 		});
 	}
 
+	// 버튼의 활성화 여부 체크 메소드
 	public void isNoticeTest() {
 		if (nrc.isApplyCheck()) {
 			System.out.println();
@@ -296,6 +303,7 @@ public class OwnerMainView extends JPanel {
 			temp.setDow(arr.get(num).getDow());
 			temp.setTime(arr.get(num).getTime());
 			temp.setRegion(arr.get(num).getRegion());
+			temp.setAcademic(arr.get(num).getAcademic());
 
 			System.out.println(temp.toString());
 
@@ -303,7 +311,7 @@ public class OwnerMainView extends JPanel {
 			win.getContentPane().add(win.getOwnerDetailView());
 			revalidate();
 			repaint();
-			win.setSize(581, 783);
+			win.setSize(581, 800);
 			win.setVisible(false);
 			win.setVisible(true);
 
